@@ -1,5 +1,9 @@
-.bgImage {
+html,
+body {
   background-color: black;
+}
+
+.bgImage {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -12,11 +16,115 @@
 
 .lightsOn {
   background-image: url("./images/BKG-A-landing.jpg");
+  animation: fadeOut 1s;
 }
 
 .lightsOff {
   background-image: url("./images/BKG-A-lightbox.jpg");
+  animation: fadeIn 1s;
 }
+
+/*
+*************************************
+ANIMATIONS 
+*************************************
+*/
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.5;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.5;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.5;
+  }
+}
+
+@-o-keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.5;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.5;
+  }
+}
+
+/*
+*************************************
+MEDIA QUERIES
+*************************************
+*/
 
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
