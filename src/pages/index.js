@@ -1,13 +1,11 @@
 import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import ImageMap from "image-map/dist/image-map"
+import TruffleImageMap from "../components/TruffleImageMap"
 import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
-// import BackgroundLightsOffB from "../assets/images/BKG-A-lightbox.jpg"
-// import LinkGrid from "../components/linkGrid"
-
+import BackgroundLightsOffA from "../assets/images/BKG-A-lightbox.jpg"
 import "normalize.css"
-import "../assets/imageMap.css"
-// import "../assets/main.css"
+import "../assets/main.css"
 
 export default function Home() {
   const [lightsOn, setLightsOn] = useState(true)
@@ -20,45 +18,42 @@ export default function Home() {
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.jquery.js"></script>
       </Helmet>
-      <div
-        className="imageContainer"
-        onLoad={() => {
-          console.log("imageContainer loaded")
-          ImageMap("img[usemap]")
-          console.log("ImageMap Done?")
-        }}
-      >
-        <img
-          src={BackgroundLightsOnA}
-          height="3453"
-          width="5148"
-          useMap="#imgMap"
-          alt="Open Truffle Box on a Film Set"
-          // className="backgroundImage"
-        />
-        <map name="imgMap">
-          <area
-            shape="rect"
-            coords="1742,1706,2019,1874"
-            href=""
-            alt="Info Button"
-            // onClick={() => setLightsOn(!lightsOn) }
-            onClick={e => {
-              alert("Info Button Clicked")
-              e.preventDefault()
+      <main className="body">
+        <div className="imageContainer">
+          <div className="cardStack">
+            <area
+              target=""
+              alt="screen"
+              title="screen"
+              href=""
+              coords="1686,737,1744,737,2945,744,3017,759,3039,809,3039,874,3039,1560,3010,1604,2959,1618,1737,1618,1686,1604,1650,1560,1650,824,1665,766"
+              shape="poly"
+              onClick={e => {
+                alert("Screen Clicked")
+                e.preventDefault()
+              }}
+            />
+            <div className="topCard"></div>
+            <div className="middleCard"></div>
+            <div className="bottomCard"></div>
+          </div>
+          {/* <img
+            src={BackgroundLightsOffA}
+            alt="Open Truffle Box on a Film Set with Lights Off"
+          /> */}
+          <img
+            src={BackgroundLightsOnA}
+            // height="3453"
+            // width="5148"
+            useMap="#imgMap"
+            alt="Open Truffle Box on a Film Set"
+            onLoad={() => {
+              ImageMap("img[usemap]")
             }}
-          ></area>
-        </map>
-      </div>
-
-      {/* <main className="imageContainer">
-        <div
-          className={lightsOn ? "bgImage lightsOn" : "bgImage lightsOff"}
-        ></div>
-        <div className="linkContainer" onClick={() => setLightsOn(!lightsOn)}>
-          <LinkGrid />
+          />
+          <TruffleImageMap />
         </div>
-      </main> */}
+      </main>
     </>
   )
 }
