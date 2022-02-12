@@ -1,6 +1,6 @@
 import React from "react"
 
-const TruffleImageMap = props => {
+const TruffleImageMap = ({ setLastClicked, setCurrentClick }) => {
   return (
     <map name="imgMap">
       <area
@@ -9,7 +9,8 @@ const TruffleImageMap = props => {
         alt="screen"
         coords="1686,737,1744,737,2945,744,3017,759,3039,809,3039,874,3039,1560,3010,1604,2959,1618,1737,1618,1686,1604,1650,1560,1650,824,1665,766"
         onClick={e => {
-          alert("Screen Clicked")
+          setLastClicked("screen")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -19,9 +20,8 @@ const TruffleImageMap = props => {
         alt="btn11"
         coords="2012,1720,2235,1874"
         onClick={e => {
-          console.log(props)
-          props.setLightsOn(true)
-          alert("Button 11 Clicked" + e.target.coords)
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -31,7 +31,8 @@ const TruffleImageMap = props => {
         alt="btn12"
         coords="2244,1720,2458,1874"
         onClick={e => {
-          alert("Button 12 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -41,7 +42,8 @@ const TruffleImageMap = props => {
         alt="btn13"
         coords="2463,1715,2708,1874"
         onClick={e => {
-          alert("Button 13 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -51,7 +53,8 @@ const TruffleImageMap = props => {
         alt="btn6"
         coords="1744,1865,2003,2011"
         onClick={e => {
-          alert("Button 6 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -61,7 +64,8 @@ const TruffleImageMap = props => {
         alt="btn7"
         coords="2003,1874,2235,2015"
         onClick={e => {
-          alert("Button 7 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -71,7 +75,8 @@ const TruffleImageMap = props => {
         alt="btn8"
         coords="2244,1879,2458,2011"
         onClick={e => {
-          alert("Button 8 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -81,7 +86,8 @@ const TruffleImageMap = props => {
         alt="btn9"
         coords="2463,1879,2708,2011"
         onClick={e => {
-          alert("Button 9 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -91,7 +97,8 @@ const TruffleImageMap = props => {
         alt="btn10"
         coords="2717,1870,2963,2015"
         onClick={e => {
-          alert("Button 10 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -101,7 +108,8 @@ const TruffleImageMap = props => {
         alt="btn1"
         coords="1730,2015,1990,2170"
         onClick={e => {
-          alert("Button 1 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -111,7 +119,8 @@ const TruffleImageMap = props => {
         alt="btn2"
         coords="1999,2020,2235,2179"
         onClick={e => {
-          alert("Button 2 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -121,7 +130,8 @@ const TruffleImageMap = props => {
         alt="btn3"
         coords="2244,2014,2453,2184"
         onClick={e => {
-          alert("Button 3 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -131,7 +141,8 @@ const TruffleImageMap = props => {
         alt="btn4"
         coords="2454,2014,2708,2184"
         onClick={e => {
-          alert("Button 4 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -141,7 +152,8 @@ const TruffleImageMap = props => {
         alt="btn5"
         coords="2717,2019,2990,2175"
         onClick={e => {
-          alert("Button 5 Clicked")
+          setLastClicked("truffle")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -151,7 +163,8 @@ const TruffleImageMap = props => {
         alt="infoBtn"
         coords="1762,1724,1999,1861"
         onClick={e => {
-          alert("Info Button Clicked")
+          setLastClicked("info")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />
@@ -161,7 +174,8 @@ const TruffleImageMap = props => {
         alt="contactBtn"
         coords="2713,1720,2963,1865"
         onClick={e => {
-          alert("Contact Button Clicked")
+          setLastClicked("contact")
+          setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
       />

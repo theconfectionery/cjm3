@@ -9,7 +9,23 @@ import "normalize.css"
 import "../assets/main.css"
 
 export default function Home() {
-  const [lightsOn, setLightsOn] = useState(false)
+  const [lightsOn, setLightsOn] = useState(true)
+  const [lastClicked, setLastClicked] = useState("")
+  const [currentClick, setCurrentClick] = useState("")
+
+  const toggleLights = () => {
+    if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
+      setLightsOn(true)
+    } else if (lightsOn && lastClicked === "truffle") {
+      setLightsOn(false)
+    }
+  }
+
+  const handleClick = () => {
+    console.log("last clicked: " + lastClicked)
+    console.log("current click: " + currentClick)
+    toggleLights()
+  }
 
   return (
     <>
@@ -26,6 +42,7 @@ export default function Home() {
             <img
               src={BackgroundLightsOnA}
               alt="Open Truffle Box on a Film Set"
+              className="fadeIn"
               height="3453"
               width="5148"
               useMap="#imgMap"
@@ -37,6 +54,7 @@ export default function Home() {
             <img
               src={BackgroundLightsOffA}
               alt="Open Truffle Box on a Film Set with Lights Off"
+              className="fadeOut"
               height="3453"
               width="5148"
               useMap="#imgMap"
@@ -47,8 +65,9 @@ export default function Home() {
           )}
           <TruffleImageMap
             className="truffleImageMap"
-            lightsOn={lightsOn}
-            setLightsOn={setLightsOn}
+            setLastClicked={setLastClicked}
+            setCurrentClick={setCurrentClick}
+            onClick={handleClick()}
           />
         </div>
       </main>
