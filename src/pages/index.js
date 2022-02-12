@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
 import ImageMap from "image-map/dist/image-map"
 import TruffleImageMap from "../components/TruffleImageMap"
@@ -12,19 +12,32 @@ export default function Home() {
   const [lightsOn, setLightsOn] = useState(true)
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
+  const [screenCoords, setScreenCoords] = useState("")
+
+  const getScreenCoords = () => {
+    // console.log("getting screen coords: " + screenCoords)
+    setScreenCoords(document.getElementById("videoPlayerArea").coords)
+    // console.log("set screen coords: " + screenCoords)
+  }
+
+  useEffect(() => {
+    // window.addEventListener("resize", getScreenCoords)
+    getScreenCoords()
+    window.removeEventListener("resize", getScreenCoords)
+  }, [])
+
+  const handleClick = () => {
+    toggleLights()
+  }
 
   const toggleLights = () => {
     if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
       setLightsOn(true)
     } else if (lightsOn && lastClicked === "truffle") {
       setLightsOn(false)
+    } else if (!lightsOn && lastClicked === "bg") {
+      setLightsOn(true)
     }
-  }
-
-  const handleClick = () => {
-    console.log("last clicked: " + lastClicked)
-    console.log("current click: " + currentClick)
-    toggleLights()
   }
 
   return (
@@ -46,20 +59,24 @@ export default function Home() {
               height="3453"
               width="5148"
               useMap="#imgMap"
+              onresize={() => {
+                console.log(document.getElementById("videoPlayerArea").coords)
+              }}
               onLoad={() => {
                 ImageMap("img[usemap]")
+                console.log(document.getElementById("videoPlayerArea").coords)
               }}
             />
           ) : (
             <img
               src={BackgroundLightsOffA}
               alt="Open Truffle Box on a Film Set with Lights Off"
-              className="fadeOut"
               height="3453"
               width="5148"
               useMap="#imgMap"
               onLoad={() => {
                 ImageMap("img[usemap]")
+                console.log(document.getElementById("videoPlayerArea").coords)
               }}
             />
           )}
@@ -67,6 +84,7 @@ export default function Home() {
             className="truffleImageMap"
             setLastClicked={setLastClicked}
             setCurrentClick={setCurrentClick}
+            setScreenCoords={setScreenCoords}
             onClick={handleClick()}
           />
         </div>

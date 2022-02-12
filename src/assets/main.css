@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   background-color: #000000;
   height: 100%;
 }
@@ -9,24 +10,19 @@ area {
 }
 
 img[useMap] {
-  animation: fadeIn 3s;
+  animation: fadeIn 2s;
   border: none;
   min-height: 100vh;
   height: 100vh;
   width: auto;
 }
 
-.fadeIn {
-  animation: fadeIn 2s;
-}
-
-.fadeOut {
-  animation: fadeOut 2s;
+#videoPlayerArea {
 }
 
 .imageContainer {
-  height: 100vh;
-  width: 100vw;
+  height: auto;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,6 +43,25 @@ img[useMap] {
   width: 300px;
   height: 175px;
   z-index: 1;
+} */
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+/* @media (max-width: 420px) {
+  .imageContainer {
+    height: 100%vh;
+  }
+  img[useMap] {
+    height: 100%;
+    width: auto;
+    transform: scale(1.3) translateX(6%);
+  }
+} */
+
+/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+/* @media (min-width: 421px) and (max-width: 600px) {
+  img[useMap] {
+    height: 100%;
+  }
 } */
 
 /* ____ANIMATIONS____ */

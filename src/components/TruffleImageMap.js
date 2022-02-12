@@ -1,13 +1,22 @@
 import React from "react"
 
-const TruffleImageMap = ({ setLastClicked, setCurrentClick }) => {
+const TruffleImageMap = ({
+  setLastClicked,
+  setCurrentClick,
+  setScreenCoords,
+}) => {
   return (
     <map name="imgMap">
       <area
-        shape="poly"
+        id="videoPlayerArea"
+        shape="rect"
         title="screen"
         alt="screen"
-        coords="1686,737,1744,737,2945,744,3017,759,3039,809,3039,874,3039,1560,3010,1604,2959,1618,1737,1618,1686,1604,1650,1560,1650,824,1665,766"
+        coords="1714,796,2988,1556"
+        onLoad={e => {
+          console.log(e)
+          setScreenCoords(e.target.coords)
+        }}
         onClick={e => {
           setLastClicked("screen")
           setCurrentClick(e.target.alt)
@@ -175,6 +184,72 @@ const TruffleImageMap = ({ setLastClicked, setCurrentClick }) => {
         coords="2713,1720,2963,1865"
         onClick={e => {
           setLastClicked("contact")
+          setCurrentClick(e.target.alt)
+          e.preventDefault()
+        }}
+      />
+      <area
+        shape="rect"
+        title="leftArrow"
+        alt="leftArrow"
+        coords="3115,1742,3311,1865"
+        onClick={e => {
+          setLastClicked("leftArrow")
+          setCurrentClick(e.target.alt)
+          e.preventDefault()
+        }}
+      />
+      <area
+        shape="rect"
+        title="rightArrow"
+        alt="rightArrow"
+        coords="3115,1865,3324,2006"
+        onClick={e => {
+          setLastClicked("rightArrow")
+          setCurrentClick(e.target.alt)
+          e.preventDefault()
+        }}
+      />
+      <area
+        shape="rect"
+        title="bgTop"
+        alt="bgTop"
+        coords="14,-5,5143,714"
+        onClick={e => {
+          setLastClicked("bg")
+          setCurrentClick(e.target.alt)
+          e.preventDefault()
+        }}
+      />
+      <area
+        shape="rect"
+        title="bgLeft"
+        alt="bgLeft"
+        coords="9,719,1619,2288"
+        onClick={e => {
+          setLastClicked("bg")
+          setCurrentClick(e.target.alt)
+          e.preventDefault()
+        }}
+      />
+      <area
+        shape="rect"
+        title="bgBottom"
+        alt="bgBottom"
+        coords="9,2297,5139,3453"
+        onClick={e => {
+          setLastClicked("bg")
+          setCurrentClick(e.target.alt)
+          e.preventDefault()
+        }}
+      />
+      <area
+        shape="poly"
+        title="bgRight"
+        alt="bgRight"
+        coords="3061,723,3061,1679,3352,1711,3361,1852,3379,2015,3247,2065,3115,2088,3133,2293,3333,2288,3634,2284,5143,2284,5134,719"
+        onClick={e => {
+          setLastClicked("bg")
           setCurrentClick(e.target.alt)
           e.preventDefault()
         }}
