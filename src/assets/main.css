@@ -17,7 +17,18 @@ img[useMap] {
   width: auto;
 }
 
-#videoPlayerArea {
+#cardTest {
+  position: absolute;
+  animation: fadeIn 5s;
+  background-color: rgba(216, 191, 216, 0.824);
+  outline: thistle;
+  height: 100px;
+  width: 100px;
+  z-index: 2;
+}
+
+#truffleImageMap {
+  position: absolute;
 }
 
 .imageContainer {
@@ -35,34 +46,6 @@ img[useMap] {
 .lightsOff {
   animation: fadeOut 800ms;
 }
-
-/* .cardStack {
-  display: block;
-  position: absolute;
-  background-color: rgba(250, 235, 215, 0.494);
-  width: 300px;
-  height: 175px;
-  z-index: 1;
-} */
-
-/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-/* @media (max-width: 420px) {
-  .imageContainer {
-    height: 100%vh;
-  }
-  img[useMap] {
-    height: 100%;
-    width: auto;
-    transform: scale(1.3) translateX(6%);
-  }
-} */
-
-/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-/* @media (min-width: 421px) and (max-width: 600px) {
-  img[useMap] {
-    height: 100%;
-  }
-} */
 
 /* ____ANIMATIONS____ */
 @keyframes fadeIn {
