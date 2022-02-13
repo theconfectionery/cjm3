@@ -6,9 +6,7 @@ const TruffleImageMap = ({
   setScreenCoords,
 }) => {
   useEffect(() => {
-    // console.log("Truffle useEffect triggered")
     let coords = document.getElementById("screenArea").coords
-    // console.log("coords updated: " + coords)
     setScreenCoords(coords)
   })
 

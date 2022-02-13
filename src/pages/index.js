@@ -15,46 +15,35 @@ export default function Home() {
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
   const [screenCoords, setScreenCoords] = useState()
-  // const [currentWidth, setCurrentWidth] = useState("")
-  // const [currentHeight, setCurrentHeight] = useState("")
 
   const [ref, rect] = useResizeObserver()
 
   let cardTest = document.getElementById("cardTest")
 
-  let cardWidth = 0
-  let cardHeight = 0
+  let cardWidth = 100
+  let cardHeight = 100
 
   //dimensions measured in pixels
   const convertCoordsToDimensions = () => {
-    // console.log("convertCoordsToDimensions triggered")
     if (screenCoords) {
       let coordArray = screenCoords.split(",")
       cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
       cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
-      // console.log("new width: " + cardWidth + " and height: " + cardHeight)
       document.getElementById("cardTest").setAttribute("height", cardHeight)
       document.getElementById("cardTest").setAttribute("width", cardWidth)
     }
   }
 
-  // console.log("About to Get Dimensions")
-  // convertCoordsToDimensions()
-
   useEffect(() => {
-    // console.log("useEffect(Home) triggered")
     convertCoordsToDimensions()
   })
 
   const toggleLights = () => {
     if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
-      // console.log("toggleLights triggered: A")
       setLightsOn(true)
     } else if (lightsOn && lastClicked === "truffle") {
-      // console.log("toggleLights triggered: B")
       setLightsOn(false)
     } else if (!lightsOn && lastClicked === "bg") {
-      // console.log("toggleLights triggered: C")
       setLightsOn(true)
     }
   }
@@ -80,7 +69,6 @@ export default function Home() {
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
-                  // console.log("lights on img loaded")
                   convertCoordsToDimensions()
                 }}
               />
@@ -93,20 +81,22 @@ export default function Home() {
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
-                  // console.log("lights off img loaded")
                   convertCoordsToDimensions()
                 }}
               />
             )}
-            <div id="cardTest"></div>
+            <div
+              id="cardTest"
+              className="block"
+              height={cardHeight}
+              width={cardWidth}
+            ></div>
           </div>
           <TruffleImageMap
             id="truffleImageMap"
             setLastClicked={setLastClicked}
             setCurrentClick={setCurrentClick}
             setScreenCoords={setScreenCoords}
-            cardHeight={cardHeight}
-            cardWidth={cardWidth}
             onClick={toggleLights()}
           />
         </div>
