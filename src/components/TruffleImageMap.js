@@ -4,10 +4,14 @@ const TruffleImageMap = ({
   setLastClicked,
   setCurrentClick,
   setScreenCoords,
+  convertCoordsToDimensions,
+  setCardDimensions,
 }) => {
   useEffect(() => {
     let coords = document.getElementById("screenArea").coords
     setScreenCoords(coords)
+    convertCoordsToDimensions()
+    setCardDimensions()
   })
 
   return (

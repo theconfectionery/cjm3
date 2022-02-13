@@ -36,13 +36,11 @@ export default function Home() {
       cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
       cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
     }
+    setCardDimensions()
   }
 
   useEffect(() => {
-    convertCoordsToDimensions()
-    if (lastClicked) {
-      setCardDimensions()
-    }
+    // ????
   })
 
   const toggleLights = () => {
@@ -106,6 +104,8 @@ export default function Home() {
             setLastClicked={setLastClicked}
             setCurrentClick={setCurrentClick}
             setScreenCoords={setScreenCoords}
+            convertCoordsToDimensions={convertCoordsToDimensions}
+            setCardDimensions={setCardDimensions}
             onClick={toggleLights()}
           />
         </div>
