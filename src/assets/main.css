@@ -19,9 +19,11 @@ img[useMap] {
 
 #cardTest {
   position: absolute;
-  animation: fadeIn 5s;
+  animation: fadeIn 3s;
   background-color: rgba(216, 191, 216, 0.824);
   outline: thistle;
+  /* height: 100px;
+  width: 100px; */
   z-index: 2;
 }
 

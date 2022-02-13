@@ -5,6 +5,7 @@ import ImageMap from "image-map/dist/image-map"
 import TruffleImageMap from "../components/TruffleImageMap"
 import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
 import BackgroundLightsOffA from "../assets/images/BKG-A-lightbox.jpg"
+import CardOne from "../assets/images/CARD01.jpg"
 
 import "normalize.css"
 import "../assets/main.css"
@@ -18,10 +19,15 @@ export default function Home() {
 
   const [ref, rect] = useResizeObserver()
 
-  let cardTest = document.getElementById("cardTest")
+  let cardWidth = 0
+  let cardHeight = 0
 
-  let cardWidth = 100
-  let cardHeight = 100
+  const setCardDimensions = () => {
+    let cardHeightPx = cardHeight + "px"
+    let cardWidthPx = cardWidth + "px"
+    document.getElementById("cardOne").setAttribute("height", cardHeightPx)
+    document.getElementById("cardOne").setAttribute("width", cardWidthPx)
+  }
 
   //dimensions measured in pixels
   const convertCoordsToDimensions = () => {
@@ -29,13 +35,14 @@ export default function Home() {
       let coordArray = screenCoords.split(",")
       cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
       cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
-      document.getElementById("cardTest").setAttribute("height", cardHeight)
-      document.getElementById("cardTest").setAttribute("width", cardWidth)
     }
   }
 
   useEffect(() => {
     convertCoordsToDimensions()
+    if (lastClicked) {
+      setCardDimensions()
+    }
   })
 
   const toggleLights = () => {
@@ -63,34 +70,36 @@ export default function Home() {
               <img
                 src={BackgroundLightsOnA}
                 alt="Open Truffle Box on a Film Set"
-                className="fadeIn"
+                className="block fadeIn"
                 height="3453"
                 width="5148"
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
-                  convertCoordsToDimensions()
                 }}
               />
             ) : (
               <img
                 src={BackgroundLightsOffA}
                 alt="Open Truffle Box on a Film Set with Lights Off"
+                className="block fadeIn"
                 height="3453"
                 width="5148"
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
-                  convertCoordsToDimensions()
                 }}
               />
             )}
-            <div
-              id="cardTest"
-              className="block"
-              height={cardHeight}
-              width={cardWidth}
-            ></div>
+            <div id="cardTest" className="block">
+              <img
+                id="cardOne"
+                src={CardOne}
+                height={cardHeight}
+                width={cardWidth}
+                alt=""
+              />
+            </div>
           </div>
           <TruffleImageMap
             id="truffleImageMap"
