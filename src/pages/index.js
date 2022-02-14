@@ -15,27 +15,24 @@ export default function Home() {
   const [lightsOn, setLightsOn] = useState(true)
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
-  const [screenCoords, setScreenCoords] = useState()
+  const [screenCoords, setScreenCoords] = useState("")
   const { ref, width, height } = useElementSize()
 
-  let cardWidth
-  let cardHeight
-
-  const setCardDimensions = () => {
-    let cardHeightPx = cardHeight + "px"
-    let cardWidthPx = cardWidth + "px"
-    document.getElementById("cardOne").setAttribute("height", cardHeightPx)
-    document.getElementById("cardOne").setAttribute("width", cardWidthPx)
-    document.getElementById("cardOne").setAttribute("style", "display:block")
-  }
+  let cardWidth = 0
+  let cardHeight = 0
+  let cardHeightPx = "0px"
+  let cardWidthPx = "0px"
 
   const convertCoordsToDimensions = () => {
     if (screenCoords) {
       let coordArray = screenCoords.split(",")
-      cardWidth = width
-      cardHeight = width
+      cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
+      cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
     }
-    setCardDimensions()
+    cardHeightPx = cardHeight + "px"
+    cardWidthPx = cardWidth + "px"
+    document.getElementById("cardOne").setAttribute("height", cardHeightPx)
+    document.getElementById("cardOne").setAttribute("width", cardWidthPx)
   }
 
   useEffect(() => {
@@ -53,6 +50,14 @@ export default function Home() {
     }
   }
 
+  // useEffect =
+  //   (() => {
+  //     if (lightsOn) {
+  //     } else {
+
+  //     }
+  //   },[lightsOn])
+
   return (
     <>
       <Helmet>
@@ -63,7 +68,7 @@ export default function Home() {
       </Helmet>
       <main className="body">
         <div>
-          <div ref={ref} className="imageContainer">
+          <div className="imageContainer">
             {lightsOn ? (
               <img
                 src={BackgroundLightsOnA}
@@ -72,6 +77,7 @@ export default function Home() {
                 height="3453"
                 width="5148"
                 useMap="#imgMap"
+                ref={ref}
                 onLoad={() => {
                   ImageMap("img[usemap]")
                   convertCoordsToDimensions()
@@ -85,6 +91,7 @@ export default function Home() {
                 height="3453"
                 width="5148"
                 useMap="#imgMap"
+                ref={ref}
                 onLoad={() => {
                   ImageMap("img[usemap]")
                   convertCoordsToDimensions()
@@ -98,7 +105,7 @@ export default function Home() {
                 height={cardHeight}
                 width={cardWidth}
                 alt="Try a Sample by Selecting a Truffle"
-                onLoad={console.log("cardone rerendered")}
+                // onLoad={console.log("cardone rerendered")}
               />
             </div>
           </div>

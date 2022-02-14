@@ -12,19 +12,21 @@ area {
 img[useMap] {
   animation: fadeIn 2s;
   border: none;
-  min-height: 100vh;
+  max-height: 100vh;
   height: 100vh;
   width: auto;
 }
 
 #cardTest {
   position: absolute;
-  animation: fadeIn 3s;
-  background-color: rgba(216, 191, 216, 0.824);
-  outline: thistle;
-  /* height: 100px;
-  width: 100px; */
-  z-index: 2;
+}
+
+#cardOne {
+  opacity: 0.5;
+}
+
+#truffleImageMap {
+  position: absolute;
 }
 
 .block {
@@ -33,10 +35,6 @@ img[useMap] {
 
 .hidden {
   display: none;
-}
-
-#truffleImageMap {
-  position: absolute;
 }
 
 .imageContainer {

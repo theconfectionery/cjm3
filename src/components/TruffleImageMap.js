@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 
 const TruffleImageMap = ({
   setLastClicked,
   setCurrentClick,
   setScreenCoords,
 }) => {
-  // const [coords, setCoords] = useState("")
-
   useEffect(() => {
     console.log("TruffleMap: useEffect triggered")
     setScreenCoords(document.getElementById("screenArea").coords)
