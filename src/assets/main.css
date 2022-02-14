@@ -31,6 +31,10 @@ img[useMap] {
   display: block;
 }
 
+.hidden {
+  display: none;
+}
+
 #truffleImageMap {
   position: absolute;
 }

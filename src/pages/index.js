@@ -16,20 +16,26 @@ export default function Home() {
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
   const [screenCoords, setScreenCoords] = useState()
-
   const [ref, rect] = useResizeObserver()
 
-  let cardWidth = 0
-  let cardHeight = 0
+  let cardWidth
+  let cardHeight
+
+  //ON FIRST RENDER ONLY
+  // useEffect(() => {
+  //   cardWidth = 1
+  //   cardHeight = 1
+  // }, [])
 
   const setCardDimensions = () => {
     let cardHeightPx = cardHeight + "px"
     let cardWidthPx = cardWidth + "px"
     document.getElementById("cardOne").setAttribute("height", cardHeightPx)
     document.getElementById("cardOne").setAttribute("width", cardWidthPx)
+    document.getElementById("cardOne").setAttribute("style", "display:block")
+    // console.log("Dimensions: H(" + cardHeight + ") W(" + cardWidth + ")")
   }
 
-  //dimensions measured in pixels
   const convertCoordsToDimensions = () => {
     if (screenCoords) {
       let coordArray = screenCoords.split(",")
@@ -39,8 +45,10 @@ export default function Home() {
     setCardDimensions()
   }
 
+  // ON FIRST AND EVERY RE-RENDER
   useEffect(() => {
-    // ????
+    console.log("Home: useEffect triggered")
+    convertCoordsToDimensions()
   })
 
   const toggleLights = () => {
@@ -74,6 +82,7 @@ export default function Home() {
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
+                  convertCoordsToDimensions()
                 }}
               />
             ) : (
@@ -86,6 +95,7 @@ export default function Home() {
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
+                  convertCoordsToDimensions()
                 }}
               />
             )}
@@ -95,7 +105,8 @@ export default function Home() {
                 src={CardOne}
                 height={cardHeight}
                 width={cardWidth}
-                alt=""
+                alt="Try a Sample by Selecting a Truffle"
+                onLoad={console.log("cardone rerendered")}
               />
             </div>
           </div>
@@ -104,8 +115,6 @@ export default function Home() {
             setLastClicked={setLastClicked}
             setCurrentClick={setCurrentClick}
             setScreenCoords={setScreenCoords}
-            convertCoordsToDimensions={convertCoordsToDimensions}
-            setCardDimensions={setCardDimensions}
             onClick={toggleLights()}
           />
         </div>
