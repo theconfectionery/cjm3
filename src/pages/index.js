@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
-import { useResizeObserver } from "@mantine/hooks"
+import { useElementSize } from "@mantine/hooks"
 import ImageMap from "image-map/dist/image-map"
 import TruffleImageMap from "../components/TruffleImageMap"
 import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
@@ -16,16 +16,10 @@ export default function Home() {
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
   const [screenCoords, setScreenCoords] = useState()
-  const [ref, rect] = useResizeObserver()
+  const { ref, width, height } = useElementSize()
 
   let cardWidth
   let cardHeight
-
-  //ON FIRST RENDER ONLY
-  // useEffect(() => {
-  //   cardWidth = 1
-  //   cardHeight = 1
-  // }, [])
 
   const setCardDimensions = () => {
     let cardHeightPx = cardHeight + "px"
@@ -33,19 +27,17 @@ export default function Home() {
     document.getElementById("cardOne").setAttribute("height", cardHeightPx)
     document.getElementById("cardOne").setAttribute("width", cardWidthPx)
     document.getElementById("cardOne").setAttribute("style", "display:block")
-    // console.log("Dimensions: H(" + cardHeight + ") W(" + cardWidth + ")")
   }
 
   const convertCoordsToDimensions = () => {
     if (screenCoords) {
       let coordArray = screenCoords.split(",")
-      cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
-      cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
+      cardWidth = width
+      cardHeight = width
     }
     setCardDimensions()
   }
 
-  // ON FIRST AND EVERY RE-RENDER
   useEffect(() => {
     console.log("Home: useEffect triggered")
     convertCoordsToDimensions()
