@@ -6,11 +6,10 @@ body {
 
 area {
   display: contents;
-  outline: 1px solid red;
 }
 
 img[useMap] {
-  animation: fadeIn 2s;
+  animation: fadeIn 4s;
   border: none;
   max-height: 100vh;
   height: 100vh;
@@ -27,6 +26,12 @@ img[useMap] {
 
 #truffleImageMap {
   position: absolute;
+}
+
+#screenComponent {
+  background-color: red;
+  width: 100px;
+  height: 100px;
 }
 
 .block {

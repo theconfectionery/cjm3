@@ -4,14 +4,16 @@ const TruffleImageMap = ({
   setLastClicked,
   setCurrentClick,
   setScreenCoords,
+  width,
+  height,
 }) => {
   useEffect(() => {
-    console.log("TruffleMap: useEffect triggered")
+    console.log("<TruffleMap> useEffect triggered")
     setScreenCoords(document.getElementById("screenArea").coords)
-  })
+  }, [width, height])
 
   return (
-    <div>
+    <div id="mapContainer">
       <map name="imgMap">
         <area
           id="screenArea"
