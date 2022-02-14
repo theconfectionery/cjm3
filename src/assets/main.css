@@ -4,9 +4,9 @@ body {
   height: 100%;
 }
 
-area {
+/* area {
   display: contents;
-}
+} */
 
 img[useMap] {
   animation: fadeIn 4s;
@@ -18,10 +18,11 @@ img[useMap] {
 
 #cardTest {
   position: absolute;
+  border: 1px solid red;
 }
 
 #cardOne {
-  opacity: 0.5;
+  animation: fadeIn 5s;
 }
 
 #truffleImageMap {

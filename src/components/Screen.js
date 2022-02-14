@@ -1,31 +1,29 @@
 import React from "react"
 import CardOne from "../assets/images/CARD01.jpg"
 
-const Screen = ({ showScreen, cardHeightPx, cardWidthPx }) => {
-  console.log("<Screen> Rendered")
+const Screen = ({ cardHeight, cardWidth, showScreen }) => {
+  console.log("<Screen> rendered")
 
-  // if (!showScreen) {
-  //   console.log("<Screen> 'hidden'")
-  //   return <div></div>
-  // }
+  let updatedHeight = cardHeight
+  let updatedWidth = cardWidth
 
-  // if (showScreen) {
-  //   console.log("<Screen> shown")
-  return (
-    <div>
-      <img
-        id="cardOne"
-        src={CardOne}
-        height={cardHeightPx}
-        width={cardWidthPx}
-        alt="Try a Sample by Selecting a Truffle"
-        // onLoad={console.log("cardone rerendered")}
-      />
-    </div>
-  )
+  if (!showScreen) {
+    return <div></div>
+  }
+
+  if (showScreen) {
+    console.log("<Screen> new coords received?????")
+    return (
+      <div>
+        <img
+          id="cardOne"
+          src={CardOne}
+          height={"100px"}
+          width={"100px"}
+          alt="Try a Sample by Selecting a Truffle"
+        />
+      </div>
+    )
+  }
 }
-
-//   return <div></div>
-// }
-
 export default Screen
