@@ -18,11 +18,11 @@ img[useMap] {
 
 #cardTest {
   position: absolute;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #cardOne {
-  animation: fadeIn 5s;
+  animation: fadeIn 2s;
 }
 
 #truffleImageMap {

@@ -12,14 +12,16 @@ const Screen = ({ cardHeight, cardWidth, showScreen }) => {
   }
 
   if (showScreen) {
-    console.log("<Screen> new coords received?????")
+    console.log(
+      "<Screen> Card height: " + cardHeight + " Card width: " + cardWidth
+    )
     return (
       <div>
         <img
           id="cardOne"
           src={CardOne}
-          height={"100px"}
-          width={"100px"}
+          height={cardHeight}
+          width={cardWidth}
           alt="Try a Sample by Selecting a Truffle"
         />
       </div>

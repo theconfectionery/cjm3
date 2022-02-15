@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
-import { useElementSize } from "@mantine/hooks"
+import { useElementSize, useResizeObserver } from "@mantine/hooks"
 import ImageMap from "image-map/dist/image-map"
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
 import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
 import BackgroundLightsOffA from "../assets/images/BKG-A-lightbox.jpg"
+import CardOne from "../assets/images/CARD01.jpg"
 
 import "normalize.css"
 import "../assets/main.css"
@@ -18,8 +19,13 @@ export default function Home() {
   const [screenCoords, setScreenCoords] = useState("")
   const { ref, width, height } = useElementSize()
 
-  let cardWidth = 0
-  let cardHeight = 0
+  const [cardWidth, setCardWidth] = useState(0)
+  const [cardHeight, setCardHeight] = useState(0)
+
+  // let cardWidth = 0
+  // let cardHeight = 0
+
+  console.log("<Home> rendered")
 
   const toggleLights = () => {
     if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
@@ -32,26 +38,31 @@ export default function Home() {
   }
 
   const firstScreenRender = () => {
-    if (cardHeight > 0) {
-      console.log("setShowScreen changed to true")
-      if (!showScreen) {
+    console.log("<Home> firstScreenRender()")
+    if (cardHeight > 0 && cardWidth > 0) {
+      if (!showScreen && cardWidth < 1274) {
+        console.log("firstScreenRender(): setShowScreen changed to true")
         setShowScreen(true)
+        // convertCoordsToDimensions()
       }
     }
   }
 
   useEffect(() => {
-    console.log("<Home> useEffect triggered: convertCoordsToDimensions")
+    console.log("<Home> useEffect triggered")
     convertCoordsToDimensions()
-  }, [screenCoords])
+    firstScreenRender()
+  })
 
   const convertCoordsToDimensions = () => {
-    console.log(screenCoords)
+    console.log("convertCoordsToDimensions() triggered (by <Home> useEffect)")
     let coordArray = screenCoords.split(",")
-    console.log(coordArray)
-    cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
-    cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
-    firstScreenRender()
+    console.log("convertCoordsToDimensions() new coordArray " + coordArray)
+    setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
+    setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
+    // firstScreenRender()
+    // cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
+    // cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
   }
 
   return (
@@ -107,9 +118,6 @@ export default function Home() {
             setLastClicked={setLastClicked}
             setCurrentClick={setCurrentClick}
             setScreenCoords={setScreenCoords}
-            setShowScreen={setShowScreen}
-            width={width}
-            height={height}
             onClick={toggleLights()}
           />
         </div>
