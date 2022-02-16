@@ -1,5 +1,4 @@
 import React from "react"
-import CardOne from "../assets/images/CARD01.jpg"
 
 const Screen = ({ cardHeight, cardWidth, showScreen, imagesObject }) => {
   // console.log("<Screen> rendered")
