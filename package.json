@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@mantine/hooks": "^3.6.7",
+    "contentful": "^9.1.10",
     "gatsby": "^4.6.2",
     "gatsby-plugin-image": "^2.7.0",
     "gatsby-plugin-load-script": "^1.1.0",

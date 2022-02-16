@@ -5,13 +5,13 @@ const TruffleImageMap = ({
   setCurrentClick,
   setScreenCoords,
 }) => {
-  console.log("<TruffleMap> rendered")
+  // console.log("<TruffleMap> rendered")
 
   useEffect(() => {
-    console.log("<TruffleImageMap> useEffect triggered")
+    // console.log("<TruffleImageMap> useEffect triggered")
     if (typeof document !== `undefined`) {
       setScreenCoords(document.getElementById("screenArea").coords)
-      console.log("<TruffleMap> area coords updated")
+      // console.log("<TruffleMap> area coords updated")
     }
   })
 

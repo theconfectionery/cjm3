@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet"
 import React, { useState, useEffect } from "react"
 import { useElementSize, useResizeObserver } from "@mantine/hooks"
 import ImageMap from "image-map/dist/image-map"
-import { graphql } from "gatsby"
 import { GatsbyImage, getItem } from "gatsby-plugin-image"
 // COMPONENTS
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
 // ASSETS
 import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
+import { useImagesQuery } from "../components/imgs/useImagesQuery"
 import BackgroundLightsOffA from "../assets/images/BKG-A-lightbox.jpg"
 import CardOne from "../assets/images/CARD01.jpg"
 // STYLING
@@ -17,17 +17,22 @@ import "normalize.css"
 import "../assets/main.css"
 
 export default function Home() {
+  const { ref, width, height } = useElementSize()
+  const imagesObject = useImagesQuery()
   const [lightsOn, setLightsOn] = useState(true)
   const [showScreen, setShowScreen] = useState(false)
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
   const [screenCoords, setScreenCoords] = useState("")
-  const { ref, width, height } = useElementSize()
-
   const [cardWidth, setCardWidth] = useState(0)
   const [cardHeight, setCardHeight] = useState(0)
 
-  console.log("<Home> rendered")
+  // console.log("<Home> rendered")
+
+  useEffect(() => {
+    console.log("imageList received from useImagesQuery()")
+    console.log(imagesObject)
+  }, [])
 
   const toggleLights = () => {
     if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
@@ -40,26 +45,26 @@ export default function Home() {
   }
 
   useEffect(() => {
-    console.log("<Home> useEffect triggered")
+    // console.log("<Home> useEffect triggered")
     convertCoordsToDimensions()
     firstScreenRender()
-    return console.log("<HOME> CLEAN UP")
+    // return console.log("<HOME> CLEAN UP")
   })
 
   const firstScreenRender = () => {
-    console.log("<Home> firstScreenRender()")
+    // console.log("<Home> firstScreenRender()")
     if (cardHeight > 0 && cardWidth > 0) {
       if (!showScreen && cardWidth < 1274) {
-        console.log("firstScreenRender(): setShowScreen changed to true")
+        // console.log("firstScreenRender(): setShowScreen changed to true")
         setShowScreen(true)
       }
     }
   }
 
   const convertCoordsToDimensions = () => {
-    console.log("convertCoordsToDimensions() triggered (by <Home> useEffect)")
+    // console.log("convertCoordsToDimensions() triggered (by <Home> useEffect)")
     let coordArray = screenCoords.split(",")
-    console.log("convertCoordsToDimensions() new coordArray " + coordArray)
+    // console.log("convertCoordsToDimensions() new coordArray " + coordArray)
     setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
     setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
   }
@@ -77,7 +82,7 @@ export default function Home() {
           <div className="imageContainer">
             {lightsOn ? (
               <img
-                src={BackgroundLightsOnA}
+                src={imagesObject.bg_a_lightsOn.url}
                 alt="Open Truffle Box on a Film Set"
                 className="block fadeIn"
                 height="3453"
@@ -109,6 +114,7 @@ export default function Home() {
                 cardHeight={cardHeight}
                 cardWidth={cardWidth}
                 showScreen={showScreen}
+                imagesObject={imagesObject}
               />
             </div>
           </div>
@@ -124,25 +130,3 @@ export default function Home() {
     </>
   )
 }
-
-export const imageQuery = graphql`
-  query {
-    allContentfulAsset {
-      nodes {
-        contentful_id
-        description
-        title
-        file {
-          details {
-            image {
-              width
-              height
-            }
-          }
-          url
-          contentType
-        }
-      }
-    }
-  }
-`
