@@ -8,10 +8,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
 // ASSETS
-import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
 import { useImagesQuery } from "../components/imgs/useImagesQuery"
-import BackgroundLightsOffA from "../assets/images/BKG-A-lightbox.jpg"
-import CardOne from "../assets/images/CARD01.jpg"
 // STYLING
 import "normalize.css"
 import "../assets/main.css"
