@@ -1,6 +1,7 @@
 import { useStaticQuery, graphql } from "gatsby"
 
 const imageListToObject = images => {
+  // console.log(images)
   const imagesObject = new Object()
 
   images.forEach(image => {
@@ -28,6 +29,7 @@ export const useImagesQuery = () => {
             url
             contentType
           }
+          gatsbyImageData(placeholder: BLURRED)
         }
       }
     }

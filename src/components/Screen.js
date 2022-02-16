@@ -11,7 +11,7 @@ const Screen = ({ cardHeight, cardWidth, showScreen, imagesObject }) => {
 
   if (showScreen) {
     // console.log(
-    //   "<Screen> Card height: " + cardHeight + " Card width: " + cardWidth
+    //   `<Screen> Card height: ${cardHeight} Card width: ${cardWidth}`
     // )
     return (
       <div>

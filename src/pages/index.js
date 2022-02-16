@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 import React, { useState, useEffect } from "react"
 import { useElementSize, useResizeObserver } from "@mantine/hooks"
 import ImageMap from "image-map/dist/image-map"
-import { GatsbyImage, getItem } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 // COMPONENTS
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
@@ -18,6 +18,7 @@ import "../assets/main.css"
 
 export default function Home() {
   const { ref, width, height } = useElementSize()
+  // const [ref, rect] = useResizeObserver()
   const imagesObject = useImagesQuery()
   const [lightsOn, setLightsOn] = useState(true)
   const [showScreen, setShowScreen] = useState(false)
@@ -64,7 +65,7 @@ export default function Home() {
   const convertCoordsToDimensions = () => {
     // console.log("convertCoordsToDimensions() triggered (by <Home> useEffect)")
     let coordArray = screenCoords.split(",")
-    // console.log("convertCoordsToDimensions() new coordArray " + coordArray)
+    // console.log(`convertCoordsToDimensions() new coordArray ${coordArray}`)
     setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
     setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
   }
@@ -79,36 +80,26 @@ export default function Home() {
       </Helmet>
       <main className="body">
         <div>
-          <div className="imageContainer">
-            {lightsOn ? (
+          <div className="imageContainer" ref={ref}>
+            <div className="block">
               <img
-                src={imagesObject.bg_a_lightsOn.url}
-                alt="Open Truffle Box on a Film Set"
-                className="block fadeIn"
+                src={
+                  lightsOn
+                    ? imagesObject.bg_a_lightsOn.url
+                    : imagesObject.bg_a_lightsOff.url
+                }
+                alt="Open Truffle Box on a Film Set, Lid of Truffle Box is Display Screen"
+                className={lightsOn ? "transitionIn" : "transitionOut"}
+                id="bgImage"
                 height="3453"
                 width="5148"
                 useMap="#imgMap"
-                ref={ref}
                 onLoad={() => {
                   ImageMap("img[usemap]")
                   convertCoordsToDimensions()
                 }}
               />
-            ) : (
-              <img
-                src={BackgroundLightsOffA}
-                alt="Open Truffle Box on a Film Set with Lights Off"
-                className="block fadeIn"
-                height="3453"
-                width="5148"
-                useMap="#imgMap"
-                ref={ref}
-                onLoad={() => {
-                  ImageMap("img[usemap]")
-                  convertCoordsToDimensions()
-                }}
-              />
-            )}
+            </div>
             <div id="cardTest" className="block">
               <Screen
                 cardHeight={cardHeight}
