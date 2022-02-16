@@ -4,9 +4,6 @@ import CardOne from "../assets/images/CARD01.jpg"
 const Screen = ({ cardHeight, cardWidth, showScreen }) => {
   console.log("<Screen> rendered")
 
-  let updatedHeight = cardHeight
-  let updatedWidth = cardWidth
-
   if (!showScreen) {
     return <div></div>
   }

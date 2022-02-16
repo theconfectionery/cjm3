@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react"
+// EXTERNAL
 import { Helmet } from "react-helmet"
+import React, { useState, useEffect } from "react"
 import { useElementSize, useResizeObserver } from "@mantine/hooks"
 import ImageMap from "image-map/dist/image-map"
+import { graphql } from "gatsby"
+import { GatsbyImage, getItem } from "gatsby-plugin-image"
+// COMPONENTS
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
+// ASSETS
 import BackgroundLightsOnA from "../assets/images/BKG-A-landing.jpg"
 import BackgroundLightsOffA from "../assets/images/BKG-A-lightbox.jpg"
 import CardOne from "../assets/images/CARD01.jpg"
-
+// STYLING
 import "normalize.css"
 import "../assets/main.css"
 
@@ -22,9 +27,6 @@ export default function Home() {
   const [cardWidth, setCardWidth] = useState(0)
   const [cardHeight, setCardHeight] = useState(0)
 
-  // let cardWidth = 0
-  // let cardHeight = 0
-
   console.log("<Home> rendered")
 
   const toggleLights = () => {
@@ -37,22 +39,22 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    console.log("<Home> useEffect triggered")
+    convertCoordsToDimensions()
+    firstScreenRender()
+    return console.log("<HOME> CLEAN UP")
+  })
+
   const firstScreenRender = () => {
     console.log("<Home> firstScreenRender()")
     if (cardHeight > 0 && cardWidth > 0) {
       if (!showScreen && cardWidth < 1274) {
         console.log("firstScreenRender(): setShowScreen changed to true")
         setShowScreen(true)
-        // convertCoordsToDimensions()
       }
     }
   }
-
-  useEffect(() => {
-    console.log("<Home> useEffect triggered")
-    convertCoordsToDimensions()
-    firstScreenRender()
-  })
 
   const convertCoordsToDimensions = () => {
     console.log("convertCoordsToDimensions() triggered (by <Home> useEffect)")
@@ -60,9 +62,6 @@ export default function Home() {
     console.log("convertCoordsToDimensions() new coordArray " + coordArray)
     setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
     setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
-    // firstScreenRender()
-    // cardWidth = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
-    // cardHeight = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
   }
 
   return (
@@ -125,3 +124,25 @@ export default function Home() {
     </>
   )
 }
+
+export const imageQuery = graphql`
+  query {
+    allContentfulAsset {
+      nodes {
+        contentful_id
+        description
+        title
+        file {
+          details {
+            image {
+              width
+              height
+            }
+          }
+          url
+          contentType
+        }
+      }
+    }
+  }
+`
