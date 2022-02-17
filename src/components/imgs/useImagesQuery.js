@@ -5,7 +5,7 @@ const imageListToObject = images => {
   const imagesObject = new Object()
 
   images.forEach(image => {
-    imagesObject[image.title] = image.file
+    imagesObject[image.title] = image.gatsbyImageData
   })
   return imagesObject
 }
@@ -29,7 +29,7 @@ export const useImagesQuery = () => {
             url
             contentType
           }
-          gatsbyImageData(placeholder: BLURRED)
+          gatsbyImageData
         }
       }
     }

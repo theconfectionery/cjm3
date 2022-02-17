@@ -9,6 +9,7 @@ import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
 // ASSETS
 import { useImagesQuery } from "../components/imgs/useImagesQuery"
+import { useBgALightsOnOff } from "../components/imgs/useBgLights"
 // STYLING
 import "normalize.css"
 import "../assets/main.css"
@@ -17,6 +18,7 @@ export default function Home() {
   const { ref, width, height } = useElementSize()
   // const [ref, rect] = useResizeObserver()
   const imagesObject = useImagesQuery()
+  const lights = useBgALightsOnOff()
   const [lightsOn, setLightsOn] = useState(true)
   const [showScreen, setShowScreen] = useState(false)
   const [lastClicked, setLastClicked] = useState("")
@@ -70,6 +72,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
+        {/* <link rel="stylesheet" href="../assets/main.css" /> */}
         <script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
@@ -79,7 +82,18 @@ export default function Home() {
         <div>
           <div className="imageContainer" ref={ref}>
             <div className="block">
-              <img
+              <GatsbyImage
+                image={lightsOn ? lights.bg_a_lightsOn : lights.bg_a_lightsOff}
+                alt="Open Truffle Box on a Film Set, Lid of Truffle Box is Display Screen"
+                className={lightsOn ? "transitionIn" : "transitionOut"}
+                id="bgImage"
+                useMap="#imgMap"
+                onLoad={() => {
+                  ImageMap("img[usemap]")
+                  convertCoordsToDimensions()
+                }}
+              />
+              {/* <img
                 src={
                   lightsOn
                     ? imagesObject.bg_a_lightsOn.url
@@ -95,7 +109,7 @@ export default function Home() {
                   ImageMap("img[usemap]")
                   convertCoordsToDimensions()
                 }}
-              />
+              /> */}
             </div>
             <div id="cardTest" className="block">
               <Screen
