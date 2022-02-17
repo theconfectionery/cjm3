@@ -2,7 +2,8 @@
 import { Helmet } from "react-helmet"
 import React, { useState, useEffect } from "react"
 import { useElementSize, useResizeObserver } from "@mantine/hooks"
-import ImageMap from "image-map/dist/image-map"
+import { ImageMap } from "Users/christinagiancola/Desktop/confectionery/node_modules/image-map/dist/image-map.js"
+
 import { GatsbyImage } from "gatsby-plugin-image"
 // COMPONENTS
 import TruffleImageMap from "../components/TruffleImageMap"
