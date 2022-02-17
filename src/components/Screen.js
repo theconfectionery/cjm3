@@ -11,9 +11,7 @@ const Screen = ({ cardHeight, cardWidth, showScreen, cards }) => {
   }
 
   if (showScreen) {
-    // console.log(
-    //   `<Screen> Card height: ${cardHeight} Card width: ${cardWidth}`
-    // )
+    // console.log(`<Screen> Card height: ${cardHeight} Card width: ${cardWidth}`)
 
     return (
       <div>
@@ -21,8 +19,8 @@ const Screen = ({ cardHeight, cardWidth, showScreen, cards }) => {
           image={cards.card_info}
           alt="Try a Sample by Selecting a Truffle"
           id="cardOne"
-          height={cardHeight}
-          width={cardWidth}
+          // height={cardHeight}
+          // width={cardWidth}
         />
         {/* <img
           id="cardOne"

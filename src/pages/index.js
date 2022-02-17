@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet"
 import React, { useState, useEffect } from "react"
 import { useElementSize, useResizeObserver } from "@mantine/hooks"
-import { ImageMap } from "image-map/dist/image-map.js"
+import ImageMap from "image-map"
 
 import { GatsbyImage } from "gatsby-plugin-image"
 // COMPONENTS
@@ -21,7 +21,7 @@ export default function Home() {
   const cards = useCards()
   const lights = useBgALightsOnOff()
   const [lightsOn, setLightsOn] = useState(true)
-  const [showScreen, setShowScreen] = useState(false)
+  const [showScreen, setShowScreen] = useState(true)
   const [lastClicked, setLastClicked] = useState("")
   const [currentClick, setCurrentClick] = useState("")
   const [screenCoords, setScreenCoords] = useState("")
@@ -31,9 +31,16 @@ export default function Home() {
   // console.log("<Home> rendered")
 
   useEffect(() => {
+    // ImageMap("img[usemap]")
     console.log("imageList received from useCards()")
     console.log(cards)
   }, [])
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     ImageMap("img[usemap]")
+  //   }, 2000)
+  // }, [])
 
   const toggleLights = () => {
     if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
@@ -47,10 +54,11 @@ export default function Home() {
 
   useEffect(() => {
     // console.log("<Home> useEffect triggered")
-    convertCoordsToDimensions()
+    // convertCoordsToDimensions()
     firstScreenRender()
+    // console.log(`width: ${width} height: ${height}`)
     // return console.log("<HOME> CLEAN UP")
-  })
+  }, [width, height])
 
   const firstScreenRender = () => {
     // console.log("<Home> firstScreenRender()")
@@ -65,9 +73,16 @@ export default function Home() {
   const convertCoordsToDimensions = () => {
     // console.log("convertCoordsToDimensions() triggered (by <Home> useEffect)")
     let coordArray = screenCoords.split(",")
+    const width = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
+    const height = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
+    // console.log(coordArray)
     // console.log(`convertCoordsToDimensions() new coordArray ${coordArray}`)
-    setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
-    setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
+    if (width > 0 && height > 0) {
+      setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
+      setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
+      console.log(cardWidth)
+      console.log(cardHeight)
+    }
   }
 
   return (
@@ -91,7 +106,7 @@ export default function Home() {
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
-                  convertCoordsToDimensions()
+                  // convertCoordsToDimensions()
                 }}
               />
               {/* <img
@@ -112,12 +127,25 @@ export default function Home() {
                 }}
               /> */}
             </div>
-            <div id="cardTest" className="block">
+            {/* //top: 152px; 
+            // left: 344px; */}
+            <div
+              id="cardTest"
+              className="block"
+              style={{
+                height: `${height / 4}px`,
+                width: `${width / 4}px`,
+                top: `${height / 4.8}px`,
+                left: `${width / 3}px`,
+              }}
+            >
               <Screen
                 cardHeight={cardHeight}
                 cardWidth={cardWidth}
                 showScreen={showScreen}
                 cards={cards}
+                width={width}
+                height={height}
               />
             </div>
           </div>
@@ -126,6 +154,8 @@ export default function Home() {
             setLastClicked={setLastClicked}
             setCurrentClick={setCurrentClick}
             setScreenCoords={setScreenCoords}
+            width={width}
+            height={height}
             onClick={toggleLights()}
           />
         </div>

@@ -1,24 +1,32 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
+// import ImageMap from "image-map"
 
 const TruffleImageMap = ({
   setLastClicked,
   setCurrentClick,
   setScreenCoords,
+  width,
+  height,
 }) => {
   // console.log("<TruffleMap> rendered")
+  const area = useRef()
 
   useEffect(() => {
+    // const screenArea = document.getElementById("screenArea")
+    console.log("data-coords", area.current.getAttribute("data-coords"))
+    console.log("coords", area.current.coords)
     // console.log("<TruffleImageMap> useEffect triggered")
-    if (typeof document !== `undefined`) {
-      setScreenCoords(document.getElementById("screenArea").coords)
+    if (area.current.coords) {
+      setScreenCoords(area.current.coords)
       // console.log("<TruffleMap> area coords updated")
     }
-  })
+  }, [width, height])
 
   return (
     <div id="mapContainer">
-      <map name="imgMap">
+      <map name="imgMap" id="map">
         <area
+          ref={area}
           id="screenArea"
           shape="rect"
           title="screen"

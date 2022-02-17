@@ -16,14 +16,14 @@ body {
   width: 100vw;
 }
 
-@media only screen and (max-width: 1280px) {
+/* @media only screen and (max-width: 1280px) {
   #bgImage {
-    /* animation: fadeIn 2s; */
+    animation: fadeIn 2s;
     border: none;
     height: 100vh;
     width: auto;
   }
-}
+} */
 
 #cardTest {
   animation: fadeIn 1s;
