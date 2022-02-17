@@ -8,7 +8,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
 // ASSETS
-import { useImagesQuery } from "../components/imgs/useImagesQuery"
+import { useCards } from "../components/imgs/useCards"
 import { useBgALightsOnOff } from "../components/imgs/useBgLights"
 // STYLING
 import "normalize.css"
@@ -17,7 +17,7 @@ import "../assets/main.css"
 export default function Home() {
   const { ref, width, height } = useElementSize()
   // const [ref, rect] = useResizeObserver()
-  const imagesObject = useImagesQuery()
+  const cards = useCards()
   const lights = useBgALightsOnOff()
   const [lightsOn, setLightsOn] = useState(true)
   const [showScreen, setShowScreen] = useState(false)
@@ -30,8 +30,8 @@ export default function Home() {
   // console.log("<Home> rendered")
 
   useEffect(() => {
-    console.log("imageList received from useImagesQuery()")
-    console.log(imagesObject)
+    console.log("imageList received from useCards()")
+    console.log(cards)
   }, [])
 
   const toggleLights = () => {
@@ -116,7 +116,7 @@ export default function Home() {
                 cardHeight={cardHeight}
                 cardWidth={cardWidth}
                 showScreen={showScreen}
-                imagesObject={imagesObject}
+                cards={cards}
               />
             </div>
           </div>

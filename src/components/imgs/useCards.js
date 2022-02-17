@@ -11,10 +11,11 @@ const imageListToObject = edges => {
   return imagesObject
 }
 
-export const useBgALightsOnOff = () => {
+export const useCards = () => {
+  // console.log("getImagesQuery triggered")
   const { allContentfulAsset } = useStaticQuery(graphql`
     query {
-      allContentfulAsset(filter: { title: { glob: "bg_a_lights*" } }) {
+      allContentfulAsset(filter: { title: { glob: "card_*" } }) {
         edges {
           node {
             id
