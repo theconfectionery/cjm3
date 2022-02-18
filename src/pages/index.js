@@ -12,20 +12,27 @@ import "../styling/main.css"
 
 export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
-  const [showScreen, setShowScreen] = useState(false)
-  const [currentClick, setCurrentClick] = useState("")
+  const [showScreen, setShowScreen] = useState(true)
+  const [currentClickId, setCurrentClickId] = useState("")
+  const [currentClickType, setCurrentClickType] = useState("")
 
-  if (window) {
-    const cards = useCards()
-  }
+  const cards = useCards()
 
   console.log("<Home> rendered")
+  console.log("Current click ID:", currentClickId, "Type:", currentClickType)
 
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
       if (showScreen) {
-        reactDom.render(<Screen cards={cards} />, screenArea)
+        reactDom.render(
+          <Screen
+            cards={cards}
+            currentClickId={currentClickId}
+            currentClickType={currentClickType}
+          />,
+          screenArea
+        )
       }
     }
   }, [mapLoaded])
@@ -40,7 +47,12 @@ export default function Home() {
       </Helmet>
       <main className="body">
         <div id="mapContainer">
-          <TruffleImageMap2 id="truffleImageMap" setMapLoaded={setMapLoaded} />
+          <TruffleImageMap2
+            id="truffleImageMap"
+            setMapLoaded={setMapLoaded}
+            setCurrentClickId={setCurrentClickId}
+            setCurrentClickType={setCurrentClickType}
+          />
         </div>
       </main>
     </>

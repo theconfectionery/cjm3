@@ -1,26 +1,19 @@
+import React, { useEffect } from "react"
 // import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
-// import { useCards } from "../components/imgs/useCards"
 
-const Screen = ({ cards }) => {
+const Screen = ({ cards, currentClickId, currentClickType }) => {
   // console.log("<Screen> rendered")
-  // console.log(cards.card_info.images.fallback.src)
   const infoCard = cards.card_info.images.fallback.src
-  // if (!showScreen) {
-  //   return <div></div>
-  // }
-
-  // if (showScreen) {
-  // console.log(`<Screen> Card height: ${cardHeight} Card width: ${cardWidth}`)
+  const contactCard = cards.card_contact.images.fallback.src
 
   return (
-    <div>
+    <div id="screenContainer">
       {/* <GatsbyImage
         image={cards.card_info}
         alt="Try a Sample by Selecting a Truffle"
         id="cardOne"
       /> */}
-      <img src={infoCard} alt="Info Card" className="screenImage" />
+      <img src={contactCard} alt="Info Card" className="screenImage" />
     </div>
   )
   // }

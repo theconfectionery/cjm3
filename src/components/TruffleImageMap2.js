@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from "react"
 import { ImageMap } from "@qiuz/react-image-map"
 import { useBgALightsOnOff } from "../components/imgs/useBgLights"
 
-const TruffleImageMap2 = ({ setMapLoaded }) => {
+const TruffleImageMap2 = ({
+  setMapLoaded,
+  setCurrentClickId,
+  setCurrentClickType,
+}) => {
   const [lightsOn, setLightsOn] = useState(true)
   const [lastClicked, setLastClicked] = useState("")
   const lights = useBgALightsOnOff()
@@ -11,7 +15,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
   const mapAreas = [
     {
       id: "screenArea",
-      title: "screenArea",
+      title: "screen",
       width: "26.25084364454443%",
       height: "24.395309882747064%",
       left: "32.3%",
@@ -19,7 +23,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn11",
-      title: "btn11",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "38.802376265466854%",
@@ -27,7 +31,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn12",
-      title: "btn12",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "43.52678571428575%",
@@ -35,7 +39,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn13",
-      title: "btn13",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "48.026223284589456%",
@@ -51,7 +55,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn7",
-      title: "btn7",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "38.914862204724436%",
@@ -59,7 +63,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn8",
-      title: "btn8",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "43.41429977502815%",
@@ -67,7 +71,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn9",
-      title: "btn9",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "48.026223284589456%",
@@ -75,7 +79,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn10",
-      title: "btn10",
+      title: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "52.638146794150764%",
@@ -83,7 +87,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn1",
-      title: "btn1",
+      title: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "33.51553712035999%",
@@ -91,7 +95,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn2",
-      title: "btn2",
+      title: "btn",
       alt: "btn2",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
@@ -100,7 +104,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn3",
-      title: "btn3",
+      title: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "43.30181383577056%",
@@ -108,7 +112,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn4",
-      title: "btn4",
+      title: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "47.91373734533187%",
@@ -116,7 +120,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btn5",
-      title: "btn5",
+      title: "btn",
       width: "5.174353205849269%",
       height: "5.025125628140705%",
       left: "52.525660854893175%",
@@ -124,7 +128,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "leftArrow",
-      title: "leftArrow",
+      title: "btn",
       width: "5.961754780652419%",
       height: "5.192629815745396%",
       left: "59.16233127109115%",
@@ -132,7 +136,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "rightArrow",
-      title: "rightArrow",
+      title: "btn",
       width: "5.961754780652419%",
       height: "5.192629815745396%",
       left: "59.27481721034874%",
@@ -196,7 +200,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btnInfo",
-      title: "btnInfo",
+      title: "info",
       width: "5.511811023622028%",
       height: "4.1876046901172534%",
       left: "33.29583802024742%",
@@ -204,7 +208,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "btnContact",
-      title: "btnContact",
+      title: "contact",
       width: "5.061867266591676%",
       height: "4.0201005025125625%",
       left: "52.52566085489314%",
@@ -212,7 +216,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "screenLeft",
-      title: "screenLeft",
+      title: "screen",
       width: "3.59955005624297%",
       height: "24.288107202680067%",
       left: "32.72813554555681%",
@@ -220,7 +224,7 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     },
     {
       id: "screenRight",
-      title: "screenRight",
+      title: "screen",
       width: "3.5995500562429705%",
       height: "24.288107202680067%",
       left: "55.112837457817776%",
@@ -230,7 +234,10 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
 
   const toggleLights = e => {
     console.log("toggleLights()")
-    if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
+    if (
+      !lightsOn &&
+      (lastClicked === "btnContact" || lastClicked === "btnInfo")
+    ) {
       setLightsOn(true)
     } else if (lightsOn && lastClicked === "truffle") {
       setLightsOn(false)
@@ -239,7 +246,11 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
     }
   }
 
-  const handleClick = e => {}
+  const handleClick = e => {
+    toggleLights()
+    setCurrentClickId(e.id)
+    setCurrentClickType(e.title)
+  }
 
   return (
     <ImageMap
@@ -249,9 +260,10 @@ const TruffleImageMap2 = ({ setMapLoaded }) => {
       map={mapAreas}
       onLoad={() => {
         console.log("ImageMap Loaded")
+        //triggers reload of <Home/>
         setMapLoaded(true)
       }}
-      onMapClick={e => toggleLights(e)}
+      onMapClick={e => handleClick(e)}
     />
   )
 }

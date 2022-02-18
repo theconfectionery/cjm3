@@ -36,6 +36,11 @@ body {
   border: 2px solid greenyellow;
 }
 
+#screenContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .screenImage {
   animation: fadeIn 2s;
   max-width: 90%;
