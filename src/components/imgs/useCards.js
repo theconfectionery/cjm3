@@ -21,6 +21,9 @@ export const useCards = () => {
             gatsbyImageData
             contentful_id
             title
+            file {
+              url
+            }
           }
         }
       }

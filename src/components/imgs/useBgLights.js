@@ -21,6 +21,9 @@ export const useBgALightsOnOff = () => {
             gatsbyImageData
             contentful_id
             title
+            file {
+              url
+            }
           }
         }
       }

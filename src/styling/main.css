@@ -5,7 +5,7 @@ body {
 }
 
 #bgImage {
-  /* animation: fadeIn 2s; */
+  animation: fadeIn 2s;
   border: none;
   /* max-height: 100vh; */
   height: auto;
@@ -30,6 +30,16 @@ body {
   background-color: red;
   width: 100px;
   height: 100px;
+}
+
+#screenArea {
+  border: 2px solid greenyellow;
+}
+
+.screenImage {
+  animation: fadeIn 2s;
+  max-width: 90%;
+  height: auto;
 }
 
 .transitionIn {
