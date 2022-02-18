@@ -15,7 +15,10 @@ export default function Home() {
   const [showScreen, setShowScreen] = useState(false)
   const [currentClick, setCurrentClick] = useState("")
 
-  const cards = useCards()
+  if (window) {
+    const cards = useCards()
+  }
+
   console.log("<Home> rendered")
 
   useEffect(() => {
