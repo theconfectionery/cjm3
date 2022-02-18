@@ -1,4 +1,3 @@
-import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
@@ -22,13 +21,6 @@ const Screen = ({ cardHeight, cardWidth, showScreen, cards }) => {
           // height={cardHeight}
           // width={cardWidth}
         />
-        {/* <img
-          id="cardOne"
-          src={cards.card_info.url}
-          height={cardHeight}
-          width={cardWidth}
-          alt="Try a Sample by Selecting a Truffle"
-        /> */}
       </div>
     )
   }

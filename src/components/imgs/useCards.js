@@ -12,7 +12,6 @@ const imageListToObject = edges => {
 }
 
 export const useCards = () => {
-  // console.log("getImagesQuery triggered")
   const { allContentfulAsset } = useStaticQuery(graphql`
     query {
       allContentfulAsset(filter: { title: { glob: "card_*" } }) {

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react"
-// import ImageMap from "image-map"
 
 const TruffleImageMap = ({
   setLastClicked,
@@ -12,10 +11,10 @@ const TruffleImageMap = ({
   const area = useRef()
 
   useEffect(() => {
+    // console.log("<TruffleImageMap> useEffect triggered")
     // const screenArea = document.getElementById("screenArea")
     console.log("data-coords", area.current.getAttribute("data-coords"))
     console.log("coords", area.current.coords)
-    // console.log("<TruffleImageMap> useEffect triggered")
     if (area.current.coords) {
       setScreenCoords(area.current.coords)
       // console.log("<TruffleMap> area coords updated")

@@ -1,19 +1,14 @@
-// EXTERNAL
 import { Helmet } from "react-helmet"
 import React, { useState, useEffect } from "react"
 import { useElementSize, useResizeObserver } from "@mantine/hooks"
 import ImageMap from "image-map"
-
 import { GatsbyImage } from "gatsby-plugin-image"
-// COMPONENTS
 import TruffleImageMap from "../components/TruffleImageMap"
 import Screen from "../components/Screen"
-// ASSETS
 import { useCards } from "../components/imgs/useCards"
 import { useBgALightsOnOff } from "../components/imgs/useBgLights"
-// STYLING
 import "normalize.css"
-import "../assets/main.css"
+import "../styling/main.css"
 
 export default function Home() {
   const { ref, width, height } = useElementSize()
@@ -36,12 +31,6 @@ export default function Home() {
     console.log(cards)
   }, [])
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     ImageMap("img[usemap]")
-  //   }, 2000)
-  // }, [])
-
   const toggleLights = () => {
     if (!lightsOn && (lastClicked === "contact" || lastClicked === "info")) {
       setLightsOn(true)
@@ -54,10 +43,8 @@ export default function Home() {
 
   useEffect(() => {
     // console.log("<Home> useEffect triggered")
-    // convertCoordsToDimensions()
     firstScreenRender()
     // console.log(`width: ${width} height: ${height}`)
-    // return console.log("<HOME> CLEAN UP")
   }, [width, height])
 
   const firstScreenRender = () => {
@@ -76,7 +63,6 @@ export default function Home() {
     const width = Math.floor(coordArray[2]) - Math.floor(coordArray[0])
     const height = Math.floor(coordArray[3]) - Math.floor(coordArray[1])
     // console.log(coordArray)
-    // console.log(`convertCoordsToDimensions() new coordArray ${coordArray}`)
     if (width > 0 && height > 0) {
       setCardWidth(Math.floor(coordArray[2]) - Math.floor(coordArray[0]))
       setCardHeight(Math.floor(coordArray[3]) - Math.floor(coordArray[1]))
@@ -88,7 +74,6 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        {/* <link rel="stylesheet" href="../assets/main.css" /> */}
         <script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
@@ -106,29 +91,9 @@ export default function Home() {
                 useMap="#imgMap"
                 onLoad={() => {
                   ImageMap("img[usemap]")
-                  // convertCoordsToDimensions()
                 }}
               />
-              {/* <img
-                src={
-                  lightsOn
-                    ? imagesObject.bg_a_lightsOn.url
-                    : imagesObject.bg_a_lightsOff.url
-                }
-                alt="Open Truffle Box on a Film Set, Lid of Truffle Box is Display Screen"
-                className={lightsOn ? "transitionIn" : "transitionOut"}
-                id="bgImage"
-                height="3453"
-                width="5148"
-                useMap="#imgMap"
-                onLoad={() => {
-                  ImageMap("img[usemap]")
-                  convertCoordsToDimensions()
-                }}
-              /> */}
             </div>
-            {/* //top: 152px; 
-            // left: 344px; */}
             <div
               id="cardTest"
               className="block"
