@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --verbose",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
@@ -14,12 +14,12 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@loadable/component": "^5.15.2",
     "@mantine/hooks": "^3.6.7",
     "@qiuz/react-image-map": "^1.1.3",
     "contentful": "^9.1.10",
     "gatsby": "^4.6.2",
     "gatsby-plugin-image": "^2.7.0",
-    "gatsby-plugin-load-script": "^1.1.0",
     "gatsby-plugin-netlify": "^4.1.0",
     "gatsby-plugin-react-helmet": "^5.7.0",
     "gatsby-plugin-react-image-map": "^1.0.0-4",
@@ -27,9 +27,7 @@
     "gatsby-source-contentful": "^7.5.0",
     "gatsby-source-filesystem": "^4.7.0",
     "gatsby-transformer-sharp": "^4.7.0",
-    "image-map": "^2.0.1",
     "normalize.css": "^8.0.1",
-    "npm": "^8.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",

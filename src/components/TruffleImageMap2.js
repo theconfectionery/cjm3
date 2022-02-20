@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react"
-import { ImageMap } from "@qiuz/react-image-map"
 import { useBgALightsOnOff } from "../components/imgs/useBgLights"
+import { ImageMap } from "@qiuz/react-image-map"
+
+
+const isBrowser = typeof window !== "undefined"
 
 const TruffleImageMap2 = ({
   setMapLoaded,
@@ -251,9 +254,11 @@ const TruffleImageMap2 = ({
     setCurrentClickId(e.id)
     setCurrentClickType(e.title)
   }
-
-  return (
-    <ImageMap
+  
+  const conditionalRender = () => {
+    if (isBrowser) {
+      
+    return <ImageMap
       id="bgImage"
       src={bgImageURL}
       className="useage-map"
@@ -263,9 +268,15 @@ const TruffleImageMap2 = ({
         //triggers reload of <Home/>
         setMapLoaded(true)
       }}
-      onMapClick={e => handleClick(e)}
-    />
-  )
+      onMapClick={e => handleClick(e)}/> } else {
+        return null
+      }
+    }
+      
+
+  console.log("Running in browser: ", isBrowser)
+  return conditionalRender()
+  
 }
 
 export default TruffleImageMap2
