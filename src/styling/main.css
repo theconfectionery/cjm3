@@ -12,11 +12,11 @@ body {
   width: 100vw;
 }
 
-#cardTest {
+/* #cardTest {
   animation: fadeIn 1s;
   position: absolute;
   border: 1px solid red;
-}
+} */
 
 #cardOne {
   animation: fadeIn 1s;
@@ -26,19 +26,28 @@ body {
   position: absolute;
 }
 
-#screenComponent {
-  background-color: red;
-  width: 100px;
-  height: 100px;
-}
-
 #screenArea {
-  border: 2px solid greenyellow;
+  /* outline: 2px solid greenyellow; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #screenContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+#contactCard {
+  /* outline: 2px solid red; */
+  display: flex;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .screenImage {
@@ -61,14 +70,6 @@ body {
 
 .hidden {
   display: none;
-}
-
-.imageContainer {
-  height: auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .lightsOn {

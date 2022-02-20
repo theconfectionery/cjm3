@@ -1,19 +1,18 @@
-import React, { useEffect } from "react"
+import React, { useRef } from "react"
+import ContactCard from "./ContactCard"
+import InfoCard from "./InfoCard"
 // import { GatsbyImage } from "gatsby-plugin-image"
 
 const Screen = ({ cards, currentClickId, currentClickType }) => {
-  // console.log("<Screen> rendered")
-  const infoCard = cards.card_info.images.fallback.src
-  const contactCard = cards.card_contact.images.fallback.src
-
   return (
     <div id="screenContainer">
+      {currentClickId === "btnContact" ? <ContactCard cards={cards} /> : null}
+      {currentClickId === "btnInfo" ? <InfoCard cards={cards} /> : null}
       {/* <GatsbyImage
         image={cards.card_info}
         alt="Try a Sample by Selecting a Truffle"
         id="cardOne"
       /> */}
-      <img src={contactCard} alt="Info Card" className="screenImage" />
     </div>
   )
   // }

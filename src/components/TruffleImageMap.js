@@ -1,278 +1,279 @@
-// import React, { useEffect, useRef, useMemo } from "react"
-// import { ImageMap } from "@qiuz/react-image-map"
+import React, { useState, useEffect, useRef } from "react"
+import { useBgALightsOnOff } from "./imgs/useBgLights"
+import { ImageMap } from "@qiuz/react-image-map"
 
-// const TruffleImageMap = ({
-//   setLastClicked,
-//   setCurrentClick,
-//   setScreenCoords,
-//   width,
-//   height,
-// }) => {
-//   console.log("<TruffleMap> rendered")
+const isBrowser = typeof window !== "undefined"
 
-//   const area = useRef()
+const TruffleImageMap = ({
+  setMapLoaded,
+  lightsOn,
+  setCurrentClickId,
+  setCurrentClickType,
+}) => {
+  // const [lastClicked, setLastClicked] = useState("")
+  const [bgImage, setBgImage] = useState(bgImageLightsOn)
+  const lights = useBgALightsOnOff()
 
-//   useEffect(() => {
-//     console.log("<TruffleImageMap> useEffect triggered")
-//     const screenArea = document.getElementById("screenArea")
-//     console.log("data-coords", area.current.getAttribute("data-coords"))
-//     console.log("coords", area.current.coords)
-//     if (area.current.coords) {
-//       setScreenCoords(area.current.coords)
-//       console.log("<TruffleMap> area coords updated")
-//     }
-//   }, [width, height])
+  useEffect(() => {
+    console.log("From <TruggleImageMap>: ", lightsOn)
+    if (lightsOn) {
+      setBgImage(bgImageLightsOn)
+    }
+    if (!lightsOn) {
+      setBgImage(bgImageLightsOff)
+    }
+  }, [lightsOn])
 
-//   return (
-//     <div id="mapContainer">
-//       <map name="imgMap" id="map">
-//         <area
-//           ref={area}
-//           id="screenArea"
-//           shape="rect"
-//           title="screen"
-//           alt="screen"
-//           coords="1714,796,2988,1556"
-//           onClick={e => {
-//             setLastClicked("screen")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn11"
-//           alt="btn11"
-//           coords="2012,1720,2235,1874"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn12"
-//           alt="btn12"
-//           coords="2244,1720,2458,1874"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn13"
-//           alt="btn13"
-//           coords="2463,1715,2708,1874"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn6"
-//           alt="btn6"
-//           coords="1744,1865,2003,2011"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn7"
-//           alt="btn7"
-//           coords="2003,1874,2235,2015"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn8"
-//           alt="btn8"
-//           coords="2244,1879,2458,2011"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn9"
-//           alt="btn9"
-//           coords="2463,1879,2708,2011"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn10"
-//           alt="btn10"
-//           coords="2717,1870,2963,2015"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn1"
-//           alt="btn1"
-//           coords="1730,2015,1990,2170"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn2"
-//           alt="btn2"
-//           coords="1999,2020,2235,2179"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn3"
-//           alt="btn3"
-//           coords="2244,2014,2453,2184"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn4"
-//           alt="btn4"
-//           coords="2454,2014,2708,2184"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="btn5"
-//           alt="btn5"
-//           coords="2717,2019,2990,2175"
-//           onClick={e => {
-//             setLastClicked("truffle")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="infoBtn"
-//           alt="infoBtn"
-//           coords="1762,1724,1999,1861"
-//           onClick={e => {
-//             setLastClicked("info")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="contactBtn"
-//           alt="contactBtn"
-//           coords="2713,1720,2963,1865"
-//           onClick={e => {
-//             setLastClicked("contact")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="leftArrow"
-//           alt="leftArrow"
-//           coords="3115,1742,3311,1865"
-//           onClick={e => {
-//             setLastClicked("leftArrow")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="rightArrow"
-//           alt="rightArrow"
-//           coords="3115,1865,3324,2006"
-//           onClick={e => {
-//             setLastClicked("rightArrow")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="bgTop"
-//           alt="bgTop"
-//           coords="14,-5,5143,714"
-//           onClick={e => {
-//             setLastClicked("bg")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="bgLeft"
-//           alt="bgLeft"
-//           coords="9,719,1619,2288"
-//           onClick={e => {
-//             setLastClicked("bg")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="rect"
-//           title="bgBottom"
-//           alt="bgBottom"
-//           coords="9,2297,5139,3453"
-//           onClick={e => {
-//             setLastClicked("bg")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//         <area
-//           shape="poly"
-//           title="bgRight"
-//           alt="bgRight"
-//           coords="3061,723,3061,1679,3352,1711,3361,1852,3379,2015,3247,2065,3115,2088,3133,2293,3333,2288,3634,2284,5143,2284,5134,719"
-//           onClick={e => {
-//             setLastClicked("bg")
-//             setCurrentClick(e.target.alt)
-//             e.preventDefault()
-//           }}
-//         />
-//       </map>
-//     </div>
-//   )
-// }
+  const bgImageLightsOn = lights.bg_a_lightsOn.images.fallback.src
+  const bgImageLightsOff = lights.bg_a_lightsOff.images.fallback.src
 
-// export default TruffleImageMap
+  // console.log("<TruffleImageMap> rendered")
+
+  const mapAreas = [
+    {
+      id: "screenArea",
+      title: "screen",
+      width: "26.25084364454443%",
+      height: "24.395309882747064%",
+      left: "32.5%",
+      top: "21.7%",
+    },
+    {
+      id: "btn11",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.355108877721943%",
+      left: "38.802376265466854%",
+      top: "49.246231155778894%",
+    },
+    {
+      id: "btn12",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.355108877721943%",
+      left: "43.52678571428575%",
+      top: "49.413735343383586%",
+    },
+    {
+      id: "btn13",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.355108877721943%",
+      left: "48.026223284589456%",
+      top: "49.413735343383586%",
+    },
+    {
+      id: "btn6",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.355108877721943%",
+      left: "33.965480877390355%",
+      top: "53.60134003350083%",
+    },
+    {
+      id: "btn7",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.1876046901172534%",
+      left: "38.914862204724436%",
+      top: "53.76884422110552%",
+    },
+    {
+      id: "btn8",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.1876046901172534%",
+      left: "43.41429977502815%",
+      top: "53.76884422110552%",
+    },
+    {
+      id: "btn9",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.1876046901172534%",
+      left: "48.026223284589456%",
+      top: "53.76884422110552%",
+    },
+    {
+      id: "btn10",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "4.1876046901172534%",
+      left: "52.638146794150764%",
+      top: "53.76884422110552%",
+    },
+    {
+      id: "btn1",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "5.025125628140705%",
+      left: "33.51553712035999%",
+      top: "57.95644891122277%",
+    },
+    {
+      id: "btn2",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "5.025125628140705%",
+      left: "38.46491844769407%",
+      top: "57.95644891122277%",
+    },
+    {
+      id: "btn3",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "5.025125628140705%",
+      left: "43.30181383577056%",
+      top: "57.78894472361809%",
+    },
+    {
+      id: "btn4",
+      title: "btn",
+      width: "4.499437570303712%",
+      height: "5.025125628140705%",
+      left: "47.91373734533187%",
+      top: "57.95644891122278%",
+    },
+    {
+      id: "btn5",
+      title: "btn",
+      width: "5.174353205849269%",
+      height: "5.025125628140705%",
+      left: "52.525660854893175%",
+      top: "57.95644891122278%",
+    },
+    {
+      id: "leftArrow",
+      title: "btn",
+      width: "5.961754780652419%",
+      height: "5.192629815745396%",
+      left: "59.16233127109115%",
+      top: "49.246231155778894%",
+    },
+    {
+      id: "rightArrow",
+      title: "btn",
+      width: "5.961754780652419%",
+      height: "5.192629815745396%",
+      left: "59.27481721034874%",
+      top: "54.2713567839196%",
+    },
+    {
+      id: "bgLeft",
+      title: "bgArea",
+      width: "30.033745781777267%",
+      height: "100%",
+      left: "0%",
+      top: "0%",
+    },
+    {
+      id: "bgRight",
+      title: "bgArea",
+      width: "34.0832395950506%",
+      height: "100%",
+      left: "65.91676040494933%",
+      top: "0%",
+    },
+    {
+      id: "bgBottom",
+      title: "bgArea",
+      width: "35.658042744656896%",
+      height: "33.165829145728644%",
+      left: "30.146231721034823%",
+      top: "66.83417085427132%",
+    },
+    {
+      id: "bgTop",
+      title: "bgArea",
+      width: "35.658042744656896%",
+      height: "20.770519262981573%",
+      left: "30.25871766029241%",
+      top: "0%",
+    },
+    {
+      id: "bgLeft2",
+      title: "bgArea",
+      width: "1.6872890888638727%",
+      height: "15.912897822445563%",
+      left: "30.25871766029241%",
+      top: "20.938023450586265%",
+    },
+    {
+      id: "bgRight2",
+      title: "bgArea",
+      width: "5.736782902137214%",
+      height: "27.30318257956449%",
+      left: "59.84251968503932%",
+      top: "21.273031825795645%",
+    },
+    {
+      id: "bgRight3",
+      title: "bgArea",
+      width: "5.736782902137214%",
+      height: "6.532663316582915%",
+      left: "59.95500562429691%",
+      top: "59.798994974874375%",
+    },
+    {
+      id: "btnInfo",
+      title: "info",
+      width: "5.511811023622028%",
+      height: "4.1876046901172534%",
+      left: "33.29583802024742%",
+      top: "49.2462311557789%",
+    },
+    {
+      id: "btnContact",
+      title: "contact",
+      width: "5.061867266591676%",
+      height: "4.0201005025125625%",
+      left: "52.52566085489314%",
+      top: "49.58123953098828%",
+    },
+    {
+      id: "screenLeft",
+      title: "screen",
+      width: "3.59955005624297%",
+      height: "24.288107202680067%",
+      left: "32.72813554555681%",
+      top: "21.943048576214405%",
+    },
+    {
+      id: "screenRight",
+      title: "screen",
+      width: "3.5995500562429705%",
+      height: "24.288107202680067%",
+      left: "55.112837457817776%",
+      top: "21.943048576214405%",
+    },
+  ]
+
+  const handleClick = e => {
+    setCurrentClickId(e.id)
+    setCurrentClickType(e.title)
+  }
+
+  const conditionalRender = () => {
+    if (isBrowser) {
+      return (
+        <ImageMap
+          id="bgImage"
+          src={bgImage}
+          className="useage-map"
+          map={mapAreas}
+          onLoad={() => {
+            // triggers reload of <Home/>
+            setMapLoaded(true)
+          }}
+          onMapClick={e => handleClick(e)}
+        />
+      )
+    } else {
+      return null
+    }
+  }
+
+  return conditionalRender()
+}
+
+export default TruffleImageMap

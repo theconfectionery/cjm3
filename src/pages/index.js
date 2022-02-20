@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
 import { Helmet } from "react-helmet"
 // import { GatsbyImage } from "gatsby-plugin-image"
-// import TruffleImageMap from "../components/TruffleImageMap"
-// import TruffleImageMap2 from "../components/TruffleImageMap2"
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
 import { useBgALightsOnOff } from "../components/imgs/useBgLights"
@@ -12,19 +10,43 @@ import "../styling/main.css"
 
 import loadable from "@loadable/component"
 
-const TruffleImageMap2 = loadable(() => import("../components/TruffleImageMap2"))
-
+const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
   const [showScreen, setShowScreen] = useState(true)
+  const [lightsOn, setLightsOn] = useState(true)
   const [currentClickId, setCurrentClickId] = useState("")
   const [currentClickType, setCurrentClickType] = useState("")
 
   const cards = useCards()
 
-  console.log("<Home> rendered")
+  // console.log("<Home> rendered")
   console.log("Current click ID:", currentClickId, "Type:", currentClickType)
+
+  const toggleLights = () => {
+    console.log("toggleLights()")
+    if (lightsOn && currentClickType === "btn") {
+      setLightsOn(false)
+    }
+    if (
+      !lightsOn &&
+      (currentClickType === "bgArea" ||
+        currentClickType === "contact" ||
+        currentClickType === "info")
+    ) {
+      setLightsOn(true)
+    }
+  }
+
+  useEffect(() => {
+    toggleLights()
+  }, [currentClickType])
+
+  useEffect(() => {
+    console.log("<Home> useEffect()")
+    console.log("Lights On? ", lightsOn)
+  }, [lightsOn])
 
   useEffect(() => {
     if (mapLoaded) {
@@ -40,8 +62,7 @@ export default function Home() {
         )
       }
     }
-  }, [mapLoaded])
-
+  })
 
   return (
     <>
@@ -53,11 +74,13 @@ export default function Home() {
       </Helmet>
       <main className="body">
         <div id="mapContainer">
-          <TruffleImageMap2
+          <TruffleImageMap
             id="truffleImageMap"
             setMapLoaded={setMapLoaded}
+            lightsOn={lightsOn}
             setCurrentClickId={setCurrentClickId}
-            setCurrentClickType={setCurrentClickType}/> 
+            setCurrentClickType={setCurrentClickType}
+          />
         </div>
       </main>
     </>
