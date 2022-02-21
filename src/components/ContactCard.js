@@ -5,7 +5,7 @@ const ContactCard = ({ cards }) => {
   return (
     <div className="cardContainer">
       <img
-        id="contactCard"
+        id="displayCard"
         className="topCard"
         src={contactCard}
         alt="Let's make magic together! Email: mail@trufflery.com Phone: 323-546-7870"

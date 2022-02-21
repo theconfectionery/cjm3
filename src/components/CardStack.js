@@ -2,12 +2,15 @@ import React from "react"
 import InfoCard from "./InfoCard"
 import ContactCard from "./ContactCard"
 
-const CardStack = () => {
-  let cardArray = [<InfoCard />, <ContactCard />]
+const CardStack = ({ cards }) => {
+  let cardArray = [<InfoCard cards={cards} />, <ContactCard cards={cards} />]
+  let num = 1
+
   return (
-    <div>
-      <div>{cardArray[0]}</div>
-      <div>{cardArray[1]}</div>
+    <div className="cardContainer">
+      {cardArray[num]}
+      <div className="middleCard"></div>
+      <div className="bottomCard"></div>
     </div>
   )
 }

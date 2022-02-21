@@ -2,6 +2,7 @@ import React, { useRef } from "react"
 import { CSSTransitionGroup } from "react-transition-group"
 import ContactCard from "./ContactCard"
 import InfoCard from "./InfoCard"
+import CardStack from "./CardStack"
 // import { GatsbyImage } from "gatsby-plugin-image"
 
 const Screen = ({ cards, currentClickId, currentClickType }) => {
@@ -9,10 +10,11 @@ const Screen = ({ cards, currentClickId, currentClickType }) => {
     <div id="screenContainer">
       <div>
         <div>
-          {currentClickId === "btnContact" ? (
+          <CardStack key={Math.random()} cards={cards} />
+          {/* {currentClickId === "btnContact" ? (
             <ContactCard cards={cards} />
           ) : null}
-          {currentClickId === "btnInfo" ? <InfoCard cards={cards} /> : null}
+          {currentClickId === "btnInfo" ? <InfoCard cards={cards} /> : null} */}
         </div>
       </div>
       {/* <GatsbyImage

@@ -26,15 +26,10 @@ export default function Home() {
 
   const toggleLights = () => {
     console.log("toggleLights()")
-    if (lightsOn && currentClickType === "btn") {
+    if (lightsOn && currentClickType === ("btn" || "contact" || "info")) {
       setLightsOn(false)
     }
-    if (
-      !lightsOn &&
-      (currentClickType === "bgArea" ||
-        currentClickType === "contact" ||
-        currentClickType === "info")
-    ) {
+    if (!lightsOn && currentClickType === "bgArea") {
       setLightsOn(true)
     }
   }
@@ -43,10 +38,10 @@ export default function Home() {
     toggleLights()
   }, [currentClickType])
 
-  useEffect(() => {
-    console.log("<Home> useEffect()")
-    console.log("Lights On? ", lightsOn)
-  }, [lightsOn])
+  // useEffect(() => {
+  //   console.log("<Home> useEffect()")
+  //   console.log("Lights On? ", lightsOn)
+  // }, [lightsOn])
 
   useEffect(() => {
     if (mapLoaded) {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
 import { ImageMap } from "@qiuz/react-image-map"
-import { CSSTransitionGroup } from "react-transition-group"
 import { useBgALightsOnOff } from "./imgs/useBgLights"
 
 const isBrowser = typeof window !== "undefined"
@@ -16,6 +15,9 @@ const TruffleImageMap = ({
   const lights = useBgALightsOnOff()
   console.log("Lights: ", lights)
 
+  const bgImageLightsOn = lights.bg_a_lightsOn.file.url
+  const bgImageLightsOff = lights.bg_a_lightsOff.file.url
+
   useEffect(() => {
     if (lightsOn) {
       setBgImage(bgImageLightsOn)
@@ -24,9 +26,6 @@ const TruffleImageMap = ({
       setBgImage(bgImageLightsOff)
     }
   }, [lightsOn])
-
-  const bgImageLightsOn = lights.bg_a_lightsOn.file.url
-  const bgImageLightsOff = lights.bg_a_lightsOff.file.url
 
   const mapAreas = [
     {
@@ -257,6 +256,7 @@ const TruffleImageMap = ({
       return (
         <ImageMap
           id="bgImage"
+          // key={Math.random()}
           src={bgImage}
           className="useage-map"
           map={mapAreas}

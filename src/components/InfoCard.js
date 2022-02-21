@@ -5,7 +5,7 @@ const InfoCard = ({ cards }) => {
   return (
     <div className="cardContainer">
       <img
-        id="infoCard"
+        id="displayCard"
         className="topCard"
         src={infoCard}
         alt="Try a sample by selecting a truffle"

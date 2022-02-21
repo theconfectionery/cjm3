@@ -4,10 +4,13 @@ body {
   height: 100%;
 }
 
+#mapContainer {
+}
+
 #bgImage {
-  animation: fadeIn 3s;
   height: auto;
-  width: 100vw;
+  min-width: 100vw;
+  animation: fadeIn 2s ease-in;
 }
 
 #cardOne {
@@ -29,6 +32,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#displayCard {
+  display: flex;
+  z-index: 5;
 }
 
 #infoCard {
@@ -119,11 +127,32 @@ body {
 }
 
 /* ____ANIMATIONS____ */
+
+/* @keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+} */
+
 @keyframes standUp {
   0% {
+    opacity: 0.75;
     transform: rotateX(90deg);
   }
   100% {
+    opacity: 1;
     transform: rotateX(0);
   }
 }
@@ -208,7 +237,7 @@ body {
 }
 @-moz-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -216,7 +245,7 @@ body {
 }
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -224,7 +253,7 @@ body {
 }
 @-o-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -232,7 +261,7 @@ body {
 }
 @-ms-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
