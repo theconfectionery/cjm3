@@ -261,7 +261,6 @@ const TruffleImageMap = ({
           className="useage-map"
           map={mapAreas}
           onLoad={() => {
-            // triggers reload of <Home/>
             setMapLoaded(true)
           }}
           onMapClick={e => handleClick(e)}

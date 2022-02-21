@@ -40,17 +40,11 @@ export default function Home() {
     toggleLights()
   }, [currentClickType])
 
-  // useEffect(() => {
-  //   console.log("<Home> useEffect()")
-  //   console.log("Lights On? ", lightsOn)
-  // }, [lightsOn])
-
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
       if (showScreen) {
         reactDom.render(
-          //! This cards object is different now. It's a list of objects, rather than an object of objects
           <Screen
             cards={cards}
             currentClickId={currentClickId}

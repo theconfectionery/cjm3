@@ -1,7 +1,7 @@
 import React from "react"
 
 const InfoCard = ({ cards }) => {
-  const infoCard = cards.card_info.images.fallback.src
+  const infoCard = cards[0].images.fallback.src
   return (
     <div className="cardContainer">
       <img
