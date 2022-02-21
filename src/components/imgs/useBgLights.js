@@ -6,7 +6,7 @@ const imageListToObject = edges => {
   edges.forEach(edge => {
     const { node } = edge
     const image = node
-    imagesObject[image.title] = image.gatsbyImageData
+    imagesObject[image.title] = image
   })
   return imagesObject
 }

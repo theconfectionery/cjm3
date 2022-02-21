@@ -5,12 +5,11 @@ const InfoCard = ({ cards }) => {
   return (
     <div className="cardContainer">
       <img
-        id="infoCard"
-        className="screenImage"
+        id="displayCard"
+        className="topCard"
         src={infoCard}
         alt="Try a sample by selecting a truffle"
       />
-      <div className="topCard"></div>
       <div className="middleCard"></div>
       <div className="bottomCard"></div>
     </div>

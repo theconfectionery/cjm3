@@ -4,12 +4,13 @@ body {
   height: 100%;
 }
 
+#mapContainer {
+}
+
 #bgImage {
-  animation: fadeIn 2s;
-  border: none;
-  /* max-height: 100vh; */
   height: auto;
-  width: 100vw;
+  min-width: 100vw;
+  animation: fadeIn 2s ease-in;
 }
 
 #cardOne {
@@ -31,6 +32,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#displayCard {
+  display: flex;
+  z-index: 5;
 }
 
 #infoCard {
@@ -56,7 +62,7 @@ body {
   background-color: #d3d3d3;
   box-shadow: 0px 0px 16px 12px rgba(0, 0, 0, 0.15);
   z-index: 4;
-  animation: fanOut 0.75s ease-in;
+  animation: standUp 0.35s ease-in;
 }
 
 .middleCard {
@@ -66,7 +72,7 @@ body {
   background-color: #b5b5b5;
   box-shadow: 0px 0px 16px 12px rgba(0, 0, 0, 0.15);
   z-index: 3;
-  animation: fanOut 0.95s ease-in;
+  animation: fanOut 1.15s ease-out;
 }
 
 .bottomCard {
@@ -76,7 +82,7 @@ body {
   background-color: #b0b0b0;
   box-shadow: 0px 0px 27px 23px rgba(0, 0, 0, 0.13);
   z-index: 2;
-  animation: fanOut 1s ease-in;
+  animation: fanOut 1.25s ease-out;
 }
 
 .screenImage {
@@ -121,6 +127,36 @@ body {
 }
 
 /* ____ANIMATIONS____ */
+
+/* @keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+} */
+
+@keyframes standUp {
+  0% {
+    opacity: 0.75;
+    transform: rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}
+
 @keyframes fanOut {
   0% {
     opacity: 0;
@@ -138,7 +174,7 @@ body {
 @-moz-keyframes fanOut {
   0% {
     opacity: 0;
-    transform: scaleX(0.5);
+    transform: scaleX(0);
   }
   50% {
     opacity: 0;
@@ -152,7 +188,7 @@ body {
 @-webkit-keyframes fanOut {
   0% {
     opacity: 0;
-    transform: scaleX(0.5);
+    transform: scaleX(0);
   }
   50% {
     opacity: 0;
@@ -166,7 +202,7 @@ body {
 @-o-keyframes fanOut {
   0% {
     opacity: 0;
-    transform: scaleX(0.5);
+    transform: scaleX(0);
   }
   50% {
     opacity: 0;
@@ -180,7 +216,7 @@ body {
 @-ms-keyframes fanOut {
   0% {
     opacity: 0;
-    transform: scaleX(0.5);
+    transform: scaleX(0);
   }
   50% {
     opacity: 0;
@@ -201,7 +237,7 @@ body {
 }
 @-moz-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -209,7 +245,7 @@ body {
 }
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -217,7 +253,7 @@ body {
 }
 @-o-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -225,7 +261,7 @@ body {
 }
 @-ms-keyframes fadeIn {
   0% {
-    opacity: 0.75;
+    opacity: 0;
   }
   100% {
     opacity: 1;
