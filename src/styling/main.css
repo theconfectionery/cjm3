@@ -12,12 +12,6 @@ body {
   width: 100vw;
 }
 
-/* #cardTest {
-  animation: fadeIn 1s;
-  position: absolute;
-  border: 1px solid red;
-} */
-
 #cardOne {
   animation: fadeIn 1s;
 }
@@ -39,9 +33,14 @@ body {
   align-items: center;
 }
 
-#contactCard {
-  /* outline: 2px solid red; */
+#infoCard {
   display: flex;
+  z-index: 5;
+}
+
+#contactCard {
+  display: flex;
+  z-index: 5;
 }
 
 .cardContainer {
@@ -50,26 +49,67 @@ body {
   align-items: center;
 }
 
+.topCard {
+  position: absolute;
+  width: 80%;
+  height: 84%;
+  background-color: #d3d3d3;
+  box-shadow: 0px 0px 16px 12px rgba(0, 0, 0, 0.15);
+  z-index: 4;
+  animation: fanOut 0.75s ease-in;
+}
+
+.middleCard {
+  position: absolute;
+  width: 84%;
+  height: 80%;
+  background-color: #b5b5b5;
+  box-shadow: 0px 0px 16px 12px rgba(0, 0, 0, 0.15);
+  z-index: 3;
+  animation: fanOut 0.95s ease-in;
+}
+
+.bottomCard {
+  position: absolute;
+  width: 88%;
+  height: 76%;
+  background-color: #b0b0b0;
+  box-shadow: 0px 0px 27px 23px rgba(0, 0, 0, 0.13);
+  z-index: 2;
+  animation: fanOut 1s ease-in;
+}
+
 .screenImage {
-  animation: fadeIn 2s;
-  max-width: 90%;
-  height: auto;
+  max-width: 80%;
+  height: 84%;
 }
 
 .transitionIn {
-  animation: fadeIn 3s;
+  animation: fadeIn 0.75s ease-in 1s;
 }
 
 .transitionOut {
-  animation: fadeOut 3s;
+  animation: fadeOut 0.5s ease-out;
+}
+
+.standUp {
+  animation: standUp 1s linear;
 }
 
 .block {
   display: block;
 }
 
+.inlineBlock {
+  display: inline-block;
+}
+
 .hidden {
   display: none;
+}
+
+.absolute {
+  position: relative;
 }
 
 .lightsOn {
@@ -81,12 +121,79 @@ body {
 }
 
 /* ____ANIMATIONS____ */
-@keyframes fadeIn {
+@keyframes fanOut {
   0% {
     opacity: 0;
+    transform: scaleX(0.5);
   }
-  20% {
+  50% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@-moz-keyframes fanOut {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@-webkit-keyframes fanOut {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@-o-keyframes fanOut {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@-ms-keyframes fanOut {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.65;
   }
   100% {
     opacity: 1;
@@ -94,7 +201,7 @@ body {
 }
 @-moz-keyframes fadeIn {
   0% {
-    opacity: 0.5;
+    opacity: 0.75;
   }
   100% {
     opacity: 1;
@@ -102,7 +209,7 @@ body {
 }
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 0.5;
+    opacity: 0.75;
   }
   100% {
     opacity: 1;
@@ -110,7 +217,7 @@ body {
 }
 @-o-keyframes fadeIn {
   0% {
-    opacity: 0.5;
+    opacity: 0.75;
   }
   100% {
     opacity: 1;
@@ -118,7 +225,7 @@ body {
 }
 @-ms-keyframes fadeIn {
   0% {
-    opacity: 0.5;
+    opacity: 0.75;
   }
   100% {
     opacity: 1;

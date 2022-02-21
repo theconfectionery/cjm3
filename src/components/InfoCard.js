@@ -10,6 +10,9 @@ const InfoCard = ({ cards }) => {
         src={infoCard}
         alt="Try a sample by selecting a truffle"
       />
+      <div className="topCard"></div>
+      <div className="middleCard"></div>
+      <div className="bottomCard"></div>
     </div>
   )
 }

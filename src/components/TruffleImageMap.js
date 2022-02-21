@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useBgALightsOnOff } from "./imgs/useBgLights"
 import { ImageMap } from "@qiuz/react-image-map"
+import { CSSTransitionGroup } from "react-transition-group"
+import { useBgALightsOnOff } from "./imgs/useBgLights"
 
 const isBrowser = typeof window !== "undefined"
 

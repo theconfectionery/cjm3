@@ -10,6 +10,9 @@ const ContactCard = ({ cards }) => {
         src={contactCard}
         alt="Let's make magic together! Email: mail@trufflery.com Phone: 323-546-7870"
       />
+      <div className="topCard"></div>
+      <div className="middleCard"></div>
+      <div className="bottomCard"></div>
     </div>
   )
 }
