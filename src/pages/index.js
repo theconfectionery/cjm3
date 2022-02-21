@@ -20,7 +20,7 @@ export default function Home() {
   const [currentClickType, setCurrentClickType] = useState("")
 
   const cards = useCards()
-
+  console.log(cards)
   // console.log("<Home> rendered")
   console.log("Current click ID:", currentClickId, "Type:", currentClickType)
 
@@ -53,6 +53,7 @@ export default function Home() {
       var screenArea = document.getElementById("screenArea")
       if (showScreen) {
         reactDom.render(
+          //! This cards object is different now. It's a list of objects, rather than an object of objects
           <Screen
             cards={cards}
             currentClickId={currentClickId}
