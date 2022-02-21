@@ -9,6 +9,7 @@ import "normalize.css"
 import "../styling/main.css"
 
 import loadable from "@loadable/component"
+import { useVideos } from "../components/imgs/useVideos"
 
 const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
@@ -20,8 +21,9 @@ export default function Home() {
   const [currentClickType, setCurrentClickType] = useState("")
 
   const cards = useCards()
-  console.log(cards)
-  // console.log("<Home> rendered")
+  const videos = useVideos()
+  console.log("Cards: ", cards)
+  console.log("Videos: ", videos)
   console.log("Current click ID:", currentClickId, "Type:", currentClickType)
 
   const toggleLights = () => {
