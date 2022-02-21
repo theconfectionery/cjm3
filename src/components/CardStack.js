@@ -4,7 +4,7 @@ import ContactCard from "./ContactCard"
 
 const CardStack = ({ cards }) => {
   let cardArray = [<InfoCard cards={cards} />, <ContactCard cards={cards} />]
-  let num = 1
+  let num = 0
 
   return (
     <div className="cardContainer">

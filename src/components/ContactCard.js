@@ -1,7 +1,7 @@
 import React from "react"
 
 const ContactCard = ({ cards }) => {
-  const contactCard = cards.card_contact.images.fallback.src
+  const contactCard = cards[cards.length - 1].images.fallback.src
   return (
     <div className="cardContainer">
       <img

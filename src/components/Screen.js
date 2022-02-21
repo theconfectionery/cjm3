@@ -10,11 +10,9 @@ const Screen = ({ cards, currentClickId, currentClickType }) => {
     <div id="screenContainer">
       <div>
         <div>
-          <CardStack key={Math.random()} cards={cards} />
-          {/* {currentClickId === "btnContact" ? (
-            <ContactCard cards={cards} />
+          {currentClickId === "btnContact" || currentClickId === "btnInfo" ? (
+            <CardStack key={Math.random()} cards={cards} />
           ) : null}
-          {currentClickId === "btnInfo" ? <InfoCard cards={cards} /> : null} */}
         </div>
       </div>
       {/* <GatsbyImage
