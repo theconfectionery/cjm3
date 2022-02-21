@@ -11,12 +11,12 @@ const TruffleImageMap = ({
   setCurrentClickId,
   setCurrentClickType,
 }) => {
-  // const [lastClicked, setLastClicked] = useState("")
+  // console.log("<TruffleImageMap> rendered")
   const [bgImage, setBgImage] = useState(bgImageLightsOn)
   const lights = useBgALightsOnOff()
+  console.log("Lights: ", lights)
 
   useEffect(() => {
-    console.log("From <TruggleImageMap>: ", lightsOn)
     if (lightsOn) {
       setBgImage(bgImageLightsOn)
     }
@@ -25,10 +25,8 @@ const TruffleImageMap = ({
     }
   }, [lightsOn])
 
-  const bgImageLightsOn = lights.bg_a_lightsOn.images.fallback.src
-  const bgImageLightsOff = lights.bg_a_lightsOff.images.fallback.src
-
-  // console.log("<TruffleImageMap> rendered")
+  const bgImageLightsOn = lights.bg_a_lightsOn.file.url
+  const bgImageLightsOff = lights.bg_a_lightsOff.file.url
 
   const mapAreas = [
     {
