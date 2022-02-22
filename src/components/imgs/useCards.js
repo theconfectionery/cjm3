@@ -16,7 +16,6 @@ const sortImageObjects = objectOfImages => {
     const mapping = { contact: Infinity, info: -Infinity }
     const _key = key.split("_")[1]
     const sortKey = Number(mapping[_key] || Number(_key))
-    console.log(sortKey)
     return { key, sortKey, ...objectOfImages[key] }
   })
   return sorted_images.sort((a, b) => {
@@ -46,6 +45,6 @@ export const useCards = () => {
 
   const objectOfImages = imageListToObject(edges)
   const sortedListOfObjects = sortImageObjects(objectOfImages)
-  console.log("useCards() -> sortedListOfObjects: ", sortedListOfObjects)
+
   return sortedListOfObjects
 }

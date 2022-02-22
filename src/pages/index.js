@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
 import { Helmet } from "react-helmet"
-// import { GatsbyImage } from "gatsby-plugin-image"
+
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
 import "normalize.css"
 import "../styling/main.css"
 
 import loadable from "@loadable/component"
+import { useVideos } from "../components/imgs/useVideos"
 
 const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
   const [lightsOn, setLightsOn] = useState(true)
+  const [showScreen, setShowScreen] = useState(true)
   const [currentClickId, setCurrentClickId] = useState("")
   const [currentClickType, setCurrentClickType] = useState("")
 
   const cards = useCards()
-  console.log(cards)
-  // console.log("<Home> rendered")
+  const videos = useVideos()
+
+  console.log("Cards: ", cards)
+
   console.log("Current click ID:", currentClickId, "Type:", currentClickType)
 
   const toggleLights = () => {
@@ -39,14 +43,17 @@ export default function Home() {
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
-      reactDom.render(
+      const screen = (
         <Screen
           cards={cards}
+          videos={videos}
           currentClickId={currentClickId}
           currentClickType={currentClickType}
-        />,
-        screenArea
+        />
       )
+      if (showScreen) {
+        reactDom.render(screen, screenArea)
+      }
     }
   })
 
