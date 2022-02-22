@@ -5,6 +5,17 @@ body {
 }
 
 #mapContainer {
+  width: 100%;
+  max-width: 5148px;
+  position: relative;
+}
+
+#mapContainer img {
+  /* max-width: 100%; */
+}
+
+#truffleImageMap {
+  position: absolute;
 }
 
 #bgImage {
@@ -17,12 +28,8 @@ body {
   animation: fadeIn 1s;
 }
 
-#truffleImageMap {
-  position: absolute;
-}
-
 #screenArea {
-  /* outline: 2px solid greenyellow; */
+  outline: 2px solid greenyellow;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,16 +42,6 @@ body {
 }
 
 #displayCard {
-  display: flex;
-  z-index: 5;
-}
-
-#infoCard {
-  display: flex;
-  z-index: 5;
-}
-
-#contactCard {
   display: flex;
   z-index: 5;
 }

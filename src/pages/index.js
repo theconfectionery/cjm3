@@ -28,10 +28,16 @@ export default function Home() {
 
   const toggleLights = () => {
     console.log("toggleLights()")
-    if (lightsOn && currentClickType === ("btn" || "contact" || "info")) {
+    if (lightsOn && currentClickType === "btn") {
       setLightsOn(false)
     }
     if (!lightsOn && currentClickType === "bgArea") {
+      setLightsOn(true)
+    }
+    if (!lightsOn && currentClickType === "contact") {
+      setLightsOn(true)
+    }
+    if (!lightsOn && currentClickType === "info") {
       setLightsOn(true)
     }
   }

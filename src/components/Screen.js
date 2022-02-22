@@ -78,7 +78,11 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   const cardStack = (
     <div>
       {currentClickId === "btnContact" || currentClickId === "btnInfo" ? (
-        <CardStack key={Math.random()} cards={cards} />
+        <CardStack
+          key={Math.random()}
+          cards={cards}
+          currentClickId={currentClickId}
+        />
       ) : null}
     </div>
   )
@@ -92,14 +96,8 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
           <div>{cardStack}</div>
         )}
       </div>
-      {/* <GatsbyImage
-        image={cards.card_info}
-        alt="Try a Sample by Selecting a Truffle"
-        id="cardOne"
-      /> */}
     </div>
   )
-  // }
 }
 
 export default Screen

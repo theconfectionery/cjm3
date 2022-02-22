@@ -29,7 +29,7 @@ const TruffleImageMap = ({
   const mapAreas = [
     {
       id: "screenArea",
-      title: "screen",
+      alt: "screen",
       width: "26.25084364454443%",
       height: "24.395309882747064%",
       left: "32.5%",
@@ -37,7 +37,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn11",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "38.802376265466854%",
@@ -45,7 +45,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn12",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "43.52678571428575%",
@@ -53,7 +53,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn13",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "48.026223284589456%",
@@ -61,7 +61,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn6",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.355108877721943%",
       left: "33.965480877390355%",
@@ -69,7 +69,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn7",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "38.914862204724436%",
@@ -77,7 +77,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn8",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "43.41429977502815%",
@@ -85,7 +85,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn9",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "48.026223284589456%",
@@ -93,7 +93,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn10",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "52.638146794150764%",
@@ -101,7 +101,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn1",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "33.51553712035999%",
@@ -109,7 +109,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn2",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "38.46491844769407%",
@@ -117,7 +117,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn3",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "43.30181383577056%",
@@ -125,7 +125,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn4",
-      title: "btn",
+      alt: "btn",
       width: "4.499437570303712%",
       height: "5.025125628140705%",
       left: "47.91373734533187%",
@@ -133,7 +133,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btn5",
-      title: "btn",
+      alt: "btn",
       width: "5.174353205849269%",
       height: "5.025125628140705%",
       left: "52.525660854893175%",
@@ -141,7 +141,7 @@ const TruffleImageMap = ({
     },
     {
       id: "leftArrow",
-      title: "btn",
+      alt: "btn",
       width: "5.961754780652419%",
       height: "5.192629815745396%",
       left: "59.16233127109115%",
@@ -149,7 +149,7 @@ const TruffleImageMap = ({
     },
     {
       id: "rightArrow",
-      title: "btn",
+      alt: "btn",
       width: "5.961754780652419%",
       height: "5.192629815745396%",
       left: "59.27481721034874%",
@@ -157,7 +157,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgLeft",
-      title: "bgArea",
+      alt: "bgArea",
       width: "30.033745781777267%",
       height: "100%",
       left: "0%",
@@ -165,7 +165,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgRight",
-      title: "bgArea",
+      alt: "bgArea",
       width: "34.0832395950506%",
       height: "100%",
       left: "65.91676040494933%",
@@ -173,7 +173,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgBottom",
-      title: "bgArea",
+      alt: "bgArea",
       width: "35.658042744656896%",
       height: "33.165829145728644%",
       left: "30.146231721034823%",
@@ -181,7 +181,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgTop",
-      title: "bgArea",
+      alt: "bgArea",
       width: "35.658042744656896%",
       height: "20.770519262981573%",
       left: "30.25871766029241%",
@@ -189,7 +189,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgLeft2",
-      title: "bgArea",
+      alt: "bgArea",
       width: "1.6872890888638727%",
       height: "15.912897822445563%",
       left: "30.25871766029241%",
@@ -197,7 +197,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgRight2",
-      title: "bgArea",
+      alt: "bgArea",
       width: "5.736782902137214%",
       height: "27.30318257956449%",
       left: "59.84251968503932%",
@@ -205,7 +205,7 @@ const TruffleImageMap = ({
     },
     {
       id: "bgRight3",
-      title: "bgArea",
+      alt: "bgArea",
       width: "5.736782902137214%",
       height: "6.532663316582915%",
       left: "59.95500562429691%",
@@ -213,7 +213,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btnInfo",
-      title: "info",
+      alt: "info",
       width: "5.511811023622028%",
       height: "4.1876046901172534%",
       left: "33.29583802024742%",
@@ -221,7 +221,7 @@ const TruffleImageMap = ({
     },
     {
       id: "btnContact",
-      title: "contact",
+      alt: "contact",
       width: "5.061867266591676%",
       height: "4.0201005025125625%",
       left: "52.52566085489314%",
@@ -229,25 +229,25 @@ const TruffleImageMap = ({
     },
     {
       id: "screenLeft",
-      title: "screen",
-      width: "3.59955005624297%",
-      height: "24.288107202680067%",
-      left: "32.72813554555681%",
-      top: "21.943048576214405%",
+      alt: "screen",
+      width: "12.59955%",
+      height: "24%",
+      left: "32.7281%",
+      top: "21.943%",
     },
     {
       id: "screenRight",
-      title: "screen",
-      width: "3.5995500562429705%",
-      height: "24.288107202680067%",
-      left: "55.112837457817776%",
-      top: "21.943048576214405%",
+      alt: "screen",
+      width: "13.25%",
+      height: "24%",
+      left: "45.5%",
+      top: "21.943%",
     },
   ]
 
   const handleClick = e => {
     setCurrentClickId(e.id)
-    setCurrentClickType(e.title)
+    setCurrentClickType(e.alt)
   }
 
   const conditionalRender = () => {
