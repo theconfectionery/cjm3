@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
 import { Helmet } from "react-helmet"
-// import { GatsbyImage } from "gatsby-plugin-image"
+
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
-import { useBgALightsOnOff } from "../components/imgs/useBgLights"
 import "normalize.css"
 import "../styling/main.css"
 
@@ -21,9 +20,9 @@ export default function Home() {
   const [currentClickType, setCurrentClickType] = useState("")
 
   const cards = useCards()
-  const videos = useVideos()
+
   console.log("Cards: ", cards)
-  console.log("Videos: ", videos)
+
   console.log("Current click ID:", currentClickId, "Type:", currentClickType)
 
   const toggleLights = () => {
@@ -43,11 +42,8 @@ export default function Home() {
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
-      const height = screenArea.getBoundingClientRect().height
-      const width = screenArea.getBoundingClientRect().width
       const screen = (
         <Screen
-          videos={videos}
           cards={cards}
           currentClickId={currentClickId}
           currentClickType={currentClickType}

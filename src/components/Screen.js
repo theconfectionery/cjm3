@@ -1,49 +1,60 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
 import ReactPlayer from "react-player"
-import { buttonMapping } from "./imgs/useVideos"
+import { useVideos } from "./imgs/useVideos"
+import { buttonMapping } from "./imgs/static"
+import { usePrevious } from "./utils"
+
 // import { GatsbyImage } from "gatsby-plugin-image"
 
 const fakeVideo = { embeddedUrl: "" }
-function usePrevious(value) {
-  const ref = useRef()
-  useEffect(() => {
-    ref.current = value //assign the value of ref to the argument
-  }, [value]) //this code will run when the value of 'value' changes
-  return ref.current //in the end, return the current ref value.
-}
 
-const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
+const Screen = ({ cards, currentClickId, currentClickType }) => {
   const [playVideo, setPlayVideo] = useState(false)
   const [currentVideoArray, setCurrentVideoArray] = useState([fakeVideo])
   const [videoIndex, setVideoIndex] = useState(0)
   const prevClickId = usePrevious(currentClickId)
 
+  const videos = useVideos()
+
+  const getVideoArray = currentClickId => {
+    return videos[buttonMapping[currentClickId]]
+  }
+
   useEffect(() => {
+    /**
+     * Conditionally sets state based on button click if the prevClick is different
+     * than the current click.
+     */
     if (prevClickId !== currentClickId) {
       if (currentClickId in buttonMapping) {
-        setCurrentVideoArray(videos[buttonMapping[currentClickId]])
+        setCurrentVideoArray(getVideoArray(currentClickId))
         setVideoIndex(0)
       } else {
+        setVideoIndex(0)
         setCurrentVideoArray([fakeVideo])
       }
     }
   })
 
-  console.log(currentVideoArray)
-
-  if (currentClickId && currentClickId in buttonMapping) {
-    if (!playVideo) {
-      setPlayVideo(true)
-      console.log("rerendering")
-      console.log("Setting video array ")
-    }
-  } else {
-    if (playVideo) {
-      setPlayVideo(false)
-      setCurrentVideoArray([fakeVideo])
+  const handleStateChanges = () => {
+    if (currentClickId && currentClickId in buttonMapping) {
+      if (!playVideo) {
+        setPlayVideo(true)
+        console.log("rerendering")
+        console.log("Setting video array ")
+      }
+    } else {
+      if (playVideo) {
+        setPlayVideo(false)
+        setCurrentVideoArray([fakeVideo])
+      }
     }
   }
+
+  console.log("Videos: ", videos)
+  console.log("CurrentVideoArray: ", currentVideoArray)
+  handleStateChanges()
 
   const getNextVideo = () => {
     if (videoIndex < currentVideoArray.length) {
@@ -56,7 +67,6 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   }
 
   const mediaPlayer = (
-    // console.log(currentVideo)
     <ReactPlayer
       className="react-player"
       url={currentVideoArray[videoIndex].embeddedUrl}
@@ -67,6 +77,7 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
       onEnded={getNextVideo}
     />
   )
+
   const cardStack = (
     <div>
       {currentClickId === "btnContact" || currentClickId === "btnInfo" ? (
