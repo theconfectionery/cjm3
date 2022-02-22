@@ -9,6 +9,7 @@ import { usePrevious } from "./utils"
 const fakeVideo = { embeddedUrl: "" }
 
 const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
+  console.log("rerendering")
   const [playVideo, setPlayVideo] = useState(false)
   const [currentVideoArray, setCurrentVideoArray] = useState([fakeVideo])
   const [videoIndex, setVideoIndex] = useState(0)
@@ -27,6 +28,12 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
       if (currentClickId in buttonMapping) {
         setCurrentVideoArray(getVideoArray(currentClickId))
         setVideoIndex(0)
+      } else if (currentClickId === "rightArrow") {
+        console.log("Right Arrow Clicked")
+        getNextVideo()
+      } else if (currentClickId === "leftArrow") {
+        console.log("Left Arrow Clicked")
+        getPrevVideo()
       } else {
         setVideoIndex(0)
         setCurrentVideoArray([fakeVideo])
@@ -39,11 +46,17 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
       if (!playVideo) {
         setPlayVideo(true)
         console.log("rerendering")
-        console.log("Setting video array ")
       }
+    } else if (
+      currentClickId === "rightArrow" ||
+      currentClickId === "leftArrow"
+    ) {
+      console.log("Captured left / right click")
     } else {
       if (playVideo) {
+        console.log("Turning off Play video")
         setPlayVideo(false)
+        setVideoIndex(0)
         setCurrentVideoArray([fakeVideo])
       }
     }
@@ -54,12 +67,24 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   handleStateChanges()
 
   const getNextVideo = () => {
-    if (videoIndex < currentVideoArray.length) {
+    if (playVideo && videoIndex < currentVideoArray.length - 1) {
+      console.log("incrementing videoIndex")
       setVideoIndex(videoIndex + 1)
     } else {
+      setCurrentVideoArray([fakeVideo])
       setPlayVideo(false)
       setVideoIndex(0)
+    }
+  }
+
+  const getPrevVideo = () => {
+    if (playVideo && videoIndex > 0) {
+      console.log("decrementing videoIndex")
+      setVideoIndex(videoIndex - 1)
+    } else {
       setCurrentVideoArray([fakeVideo])
+      setPlayVideo(false)
+      setVideoIndex(0)
     }
   }
 
@@ -69,7 +94,7 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
       url={currentVideoArray[videoIndex].embeddedUrl}
       height="100%"
       width="100%"
-      // playing  // Sets autoplay on click
+      playing // Sets autoplay on click
       controls={false}
       onEnded={getNextVideo}
     />
