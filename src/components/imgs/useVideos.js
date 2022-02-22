@@ -1,3 +1,4 @@
+import { useStaticQuery, graphql } from "gatsby"
 import { videosExample } from "./static"
 
 const contentfulFactory = (
