@@ -1,20 +1,3 @@
-const embeddable = "https://www.youtube.com/embed/CrRKCJ1j2f8"
-
-export const contentfulFactory = (
-  sortKey,
-  uniqueVideoId,
-  embeddedUrl,
-  redirectUrl
-) => {
-  return { sortKey, uniqueVideoId, embeddedUrl, redirectUrl }
-}
-
-const contentfulExample = {
-  uniqueVideoId: "snoop_dogg_1",
-  embeddedUrl: "https://www.youtube.com/embed/CrRKCJ1j2f8",
-  redirectUrl: "https://www.youtube.com/watch?v=CrRKCJ1j2f8",
-}
-
 export const videosExample = {
   PBS: [
     "https://www.youtube.com/watch?v=tSAKzVP2IGk",
@@ -27,7 +10,7 @@ export const videosExample = {
   Dogg: ["https://www.youtube.com/watch?v=lFjyVmzC0AU"],
   Tiffany: ["https://www.youtube.com/watch?v=UqtnPXVSlvE"],
   Airplane: ["https://www.youtube.com/watch?v=vLaX8UvVUQw"],
-  Confectionary: ["https://www.youtube.com/watch?v=nCPfJxSxZQk"],
+  Cinedoctor: ["https://www.youtube.com/watch?v=nCPfJxSxZQk"],
   PlateFork: ["https://www.youtube.com/watch?v=eLeYCwv0j9Q"],
   Macys: ["https://www.youtube.com/watch?v=hE1_bewlbQA"],
   RunningMan: ["https://www.youtube.com/watch?v=JzW8nYGSGWQ"],

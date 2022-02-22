@@ -43,15 +43,18 @@ export default function Home() {
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
+      const height = screenArea.getBoundingClientRect().height
+      const width = screenArea.getBoundingClientRect().width
+      const screen = (
+        <Screen
+          videos={videos}
+          cards={cards}
+          currentClickId={currentClickId}
+          currentClickType={currentClickType}
+        />
+      )
       if (showScreen) {
-        reactDom.render(
-          <Screen
-            cards={cards}
-            currentClickId={currentClickId}
-            currentClickType={currentClickType}
-          />,
-          screenArea
-        )
+        reactDom.render(screen, screenArea)
       }
     }
   })

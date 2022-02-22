@@ -1,13 +1,22 @@
 import { useStaticQuery, graphql } from "gatsby"
-import { contentfulFactory, videosExample } from "./samples"
+import { videosExample } from "./samples"
 
-const mapping = {
+const contentfulFactory = (
+  sortKey,
+  uniqueVideoId,
+  embeddedUrl,
+  redirectUrl
+) => {
+  return { sortKey, uniqueVideoId, embeddedUrl, redirectUrl }
+}
+
+export const buttonMapping = {
   btn11: "PBS",
   btn12: "AMEX",
   btn13: "Dogg",
   btn6: "Tiffany",
   btn7: "Airplane",
-  btn8: "Confectionary",
+  btn8: "Cinedoctor",
   btn9: "PlateFork",
   btn10: "Macys",
   btn1: "RunningMan",
@@ -15,6 +24,9 @@ const mapping = {
   btn3: "DailyShow",
   btn4: "LandRover",
   btn5: "Theatre",
+}
+
+export const directionalButtons = {
   leftArrow: "topWheel",
   rightArrow: "bottomWheel",
 }
@@ -28,7 +40,7 @@ const makeExampleVideoArray = () => {
         return contentfulFactory(i, key, url.replace("watch?v=", "embed/"), url)
       })
       .sort((a, b) => {
-        return a.sortKey < b.sortKey
+        return a.sortKey > b.sortKey
       })
   })
   return result
