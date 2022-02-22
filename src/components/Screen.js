@@ -19,9 +19,6 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
     return videos[buttonMapping[currentClickId]]
   }
 
-  // leftArrow
-  // rightArrow
-
   useEffect(() => {
     /**
      * Conditionally sets state based on button click if the prevClick is different
@@ -59,6 +56,7 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
       if (playVideo) {
         console.log("Turning off Play video")
         setPlayVideo(false)
+        setVideoIndex(0)
         setCurrentVideoArray([fakeVideo])
       }
     }
@@ -96,7 +94,7 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
       url={currentVideoArray[videoIndex].embeddedUrl}
       height="100%"
       width="100%"
-      // playing  // Sets autoplay on click
+      playing // Sets autoplay on click
       controls={false}
       onEnded={getNextVideo}
     />
