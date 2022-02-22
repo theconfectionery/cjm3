@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from "gatsby"
 
 const imageListToObject = edges => {
-  const imagesObject = new Object()
+  const imagesObject = {}
 
   edges.forEach(edge => {
     const { node } = edge

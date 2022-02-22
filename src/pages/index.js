@@ -14,7 +14,6 @@ const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
-  const [showScreen, setShowScreen] = useState(true)
   const [lightsOn, setLightsOn] = useState(true)
   const [currentClickId, setCurrentClickId] = useState("")
   const [currentClickType, setCurrentClickType] = useState("")
