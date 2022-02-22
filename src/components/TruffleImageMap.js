@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { ImageMap } from "@qiuz/react-image-map"
 import { useBgALightsOnOff } from "./imgs/useBgLights"
 
@@ -11,12 +11,11 @@ const TruffleImageMap = ({
   setCurrentClickType,
 }) => {
   // console.log("<TruffleImageMap> rendered")
-  const [bgImage, setBgImage] = useState(bgImageLightsOn)
   const lights = useBgALightsOnOff()
-  console.log("Lights: ", lights)
-
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
+  const [bgImage, setBgImage] = useState(bgImageLightsOn)
+  console.log("Lights: ", lights)
 
   useEffect(() => {
     if (lightsOn) {

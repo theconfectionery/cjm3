@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet"
 // import { GatsbyImage } from "gatsby-plugin-image"
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
-import { useBgALightsOnOff } from "../components/imgs/useBgLights"
 import "normalize.css"
 import "../styling/main.css"
 
@@ -14,7 +13,6 @@ const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
-  const [showScreen, setShowScreen] = useState(true)
   const [lightsOn, setLightsOn] = useState(true)
   const [currentClickId, setCurrentClickId] = useState("")
   const [currentClickType, setCurrentClickType] = useState("")
@@ -41,16 +39,14 @@ export default function Home() {
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
-      if (showScreen) {
-        reactDom.render(
-          <Screen
-            cards={cards}
-            currentClickId={currentClickId}
-            currentClickType={currentClickType}
-          />,
-          screenArea
-        )
-      }
+      reactDom.render(
+        <Screen
+          cards={cards}
+          currentClickId={currentClickId}
+          currentClickType={currentClickType}
+        />,
+        screenArea
+      )
     }
   })
 
