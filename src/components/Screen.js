@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
 import ReactPlayer from "react-player"
-import { useVideos } from "./imgs/useVideos"
 import { buttonMapping } from "./imgs/static"
 import { usePrevious } from "./utils"
 
@@ -9,13 +8,11 @@ import { usePrevious } from "./utils"
 
 const fakeVideo = { embeddedUrl: "" }
 
-const Screen = ({ cards, currentClickId, currentClickType }) => {
+const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   const [playVideo, setPlayVideo] = useState(false)
   const [currentVideoArray, setCurrentVideoArray] = useState([fakeVideo])
   const [videoIndex, setVideoIndex] = useState(0)
   const prevClickId = usePrevious(currentClickId)
-
-  const videos = useVideos()
 
   const getVideoArray = currentClickId => {
     return videos[buttonMapping[currentClickId]]

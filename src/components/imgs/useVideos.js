@@ -26,16 +26,16 @@ const makeExampleVideoArray = () => {
 }
 
 export const useVideos = () => {
-  // const { data } = useStaticQuery(graphql`
-  //   query {
-  //     contentfulVideo {
-  //       uniqueVideoId
-  //       embeddedUrl
-  //       redirectUrl
-  //       sortKey
-  //     }
-  //   }
-  // `)
-  // console.log(data)
+  const data = useStaticQuery(graphql`
+    query {
+      contentfulVideo {
+        uniqueVideoId
+        embeddedUrl
+        redirectUrl
+        sortKey
+      }
+    }
+  `)
+  console.log(data)
   return makeExampleVideoArray()
 }
