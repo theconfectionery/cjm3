@@ -9,57 +9,13 @@ import "../styling/main.css"
 
 import loadable from "@loadable/component"
 import { useVideos } from "../components/imgs/useVideos"
+import App from "../components/App"
 
 const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function Home() {
-  const [mapLoaded, setMapLoaded] = useState(false)
-  const [lightsOn, setLightsOn] = useState(true)
-  const [currentClick, setCurrentClick] = useState([""])
-  const [currentClickType, setCurrentClickType] = useState("")
+  console.log("<<<<RENDERING HOME>>>>>")
   const arrowClickedStack = []
-  const cards = useCards()
-  const videos = useVideos()
-
-  const currentClickId = currentClick[0]
-  const toggleLights = () => {
-    console.log("toggleLights()")
-    if (lightsOn && currentClickType === "btn") {
-      setLightsOn(false)
-    }
-    if (!lightsOn && currentClickType === "bgArea") {
-      setLightsOn(true)
-    }
-    if (!lightsOn && currentClickType === "contact") {
-      setLightsOn(true)
-    }
-    if (!lightsOn && currentClickType === "info") {
-      setLightsOn(true)
-    }
-  }
-
-  useEffect(() => {
-    toggleLights()
-  }, [currentClickType])
-
-  useEffect(() => {
-    if (mapLoaded) {
-      if (currentClickId == "leftArrow" || currentClickId == "rightArrow") {
-        arrowClickedStack.push(currentClickId)
-      }
-      var screenArea = document.getElementById("screenArea")
-      const screen = (
-        <Screen
-          cards={cards}
-          videos={videos}
-          currentClickId={currentClickId}
-          currentClickType={currentClickType}
-          arrowClickedStack={arrowClickedStack}
-        />
-      )
-      reactDom.render(screen, screenArea)
-    }
-  })
 
   return (
     <>
@@ -81,15 +37,7 @@ export default function Home() {
         />
       </Helmet>
       <main className="body">
-        <div id="mapContainer">
-          <TruffleImageMap
-            id="truffleImageMap"
-            setMapLoaded={setMapLoaded}
-            lightsOn={lightsOn}
-            setCurrentClick={setCurrentClick}
-            setCurrentClickType={setCurrentClickType}
-          />
-        </div>
+        <App arrowClickedStack={arrowClickedStack} />
       </main>
     </>
   )

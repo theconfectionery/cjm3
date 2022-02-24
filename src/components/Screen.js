@@ -26,7 +26,7 @@ const Screen = ({
     //   "buttonMapping[currentClickId]: ",
     //   buttonMapping[currentClickId]
     // )
-    return videos[buttonMapping[currentClickId]] || fakeVideo
+    return videos[buttonMapping[currentClickId]] || [fakeVideo]
   }
   const [videoDetails, setVideoDetails] = useState({
     playVideo: false,
@@ -104,6 +104,8 @@ const Screen = ({
                 currentVideoDetails={videoDetails}
                 currentClick={{ currentClickId: currentClickId }}
                 arrowClickedStack={arrowClickedStack}
+                setVideoDetails={setVideoDetails}
+                getVideoArray={getVideoArray}
               />
             }
           </div>
