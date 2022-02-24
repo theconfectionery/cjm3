@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
+import MediaPlayer from "./MediaPlayer"
 // import CardStackCarousel from "./CardStackCarousel"
 import ReactPlayer from "react-player"
 import { buttonMapping } from "./imgs/static"
@@ -9,46 +10,33 @@ import { usePrevious } from "./utils"
 
 const fakeVideo = { embeddedUrl: "" }
 
-const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
-  const [playVideo, setPlayVideo] = useState(false)
+const Screen = ({
+  cards,
+  videos,
+  currentClickId,
+  currentClickType,
+  arrowClickedStack,
+}) => {
   const [showCards, setShowCards] = useState(false)
-  const [currentVideoArray, setCurrentVideoArray] = useState([fakeVideo])
-  const [videoIndex, setVideoIndex] = useState(0)
-  const prevClickId = usePrevious(currentClickId)
-  //? Maybe we can watch a previous state other than prevClickId to capture if we have a
-  //? recursive rerender? ????????????????????????
-
-  // console.log("CurrentClickId: ", currentClickId)
-  console.log("<Screen> Rendered")
-  // console.log("cards: ", cards)
-  //! why does <Screen> render twice on every load?
 
   const getVideoArray = currentClickId => {
-    return videos[buttonMapping[currentClickId]]
+    // console.log(
+    //   "getting vidoe array: ",
+    //   currentClickId,
+    //   "buttonMapping[currentClickId]: ",
+    //   buttonMapping[currentClickId]
+    // )
+    return videos[buttonMapping[currentClickId]] || fakeVideo
   }
-
-  useEffect(() => {
-    /**
-     * Conditionally sets state based on button click if the prevClick is different
-     * than the current click.
-     */
-    if (prevClickId !== currentClickId) {
-      if (currentClickId in buttonMapping) {
-        setVideoIndex(0)
-        setCurrentVideoArray(getVideoArray(currentClickId))
-      } else if (currentClickId === "rightArrow") {
-        getNextVideo()
-      } else if (currentClickId === "leftArrow") {
-        getPrevVideo()
-      } else {
-        setVideoIndex(0)
-        setCurrentVideoArray([fakeVideo])
-      }
-    }
-    if (currentClickId === "rightArrow" || currentClickId === "leftArrow") {
-      console.log("Boogie man")
-    }
+  const [videoDetails, setVideoDetails] = useState({
+    playVideo: false,
+    videoIndex: 0,
+    currentVideoArray: getVideoArray(currentClickId),
   })
+  const prevClickId = usePrevious(currentClickId)
+  const { playVideo } = videoDetails
+  console.log("<Screen> Rendered")
+  console.log("Video Details: ", videoDetails)
 
   useEffect(() => {
     if (!showCards) {
@@ -65,57 +53,38 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   }, [currentClickId, currentClickType])
 
   //! if lightsOn or !playVideo: rightArrow and leftArrow shouldn't toggleLights
-  const handleStateChanges = () => {
+  useEffect(() => {
     if (currentClickId && currentClickId in buttonMapping) {
       if (!playVideo) {
-        setPlayVideo(true)
+        setVideoDetails({
+          videoIndex: 0,
+          currentVideoArray: getVideoArray(currentClickId),
+          playVideo: true,
+        })
+      } else {
+        if (currentClickId !== prevClickId) {
+          setVideoDetails({
+            ...videoDetails,
+            videoIndex: 0,
+            currentVideoArray: getVideoArray(currentClickId),
+          })
+        }
       }
-    } else if (
-      currentClickId === "rightArrow" ||
-      currentClickId === "leftArrow"
-    ) {
+    } else if (currentClickId === "rightArrow") {
+      // console.log("Setting Click Count")
+    } else if (currentClickId === "leftArrow") {
+      // console.log("Setting Click Count")
     } else {
       if (playVideo) {
-        setPlayVideo(false)
-        setVideoIndex(0)
-        setCurrentVideoArray([fakeVideo])
+        setVideoDetails({
+          playVideo: false,
+          currentVideoArray: getVideoArray(currentClickId),
+          videoIndex: 0,
+        })
       }
     }
-  }
-
-  handleStateChanges()
-
-  const getNextVideo = () => {
-    if (playVideo && videoIndex < currentVideoArray.length - 1) {
-      setVideoIndex(videoIndex + 1)
-    } else {
-      setCurrentVideoArray([fakeVideo])
-      setPlayVideo(false)
-      setVideoIndex(0)
-    }
-  }
-
-  const getPrevVideo = () => {
-    if (playVideo && videoIndex > 0) {
-      setVideoIndex(videoIndex - 1)
-    } else {
-      setCurrentVideoArray([fakeVideo])
-      setPlayVideo(false)
-      setVideoIndex(0)
-    }
-  }
-
-  const mediaPlayer = (
-    <ReactPlayer
-      className="react-player"
-      url={currentVideoArray[videoIndex].embeddedUrl}
-      height="95%"
-      width="95%"
-      playing // Sets autoplay on click
-      controls={false}
-      onEnded={getNextVideo}
-    />
-  )
+  })
+  // handleStateChanges()
 
   const cardStack = (
     <>
@@ -129,7 +98,15 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
     <div id="screenContainer">
       <div>
         {playVideo ? (
-          <div className="screenImage">{mediaPlayer}</div>
+          <div className="screenImage">
+            {
+              <MediaPlayer
+                currentVideoDetails={videoDetails}
+                currentClick={{ currentClickId: currentClickId }}
+                arrowClickedStack={arrowClickedStack}
+              />
+            }
+          </div>
         ) : (
           <div>{cardStack}</div>
         )}

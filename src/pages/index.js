@@ -17,6 +17,7 @@ export default function Home() {
   const [lightsOn, setLightsOn] = useState(true)
   const [currentClick, setCurrentClick] = useState([""])
   const [currentClickType, setCurrentClickType] = useState("")
+  const arrowClickedStack = []
   const cards = useCards()
   const videos = useVideos()
 
@@ -43,6 +44,9 @@ export default function Home() {
 
   useEffect(() => {
     if (mapLoaded) {
+      if (currentClickId == "leftArrow" || currentClickId == "rightArrow") {
+        arrowClickedStack.push(currentClickId)
+      }
       var screenArea = document.getElementById("screenArea")
       const screen = (
         <Screen
@@ -50,6 +54,7 @@ export default function Home() {
           videos={videos}
           currentClickId={currentClickId}
           currentClickType={currentClickType}
+          arrowClickedStack={arrowClickedStack}
         />
       )
       reactDom.render(screen, screenArea)
