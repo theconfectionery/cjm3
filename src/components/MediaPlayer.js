@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react"
-
 import ReactPlayer from "react-player"
-import { buttonMapping } from "./imgs/static"
-import { usePrevious } from "./utils"
 
 const MediaPlayer = ({
   currentClick,
@@ -15,12 +12,8 @@ const MediaPlayer = ({
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex)
 
-  console.log("<Media Player> Rendered")
-  console.log(currentVideoArray, currentVideoIndex)
-
   const getNextVideo = () => {
     if (playVideo && currentVideoIndex < currentVideoArray.length - 1) {
-      console.log("getting next video")
       setCurrentVideoIndex(currentVideoIndex + 1)
     } else {
       setCurrentVideoIndex(0)

@@ -26,7 +26,7 @@ const makeExampleVideoArray = () => {
 }
 
 export const useVideos = () => {
-  const data = useStaticQuery(graphql`
+  useStaticQuery(graphql`
     query {
       contentfulVideo {
         uniqueVideoId

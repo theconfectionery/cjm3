@@ -11,7 +11,7 @@ const TruffleImageMap = ({
   setCurrentClickType,
   arrowClickedStack,
 }) => {
-  console.log("<TruffleImageMap> rendered")
+  // console.log("<TruffleImageMap> rendered")
   const lights = useBgALightsOnOff()
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url

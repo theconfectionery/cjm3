@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
 import MediaPlayer from "./MediaPlayer"
-// import CardStackCarousel from "./CardStackCarousel"
-import ReactPlayer from "react-player"
 import { buttonMapping } from "./imgs/static"
 import { usePrevious } from "./utils"
 
@@ -18,14 +16,7 @@ const Screen = ({
   arrowClickedStack,
 }) => {
   const [showCards, setShowCards] = useState(false)
-
   const getVideoArray = currentClickId => {
-    // console.log(
-    //   "getting vidoe array: ",
-    //   currentClickId,
-    //   "buttonMapping[currentClickId]: ",
-    //   buttonMapping[currentClickId]
-    // )
     return videos[buttonMapping[currentClickId]] || [fakeVideo]
   }
   const [videoDetails, setVideoDetails] = useState({
@@ -35,8 +26,6 @@ const Screen = ({
   })
   const prevClickId = usePrevious(currentClickId)
   const { playVideo } = videoDetails
-  console.log("<Screen> Rendered")
-  console.log("Video Details: ", videoDetails)
 
   useEffect(() => {
     if (!showCards) {
@@ -44,15 +33,15 @@ const Screen = ({
         setShowCards(true)
       }
     }
+
     if (showCards) {
       if (currentClickType === "btn" || currentClickType === "bgArea") {
         setShowCards(false)
       }
     }
-    console.log("showCards: ", showCards)
   }, [currentClickId, currentClickType])
 
-  //! if lightsOn or !playVideo: rightArrow and leftArrow shouldn't toggleLights
+  //! rightArrow and leftArrow shouldn't toggleLights
   useEffect(() => {
     if (currentClickId && currentClickId in buttonMapping) {
       if (!playVideo) {
@@ -84,7 +73,6 @@ const Screen = ({
       }
     }
   })
-  // handleStateChanges()
 
   const cardStack = (
     <>
@@ -95,7 +83,7 @@ const Screen = ({
   )
 
   return (
-    <div id="screenContainer">
+    <div>
       <div>
         {playVideo ? (
           <div className="screenImage">

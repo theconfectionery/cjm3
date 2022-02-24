@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react"
-import reactDom from "react-dom"
+import React from "react"
 import { Helmet } from "react-helmet"
-
-import Screen from "../components/Screen"
-import { useCards } from "../components/imgs/useCards"
 import "normalize.css"
 import "../styling/main.css"
-
-import loadable from "@loadable/component"
-import { useVideos } from "../components/imgs/useVideos"
 import App from "../components/App"
-
-const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function Home() {
   console.log("<<<<RENDERING HOME>>>>>")

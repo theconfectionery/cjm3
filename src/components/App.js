@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
-import { Helmet } from "react-helmet"
 
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
@@ -18,13 +17,12 @@ export default function App({ arrowClickedStack }) {
   const [lightsOn, setLightsOn] = useState(true)
   const [currentClick, setCurrentClick] = useState([""])
   const [currentClickType, setCurrentClickType] = useState("")
-
   const cards = useCards()
   const videos = useVideos()
-
   const currentClickId = currentClick[0]
+
   const toggleLights = () => {
-    console.log("toggleLights()")
+    // console.log("toggleLights()")
     if (lightsOn && currentClickType === "btn") {
       setLightsOn(false)
     }

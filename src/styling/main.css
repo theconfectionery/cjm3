@@ -1,22 +1,18 @@
 @import "react-slideshow-image/dist/styles.css";
 
-.react-slideshow-container {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-}
-
 body {
   box-sizing: border-box;
   background-color: #000000;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-#mapContainer {
+/* #mapContainer {
   width: 100%;
   max-width: 5148px;
   position: relative;
-}
+} */
 
 #mapContainer img {
   max-width: 100%;
@@ -32,17 +28,7 @@ body {
   animation: fadeIn 2s ease-in;
 }
 
-#cardOne {
-  animation: fadeIn 1s;
-}
-
 #screenArea {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#screenContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,6 +45,12 @@ body {
 
 #screenRight {
   z-index: 6;
+}
+
+.react-slideshow-container {
+  width: 100%;
+  height: 100%;
+  margin: auto;
 }
 
 .cardContainer {
@@ -108,61 +100,7 @@ body {
   left: 8px;
 }
 
-.transitionIn {
-  animation: fadeIn 0.75s ease-in 1s;
-}
-
-.transitionOut {
-  animation: fadeOut 0.5s ease-out;
-}
-
-.standUp {
-  animation: standUp 1s linear;
-}
-
-.block {
-  display: block;
-}
-
-.inlineBlock {
-  display: inline-block;
-}
-
-.hidden {
-  display: none;
-}
-
-.absolute {
-  position: relative;
-}
-
-.lightsOn {
-  animation: fadeIn 800ms;
-}
-
-.lightsOff {
-  animation: fadeOut 800ms;
-}
-
 /* ____ANIMATIONS____ */
-
-/* @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-} */
 
 @keyframes standUp {
   0% {
