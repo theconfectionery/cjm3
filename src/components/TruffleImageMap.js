@@ -15,7 +15,6 @@ const TruffleImageMap = ({
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
   const [bgImage, setBgImage] = useState(bgImageLightsOn)
-  // console.log("Lights: ", lights)
 
   useEffect(() => {
     if (lightsOn) {

@@ -15,15 +15,11 @@ const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
   const [lightsOn, setLightsOn] = useState(true)
-  const [showScreen, setShowScreen] = useState(true)
   const [currentClick, setCurrentClick] = useState([""])
   const [currentClickType, setCurrentClickType] = useState("")
-  console.log("Rendering Index: ")
   const cards = useCards()
   const videos = useVideos()
 
-  // console.log("Cards: ", cards)
-  // console.log("Current click ID:", currentClickId, "Type:", currentClickType)
   const currentClickId = currentClick[0]
   const toggleLights = () => {
     console.log("toggleLights()")
@@ -56,9 +52,7 @@ export default function Home() {
           currentClickType={currentClickType}
         />
       )
-      if (showScreen) {
-        reactDom.render(screen, screenArea)
-      }
+      reactDom.render(screen, screenArea)
     }
   })
 
