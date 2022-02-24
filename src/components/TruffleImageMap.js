@@ -9,6 +9,7 @@ const TruffleImageMap = ({
   lightsOn,
   setCurrentClick,
   setCurrentClickType,
+  arrowClickedStack,
 }) => {
   console.log("<TruffleImageMap> rendered")
   const lights = useBgALightsOnOff()
@@ -250,6 +251,9 @@ const TruffleImageMap = ({
       console.log("Calling set currentClickId in ImageMap... ")
       setCurrentClick([e.id])
       setCurrentClickType(e.alt)
+      if (e.id === "leftArrow" || e.id === "rightArrow") {
+        arrowClickedStack.push(e.id)
+      }
     }
   }
 
