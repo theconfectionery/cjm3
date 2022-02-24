@@ -6,6 +6,7 @@ export const videosExample = {
   AMEX: [
     "https://www.youtube.com/watch?v=hPPNJ0_Dyhk",
     "https://www.youtube.com/watch?v=zDhJHKnT7zA",
+    "https://www.youtube.com/watch?v=vLaX8UvVUQw",
   ],
   Dogg: ["https://www.youtube.com/watch?v=QZXc39hT8t4"],
   Tiffany: ["https://www.youtube.com/watch?v=UqtnPXVSlvE"],

@@ -36,6 +36,6 @@ export const useVideos = () => {
       }
     }
   `)
-  console.log(data)
+  // console.log(data)
   return makeExampleVideoArray()
 }

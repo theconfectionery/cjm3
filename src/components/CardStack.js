@@ -1,22 +1,53 @@
-import React, { useEffect, useState } from "react"
-import InfoCard from "./InfoCard"
-import ContactCard from "./ContactCard"
+import React, { useRef } from "react"
+import { Slide } from "react-slideshow-image"
 
 const CardStack = ({ cards, currentClickId }) => {
-  const [displayCardIndex, setDisplayCardIndex] = useState(0)
-  // let cardArray = [<InfoCard cards={cards} />, <ContactCard cards={cards} />]
+  const sliderRef = useRef()
+  const imageUrls = cards.map(card => card.file.url)
+  const contactCardIndex = cards.length - 1
 
-  useEffect(() => {}, [currentClickId])
-  console.log(cards)
+  console.log("CardStack")
+  const props = {
+    arrows: false,
+    autoplay: false,
+    easing: "ease-in",
+    transitionDuration: 500,
+  }
+
+  const handleClick = () => {
+    console.log("<CardStack> handleClick triggered")
+    if (sliderRef.current) {
+      if (currentClickId === "screenLeft") {
+        sliderRef.current.goBack()
+      }
+
+      if (currentClickId === "screenRight") {
+        sliderRef.current.goNext()
+      }
+
+      if (currentClickId === "btnContact") {
+        sliderRef.current.goTo(contactCardIndex)
+      }
+
+      if (currentClickId === "btnInfo") {
+        sliderRef.current.goTo(0)
+      }
+    }
+  }
 
   return (
     <div className="cardContainer">
-      <img
+      <Slide
+        ref={sliderRef}
+        {...props}
         id="displayCard"
         className="topCard"
-        src={cards[displayCardIndex].images.fallback.src}
-        alt="Let's make magic together! Email: mail@trufflery.com Phone: 323-546-7870"
-      />
+        onClick={handleClick()}
+      >
+        {imageUrls.map((each, index) => (
+          <img key={index} src={each} alt="" />
+        ))}
+      </Slide>
       <div className="middleCard"></div>
       <div className="bottomCard"></div>
     </div>

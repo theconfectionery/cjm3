@@ -10,12 +10,12 @@ const TruffleImageMap = ({
   setCurrentClickId,
   setCurrentClickType,
 }) => {
-  // console.log("<TruffleImageMap> rendered")
+  console.log("<TruffleImageMap> rendered")
   const lights = useBgALightsOnOff()
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
   const [bgImage, setBgImage] = useState(bgImageLightsOn)
-  console.log("Lights: ", lights)
+  // console.log("Lights: ", lights)
 
   useEffect(() => {
     if (lightsOn) {
@@ -246,8 +246,10 @@ const TruffleImageMap = ({
   ]
 
   const handleClick = e => {
-    setCurrentClickId(e.id)
-    setCurrentClickType(e.alt)
+    if (e.id !== "screenArea") {
+      setCurrentClickId(e.id)
+      setCurrentClickType(e.alt)
+    }
   }
 
   const conditionalRender = () => {

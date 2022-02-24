@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
+// import CardStackCarousel from "./CardStackCarousel"
 import ReactPlayer from "react-player"
 import { buttonMapping } from "./imgs/static"
 import { usePrevious } from "./utils"
@@ -9,11 +10,16 @@ import { usePrevious } from "./utils"
 const fakeVideo = { embeddedUrl: "" }
 
 const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
-  console.log("rerendering")
   const [playVideo, setPlayVideo] = useState(false)
+  const [showCards, setShowCards] = useState(false)
   const [currentVideoArray, setCurrentVideoArray] = useState([fakeVideo])
   const [videoIndex, setVideoIndex] = useState(0)
   const prevClickId = usePrevious(currentClickId)
+
+  // console.log("CurrentClickId: ", currentClickId)
+  console.log("<Screen> Rendered")
+  // console.log("cards: ", cards)
+  //! why does <Screen> render twice on every load?
 
   const getVideoArray = currentClickId => {
     return videos[buttonMapping[currentClickId]]
@@ -29,10 +35,8 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
         setCurrentVideoArray(getVideoArray(currentClickId))
         setVideoIndex(0)
       } else if (currentClickId === "rightArrow") {
-        console.log("Right Arrow Clicked")
         getNextVideo()
       } else if (currentClickId === "leftArrow") {
-        console.log("Left Arrow Clicked")
         getPrevVideo()
       } else {
         setVideoIndex(0)
@@ -41,20 +45,32 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
     }
   })
 
+  useEffect(() => {
+    if (!showCards) {
+      if (currentClickId === "btnContact" || currentClickId === "btnInfo") {
+        setShowCards(true)
+      }
+    }
+    if (showCards) {
+      if (currentClickType === "btn" || currentClickType === "bgArea") {
+        setShowCards(false)
+      }
+    }
+    console.log("showCards: ", showCards)
+  }, [currentClickId, currentClickType])
+
+  //! if lightsOn or !playVideo: rightArrow and leftArrow shouldn't toggleLights
   const handleStateChanges = () => {
     if (currentClickId && currentClickId in buttonMapping) {
       if (!playVideo) {
         setPlayVideo(true)
-        console.log("rerendering")
       }
     } else if (
       currentClickId === "rightArrow" ||
       currentClickId === "leftArrow"
     ) {
-      console.log("Captured left / right click")
     } else {
       if (playVideo) {
-        console.log("Turning off Play video")
         setPlayVideo(false)
         setVideoIndex(0)
         setCurrentVideoArray([fakeVideo])
@@ -62,13 +78,10 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
     }
   }
 
-  console.log("Videos: ", videos)
-  console.log("CurrentVideoArray: ", currentVideoArray)
   handleStateChanges()
 
   const getNextVideo = () => {
     if (playVideo && videoIndex < currentVideoArray.length - 1) {
-      console.log("incrementing videoIndex")
       setVideoIndex(videoIndex + 1)
     } else {
       setCurrentVideoArray([fakeVideo])
@@ -79,7 +92,6 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
 
   const getPrevVideo = () => {
     if (playVideo && videoIndex > 0) {
-      console.log("decrementing videoIndex")
       setVideoIndex(videoIndex - 1)
     } else {
       setCurrentVideoArray([fakeVideo])
@@ -92,8 +104,8 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
     <ReactPlayer
       className="react-player"
       url={currentVideoArray[videoIndex].embeddedUrl}
-      height="100%"
-      width="100%"
+      height="95%"
+      width="95%"
       playing // Sets autoplay on click
       controls={false}
       onEnded={getNextVideo}
@@ -101,15 +113,11 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   )
 
   const cardStack = (
-    <div>
-      {currentClickId === "btnContact" || currentClickId === "btnInfo" ? (
-        <CardStack
-          key={Math.random()}
-          cards={cards}
-          currentClickId={currentClickId}
-        />
+    <>
+      {showCards ? (
+        <CardStack cards={cards} currentClickId={currentClickId} />
       ) : null}
-    </div>
+    </>
   )
 
   return (
