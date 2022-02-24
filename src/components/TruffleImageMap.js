@@ -7,7 +7,7 @@ const isBrowser = typeof window !== "undefined"
 const TruffleImageMap = ({
   setMapLoaded,
   lightsOn,
-  setCurrentClickId,
+  setCurrentClick,
   setCurrentClickType,
 }) => {
   console.log("<TruffleImageMap> rendered")
@@ -246,8 +246,10 @@ const TruffleImageMap = ({
   ]
 
   const handleClick = e => {
+    console.log("Screen Area Clicked: ", e)
     if (e.id !== "screenArea") {
-      setCurrentClickId(e.id)
+      console.log("Calling set currentClickId in ImageMap... ")
+      setCurrentClick([e.id])
       setCurrentClickType(e.alt)
     }
   }

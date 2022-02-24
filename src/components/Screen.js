@@ -15,6 +15,8 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
   const [currentVideoArray, setCurrentVideoArray] = useState([fakeVideo])
   const [videoIndex, setVideoIndex] = useState(0)
   const prevClickId = usePrevious(currentClickId)
+  //? Maybe we can watch a previous state other than prevClickId to capture if we have a
+  //? recursive rerender? ????????????????????????
 
   // console.log("CurrentClickId: ", currentClickId)
   console.log("<Screen> Rendered")
@@ -32,8 +34,8 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
      */
     if (prevClickId !== currentClickId) {
       if (currentClickId in buttonMapping) {
-        setCurrentVideoArray(getVideoArray(currentClickId))
         setVideoIndex(0)
+        setCurrentVideoArray(getVideoArray(currentClickId))
       } else if (currentClickId === "rightArrow") {
         getNextVideo()
       } else if (currentClickId === "leftArrow") {
@@ -42,6 +44,9 @@ const Screen = ({ cards, videos, currentClickId, currentClickType }) => {
         setVideoIndex(0)
         setCurrentVideoArray([fakeVideo])
       }
+    }
+    if (currentClickId === "rightArrow" || currentClickId === "leftArrow") {
+      console.log("Boogie man")
     }
   })
 

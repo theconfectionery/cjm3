@@ -16,15 +16,15 @@ export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false)
   const [lightsOn, setLightsOn] = useState(true)
   const [showScreen, setShowScreen] = useState(true)
-  const [currentClickId, setCurrentClickId] = useState("")
+  const [currentClick, setCurrentClick] = useState([""])
   const [currentClickType, setCurrentClickType] = useState("")
-
+  console.log("Rendering Index: ")
   const cards = useCards()
   const videos = useVideos()
 
   // console.log("Cards: ", cards)
   // console.log("Current click ID:", currentClickId, "Type:", currentClickType)
-
+  const currentClickId = currentClick[0]
   const toggleLights = () => {
     console.log("toggleLights()")
     if (lightsOn && currentClickType === "btn") {
@@ -87,7 +87,7 @@ export default function Home() {
             id="truffleImageMap"
             setMapLoaded={setMapLoaded}
             lightsOn={lightsOn}
-            setCurrentClickId={setCurrentClickId}
+            setCurrentClick={setCurrentClick}
             setCurrentClickType={setCurrentClickType}
           />
         </div>
