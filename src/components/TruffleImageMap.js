@@ -76,12 +76,14 @@ const TruffleImageMap = ({
       top: "53.76884422110552%",
     },
     {
+      // cinedoctor button, different behavior than other truffle btns
       id: "btn8",
       alt: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "43.41429977502815%",
       top: "53.76884422110552%",
+      // onClick: () => window.open("www.gmail.com", _blank),
     },
     {
       id: "btn9",
@@ -246,9 +248,14 @@ const TruffleImageMap = ({
   ]
 
   const handleClick = e => {
-    console.log("Screen Area Clicked: ", e)
+    if (e.id === "btn8") {
+      window
+        .open("https://npm.io/package/@qiuz/react-image-map", "_blank")
+        .focus()
+    }
+    // console.log("Screen Area Clicked: ", e)
     if (e.id !== "screenArea") {
-      console.log("Calling set currentClickId in ImageMap... ")
+      // console.log("Calling set currentClickId in ImageMap... ")
       setCurrentClick([e.id])
       setCurrentClickType(e.alt)
       if (e.id === "leftArrow" || e.id === "rightArrow") {
