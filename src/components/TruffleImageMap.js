@@ -17,12 +17,36 @@ const TruffleImageMap = ({
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
   const [bgImage, setBgImage] = useState(bgImageLightsOn)
 
+  const fadeBgImageIn = () => {
+    if (typeof document !== "undefined") {
+      document
+        .getElementById("bgImage")
+        .animate([{ opacity: 0 }, { opacity: 1 }], 1300)
+    }
+  }
+
+  const fadeBgImageOut = () => {
+    if (typeof document !== "undefined") {
+      document
+        .getElementById("bgImage")
+        .animate([{ opacity: 1 }, { opacity: 0 }], 1300)
+    }
+  }
+
+  useEffect(() => {
+    fadeBgImageIn()
+  }, [])
+
   useEffect(() => {
     if (lightsOn) {
       setBgImage(bgImageLightsOn)
+      fadeBgImageOut()
+      fadeBgImageIn()
     }
     if (!lightsOn) {
       setBgImage(bgImageLightsOff)
+      fadeBgImageOut()
+      fadeBgImageIn()
     }
   }, [lightsOn])
 
@@ -267,17 +291,18 @@ const TruffleImageMap = ({
   const conditionalRender = () => {
     if (isBrowser) {
       return (
-        <ImageMap
-          id="bgImage"
-          // key={Math.random()}
-          src={bgImage}
-          className="useage-map"
-          map={mapAreas}
-          onLoad={() => {
-            setMapLoaded(true)
-          }}
-          onMapClick={e => handleClick(e)}
-        />
+        <div>
+          <ImageMap
+            id="bgImage"
+            src={bgImage}
+            className="useage-map"
+            map={mapAreas}
+            onLoad={() => {
+              setMapLoaded(true)
+            }}
+            onMapClick={e => handleClick(e)}
+          />
+        </div>
       )
     } else {
       return null

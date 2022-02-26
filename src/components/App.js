@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
-
+import useWebAnimations, { fadeIn } from "@wellyshen/use-web-animations"
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
 import "normalize.css"
@@ -24,7 +24,11 @@ export default function App({ arrowClickedStack }) {
   const toggleLights = () => {
     // console.log("toggleLights()")
     if (lightsOn && currentClickType === "btn") {
-      setLightsOn(false)
+      if (currentClickId === "leftArrow" || currentClickId === "rightArrow") {
+        setLightsOn(true)
+      } else {
+        setLightsOn(false)
+      }
     }
     if (!lightsOn && currentClickType === "bgArea") {
       setLightsOn(true)
