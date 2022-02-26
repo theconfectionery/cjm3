@@ -21,7 +21,7 @@ const TruffleImageMap = ({
     if (typeof document !== "undefined") {
       document
         .getElementById("bgImage")
-        .animate([{ opacity: 0 }, { opacity: 1 }], 1300)
+        .animate([{ opacity: 0 }, { opacity: 1 }], 1200)
     }
   }
 
@@ -29,24 +29,28 @@ const TruffleImageMap = ({
     if (typeof document !== "undefined") {
       document
         .getElementById("bgImage")
-        .animate([{ opacity: 1 }, { opacity: 0 }], 1300)
+        .animate([{ opacity: 1 }, { opacity: 0 }], 500)
+    }
+  }
+
+  const fadeBgImageInOut = () => {
+    if (typeof document !== "undefined") {
+      document
+        .getElementById("bgImage")
+        .animate([{ opacity: 1 }, { opacity: 0 }, { opacity: 1 }], 2500)
     }
   }
 
   useEffect(() => {
-    fadeBgImageIn()
-  }, [])
-
-  useEffect(() => {
     if (lightsOn) {
-      setBgImage(bgImageLightsOn)
       fadeBgImageOut()
       fadeBgImageIn()
+      setBgImage(bgImageLightsOn)
     }
     if (!lightsOn) {
-      setBgImage(bgImageLightsOff)
       fadeBgImageOut()
       fadeBgImageIn()
+      setBgImage(bgImageLightsOff)
     }
   }, [lightsOn])
 
