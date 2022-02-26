@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
 import MediaPlayer from "./MediaPlayer"
-import { buttonMapping } from "./imgs/static"
+
 import { usePrevious } from "./utils"
 
 // import { GatsbyImage } from "gatsby-plugin-image"
@@ -17,7 +17,7 @@ const Screen = ({
 }) => {
   const [showCards, setShowCards] = useState(false)
   const getVideoArray = currentClickId => {
-    return videos[buttonMapping[currentClickId]] || [fakeVideo]
+    return videos[currentClickId] || [fakeVideo]
   }
   const [videoDetails, setVideoDetails] = useState({
     playVideo: false,
@@ -41,9 +41,8 @@ const Screen = ({
     }
   }, [currentClickId, currentClickType])
 
-  //! rightArrow and leftArrow shouldn't toggleLights
   useEffect(() => {
-    if (currentClickId && currentClickId in buttonMapping) {
+    if (currentClickId && currentClickId in videos) {
       if (!playVideo) {
         setVideoDetails({
           videoIndex: 0,
