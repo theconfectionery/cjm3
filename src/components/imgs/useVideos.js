@@ -10,7 +10,15 @@ const contentfulFactory = (
   return { sortKey, uniqueVideoId, embeddedUrl, redirectUrl }
 }
 
-const makeExampleVideoArray = () => {
+const makeVideoArray = edges => {
+  const result = Object()
+  edges.forEach(({ node }) => {
+    result[node.buttonId] = node.videos
+  })
+  return result
+}
+
+const makeExampleVideoArrayFromStatic = () => {
   const result = Object()
   Object.keys(videosExample).map(key => {
     const urlList = videosExample[key]
@@ -26,16 +34,26 @@ const makeExampleVideoArray = () => {
 }
 
 export const useVideos = () => {
-  useStaticQuery(graphql`
+  const { allContentfulVideoList } = useStaticQuery(graphql`
     query {
-      contentfulVideo {
-        uniqueVideoId
-        embeddedUrl
-        redirectUrl
-        sortKey
+      allContentfulVideoList {
+        edges {
+          node {
+            id
+            videos {
+              embeddedUrl
+              redirectUrl
+              videoName
+              sortKey
+            }
+            buttonId
+          }
+        }
       }
     }
   `)
-  // console.log(data)
-  return makeExampleVideoArray()
+  const { edges } = allContentfulVideoList
+  const videos = makeVideoArray(edges)
+  // console.log(videos)
+  return videos
 }

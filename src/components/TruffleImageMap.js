@@ -11,7 +11,6 @@ const TruffleImageMap = ({
   setCurrentClickType,
   arrowClickedStack,
 }) => {
-  // console.log("<TruffleImageMap> rendered")
   const lights = useBgALightsOnOff()
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
@@ -21,35 +20,17 @@ const TruffleImageMap = ({
     if (typeof document !== "undefined") {
       document
         .getElementById("bgImage")
-        .animate([{ opacity: 0 }, { opacity: 1 }], 1200)
-    }
-  }
-
-  const fadeBgImageOut = () => {
-    if (typeof document !== "undefined") {
-      document
-        .getElementById("bgImage")
-        .animate([{ opacity: 1 }, { opacity: 0 }], 500)
-    }
-  }
-
-  const fadeBgImageInOut = () => {
-    if (typeof document !== "undefined") {
-      document
-        .getElementById("bgImage")
-        .animate([{ opacity: 1 }, { opacity: 0 }, { opacity: 1 }], 2500)
+        .animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 500,
+        })
     }
   }
 
   useEffect(() => {
     if (lightsOn) {
-      fadeBgImageOut()
-      fadeBgImageIn()
       setBgImage(bgImageLightsOn)
     }
     if (!lightsOn) {
-      fadeBgImageOut()
-      fadeBgImageIn()
       setBgImage(bgImageLightsOff)
     }
   }, [lightsOn])
@@ -104,14 +85,12 @@ const TruffleImageMap = ({
       top: "53.76884422110552%",
     },
     {
-      // cinedoctor button, different behavior than other truffle btns
       id: "btn8",
       alt: "btn",
       width: "4.499437570303712%",
       height: "4.1876046901172534%",
       left: "43.41429977502815%",
       top: "53.76884422110552%",
-      // onClick: () => window.open("www.gmail.com", _blank),
     },
     {
       id: "btn9",
@@ -281,9 +260,7 @@ const TruffleImageMap = ({
         .open("https://npm.io/package/@qiuz/react-image-map", "_blank")
         .focus()
     }
-    // console.log("Screen Area Clicked: ", e)
     if (e.id !== "screenArea") {
-      // console.log("Calling set currentClickId in ImageMap... ")
       setCurrentClick([e.id])
       setCurrentClickType(e.alt)
       if (e.id === "leftArrow" || e.id === "rightArrow") {
@@ -303,6 +280,7 @@ const TruffleImageMap = ({
             map={mapAreas}
             onLoad={() => {
               setMapLoaded(true)
+              fadeBgImageIn()
             }}
             onMapClick={e => handleClick(e)}
           />
