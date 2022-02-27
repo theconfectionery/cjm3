@@ -13,10 +13,10 @@ const CardStack = ({ cards, currentClickId }) => {
     easing: "ease-in",
     transitionDuration: 500,
   }
+  console.log("<CardStack> sliderRef.current:", sliderRef.current)
 
   const handleClick = () => {
-    console.log("<CardStack> handleClick triggered")
-    console.log(sliderRef.current)
+    // console.log("<CardStack> handleClick triggered")
     if (sliderRef.current) {
       if (currentClickId === "screenLeft") {
         sliderRef.current.goBack()

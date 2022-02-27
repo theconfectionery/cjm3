@@ -11,7 +11,7 @@ import { useVideos } from "../components/imgs/useVideos"
 const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function App({ arrowClickedStack }) {
-  console.log("<<<<RENDERING APP>>>>>")
+  // console.log("<<<<RENDERING APP>>>>>")
   const [mapLoaded, setMapLoaded] = useState(false)
   const [lightsOn, setLightsOn] = useState(true)
   const [currentClick, setCurrentClick] = useState([""])
@@ -19,9 +19,9 @@ export default function App({ arrowClickedStack }) {
   const cards = useCards()
   const videos = useVideos()
   const currentClickId = currentClick[0]
+  console.log("<App> currentClickId:", currentClickId)
 
   const toggleLights = () => {
-    // console.log("toggleLights()")
     if (lightsOn && currentClickType === "btn") {
       if (currentClickId === "leftArrow" || currentClickId === "rightArrow") {
         setLightsOn(true)

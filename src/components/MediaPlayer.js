@@ -21,6 +21,8 @@ const MediaPlayer = ({
         videoIndex: 0,
         currentVideoArray: getVideoArray(currentClickId),
         playVideo: true,
+        controls: true,
+        playsinline: true,
       })
     }
   }
@@ -34,12 +36,14 @@ const MediaPlayer = ({
         videoIndex: 0,
         currentVideoArray: getVideoArray(currentClickId),
         playVideo: true,
+        controls: true,
+        playsinline: true,
       })
     }
   }
 
   useEffect(() => {
-    console.log(`The stack has ${arrowClickedStack.length} elements`)
+    // console.log(`The stack has ${arrowClickedStack.length} elements`)
     if (currentClickId === "leftArrow" || currentClickId === "rightArrow") {
       if (playVideo && arrowClickedStack.length > 0) {
         const arrow = arrowClickedStack.pop()
