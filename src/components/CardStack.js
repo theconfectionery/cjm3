@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import { Slide } from "react-slideshow-image"
+import { useSwipeable } from "react-swipeable"
 
 const CardStack = ({ cards, currentClickId }) => {
   const sliderRef = useRef()
@@ -12,11 +13,20 @@ const CardStack = ({ cards, currentClickId }) => {
     autoplay: false,
     easing: "ease-in",
     transitionDuration: 500,
+    canSwipe: true,
   }
   console.log("<CardStack> sliderRef.current:", sliderRef.current)
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      sliderRef.current.goBack()
+    },
+    onSwipedRight: () => {
+      sliderRef.current.goNext()
+    },
+  })
+
   const handleClick = () => {
-    // console.log("<CardStack> handleClick triggered")
     if (sliderRef.current) {
       if (currentClickId === "screenLeft") {
         sliderRef.current.goBack()
@@ -37,13 +47,14 @@ const CardStack = ({ cards, currentClickId }) => {
   }
 
   return (
-    <div className="cardContainer">
+    <div className="cardContainer" {...swipeHandlers}>
       <Slide
         ref={sliderRef}
         {...props}
         id="displayCard"
         className="topCard"
-        onClick={handleClick()}
+        // onLoad={sliderRef.current.goTo(contactCardIndex)}
+        onClick={() => handleClick()}
       >
         {imageUrls.map((each, index) => (
           <img key={index} src={each} alt="" />

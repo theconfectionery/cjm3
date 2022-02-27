@@ -38,6 +38,7 @@
     "react-responsive-carousel": "^3.2.22",
     "react-slick": "^0.28.1",
     "react-slideshow-image": "^3.7.0",
+    "react-swipeable": "^6.2.0",
     "react-transition-group": "^4.4.2",
     "start": "^5.1.0"
   },
