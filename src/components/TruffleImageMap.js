@@ -21,36 +21,42 @@ const TruffleImageMap = ({
     if (typeof document !== "undefined") {
       document
         .getElementById("bgImage")
-        .animate([{ opacity: 0 }, { opacity: 1 }], 1200)
+        .animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 500,
+          // delay: 500,
+        })
     }
   }
 
-  const fadeBgImageOut = () => {
-    if (typeof document !== "undefined") {
-      document
-        .getElementById("bgImage")
-        .animate([{ opacity: 1 }, { opacity: 0 }], 500)
-    }
-  }
+  // const fadeBgImageOut = () => {
+  //   if (typeof document !== "undefined") {
+  //     document
+  //       .getElementById("bgImage")
+  //       .animate([{ opacity: 1 }, { opacity: 0.25 }], {
+  //         duration: 500,
+  //       })
+  //   }
+  // }
 
-  const fadeBgImageInOut = () => {
+  const fadeBgImageOutIn = () => {
     if (typeof document !== "undefined") {
       document
         .getElementById("bgImage")
-        .animate([{ opacity: 1 }, { opacity: 0 }, { opacity: 1 }], 2500)
+        .animate([{ opacity: 1 }, { opacity: 0 }, { opacity: 1 }], {
+          duration: 1000,
+          easing: "ease-in",
+        })
     }
   }
 
   useEffect(() => {
     if (lightsOn) {
-      fadeBgImageOut()
-      fadeBgImageIn()
       setBgImage(bgImageLightsOn)
+      // fadeBgImageIn()
     }
     if (!lightsOn) {
-      fadeBgImageOut()
-      fadeBgImageIn()
       setBgImage(bgImageLightsOff)
+      // fadeBgImageIn()
     }
   }, [lightsOn])
 
@@ -303,6 +309,7 @@ const TruffleImageMap = ({
             map={mapAreas}
             onLoad={() => {
               setMapLoaded(true)
+              fadeBgImageIn()
             }}
             onMapClick={e => handleClick(e)}
           />

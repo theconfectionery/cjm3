@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
-import useWebAnimations, { fadeIn } from "@wellyshen/use-web-animations"
 import Screen from "../components/Screen"
 import { useCards } from "../components/imgs/useCards"
 import "normalize.css"

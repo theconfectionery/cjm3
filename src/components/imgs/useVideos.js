@@ -54,5 +54,6 @@ export const useVideos = () => {
   `)
   const { edges } = allContentfulVideoList
   const videos = makeVideoArray(edges)
+  console.log(videos)
   return videos
 }
