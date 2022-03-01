@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
 import Screen from "../components/Screen"
+import TruffleImageMap from "../components/TruffleImageMap"
 import { useCards } from "../components/imgs/useCards"
 import "normalize.css"
 import "../styling/main.css"
 
-import loadable from "@loadable/component"
+// import loadable from "@loadable/component"
 import { useVideos } from "../components/imgs/useVideos"
 
-const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
+// const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function App({ arrowClickedStack }) {
   // console.log("<<<<RENDERING APP>>>>>")

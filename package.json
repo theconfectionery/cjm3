@@ -15,9 +15,6 @@
   },
   "dependencies": {
     "@loadable/component": "^5.15.2",
-    "@mantine/hooks": "^3.6.7",
-    "@qiuz/react-image-map": "^1.1.3",
-    "@wellyshen/use-web-animations": "^0.9.1",
     "contentful": "^9.1.10",
     "gatsby": "^4.6.2",
     "gatsby-plugin-image": "^2.7.0",
@@ -31,15 +28,10 @@
     "normalize.css": "^8.0.1",
     "npm": "^8.5.1",
     "react": "^17.0.1",
-    "react-bootstrap-carousel": "^4.1.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-player": "^2.9.0",
-    "react-responsive-carousel": "^3.2.22",
-    "react-slick": "^0.28.1",
     "react-slideshow-image": "^3.7.0",
-    "react-swipeable": "^6.2.0",
-    "react-transition-group": "^4.4.2",
     "start": "^5.1.0"
   },
   "devDependencies": {

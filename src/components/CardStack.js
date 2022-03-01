@@ -1,6 +1,5 @@
 import React, { useRef } from "react"
 import { Slide } from "react-slideshow-image"
-import { useSwipeable } from "react-swipeable"
 
 const CardStack = ({ cards, currentClickId }) => {
   const sliderRef = useRef()
@@ -16,15 +15,6 @@ const CardStack = ({ cards, currentClickId }) => {
     canSwipe: true,
   }
   console.log("<CardStack> sliderRef.current:", sliderRef.current)
-
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => {
-      sliderRef.current.goBack()
-    },
-    onSwipedRight: () => {
-      sliderRef.current.goNext()
-    },
-  })
 
   const handleClick = () => {
     if (sliderRef.current) {
@@ -47,17 +37,16 @@ const CardStack = ({ cards, currentClickId }) => {
   }
 
   return (
-    <div className="cardContainer" {...swipeHandlers}>
+    <div className="cardContainer">
       <Slide
         ref={sliderRef}
         {...props}
         id="displayCard"
         className="topCard"
-        // onLoad={sliderRef.current.goTo(contactCardIndex)}
-        onClick={() => handleClick()}
+        onClick={handleClick()}
       >
         {imageUrls.map((each, index) => (
-          <img key={index} src={each} alt="" />
+          <img className="card" key={index} src={each} alt="" />
         ))}
       </Slide>
       <div className="middleCard"></div>
