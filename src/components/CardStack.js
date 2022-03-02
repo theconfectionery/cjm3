@@ -12,11 +12,11 @@ const CardStack = ({ cards, currentClickId }) => {
     autoplay: false,
     easing: "ease-in",
     transitionDuration: 500,
+    canSwipe: true,
   }
   console.log("<CardStack> sliderRef.current:", sliderRef.current)
 
   const handleClick = () => {
-    // console.log("<CardStack> handleClick triggered")
     if (sliderRef.current) {
       if (currentClickId === "screenLeft") {
         sliderRef.current.goBack()
@@ -46,7 +46,7 @@ const CardStack = ({ cards, currentClickId }) => {
         onClick={handleClick()}
       >
         {imageUrls.map((each, index) => (
-          <img key={index} src={each} alt="" />
+          <img className="card" key={index} src={each} alt="" />
         ))}
       </Slide>
       <div className="middleCard"></div>

@@ -23,6 +23,9 @@ const MediaPlayer = ({
         playVideo: true,
         controls: true,
         playsinline: true,
+        file: {
+          forceVideo: true,
+        },
       })
     }
   }
@@ -38,6 +41,9 @@ const MediaPlayer = ({
         playVideo: true,
         controls: true,
         playsinline: true,
+        file: {
+          forceVideo: true,
+        },
       })
     }
   }
