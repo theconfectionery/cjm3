@@ -28,6 +28,7 @@ export default function App({ arrowClickedStack }) {
     "btn7",
     "btn8",
     "btn9",
+    "btn10",
     "btn11",
     "btn12",
     "btn13",
