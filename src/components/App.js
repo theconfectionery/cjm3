@@ -1,49 +1,54 @@
 import React, { useState, useEffect } from "react"
 import reactDom from "react-dom"
 import Screen from "../components/Screen"
-import TruffleImageMap from "../components/TruffleImageMap"
 import { useCards } from "../components/imgs/useCards"
 import "normalize.css"
 import "../styling/main.css"
 
-// import loadable from "@loadable/component"
+import loadable from "@loadable/component"
 import { useVideos } from "../components/imgs/useVideos"
 
-// const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
+const TruffleImageMap = loadable(() => import("../components/TruffleImageMap"))
 
 export default function App({ arrowClickedStack }) {
-  // console.log("<<<<RENDERING APP>>>>>")
   const [mapLoaded, setMapLoaded] = useState(false)
   const [lightsOn, setLightsOn] = useState(true)
   const [currentClick, setCurrentClick] = useState([""])
-  const [currentClickType, setCurrentClickType] = useState("")
   const cards = useCards()
   const videos = useVideos()
   const currentClickId = currentClick[0]
-  console.log("<App> currentClickId:", currentClickId)
+
+  const lightsOffAreas = [
+    "btn1",
+    "btn2",
+    "btn3",
+    "btn4",
+    "btn5",
+    "btn6",
+    "btn7",
+    "btn8",
+    "btn9",
+    "btn11",
+    "btn12",
+    "btn13",
+  ]
+  const lightsOnAreas = ["infoBtn", "contactBtn", "bgAreaLeft", "bgAreaRight"]
 
   const toggleLights = () => {
-    if (lightsOn && currentClickType === "btn") {
-      if (currentClickId === "leftArrow" || currentClickId === "rightArrow") {
-        setLightsOn(true)
-      } else {
-        setLightsOn(false)
-      }
+    if (lightsOn && lightsOffAreas.includes(currentClickId)) {
+      setLightsOn(false)
     }
-    if (!lightsOn && currentClickType === "bgArea") {
-      setLightsOn(true)
-    }
-    if (!lightsOn && currentClickType === "contact") {
-      setLightsOn(true)
-    }
-    if (!lightsOn && currentClickType === "info") {
+    if (!lightsOn && lightsOnAreas.includes(currentClickId)) {
       setLightsOn(true)
     }
   }
 
   useEffect(() => {
-    toggleLights()
-  }, [currentClickType])
+    if (currentClickId) {
+      console.log("<App> useEffect triggered: toggleLights()")
+      toggleLights()
+    }
+  }, [currentClick])
 
   useEffect(() => {
     if (mapLoaded) {
@@ -53,7 +58,6 @@ export default function App({ arrowClickedStack }) {
           cards={cards}
           videos={videos}
           currentClickId={currentClickId}
-          currentClickType={currentClickType}
           arrowClickedStack={arrowClickedStack}
         />
       )
@@ -68,7 +72,6 @@ export default function App({ arrowClickedStack }) {
         setMapLoaded={setMapLoaded}
         lightsOn={lightsOn}
         setCurrentClick={setCurrentClick}
-        setCurrentClickType={setCurrentClickType}
         arrowClickedStack={arrowClickedStack}
       />
     </div>

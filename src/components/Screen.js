@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react"
 import CardStack from "./CardStack"
 import MediaPlayer from "./MediaPlayer"
-
 import { usePrevious } from "./utils"
-
-// import { GatsbyImage } from "gatsby-plugin-image"
 
 const fakeVideo = { embeddedUrl: "" }
 
-const Screen = ({
-  cards,
-  videos,
-  currentClickId,
-  currentClickType,
-  arrowClickedStack,
-}) => {
+const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   const [showCards, setShowCards] = useState(false)
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo]
@@ -27,19 +18,36 @@ const Screen = ({
   const prevClickId = usePrevious(currentClickId)
   const { playVideo } = videoDetails
 
+  const showCardBtns = ["infoBtn", "contactBtn"]
+  const hideCardBtns = [
+    "btn1",
+    "btn2",
+    "btn3",
+    "btn4",
+    "btn5",
+    "btn6",
+    "btn7",
+    "btn8",
+    "btn9",
+    "btn11",
+    "btn12",
+    "btn13",
+    "bgAreaLeft",
+    "bgAreaRight",
+  ]
+
   useEffect(() => {
-    if (!showCards) {
-      if (currentClickId === "btnContact" || currentClickId === "btnInfo") {
-        setShowCards(true)
-      }
+    console.log("<Screen> useEffect triggered: setShowCards()")
+    if (showCardBtns.includes(currentClickId)) {
+      setShowCards(true)
     }
 
     if (showCards) {
-      if (currentClickType === "btn" || currentClickType === "bgArea") {
+      if (hideCardBtns.includes(currentClickId)) {
         setShowCards(false)
       }
     }
-  }, [currentClickId, currentClickType])
+  }, [currentClickId])
 
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
