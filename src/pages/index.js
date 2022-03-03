@@ -15,13 +15,7 @@ export default function Home() {
         <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.jquery.js"></script>
-        <link
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossorigin="anonymous"
-        />
-        <script src="web-animations.min.js"></script>
+        {/* <script src="web-animations.min.js"></script> */}
         <link
           rel="stylesheet"
           type="text/css"
