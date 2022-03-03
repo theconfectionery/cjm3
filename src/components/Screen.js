@@ -37,14 +37,15 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   ]
 
   useEffect(() => {
-    console.log("<Screen> useEffect triggered: setShowCards()")
     if (showCardBtns.includes(currentClickId)) {
       setShowCards(true)
+      console.log("<Screen> useEffect triggered: setShowCards(true)")
     }
 
     if (showCards) {
       if (hideCardBtns.includes(currentClickId)) {
         setShowCards(false)
+        console.log("<Screen> useEffect triggered: setShowCards(false)")
       }
     }
   }, [currentClickId])
@@ -84,7 +85,11 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   const cardStack = (
     <>
       {showCards ? (
-        <CardStack cards={cards} currentClickId={currentClickId} />
+        <CardStack
+          cards={cards}
+          showCards={showCards}
+          currentClickId={currentClickId}
+        />
       ) : null}
     </>
   )

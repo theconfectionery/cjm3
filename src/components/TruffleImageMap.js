@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useBgALightsOnOff } from "./imgs/useBgLights"
 
 const TruffleImageMap = ({
@@ -10,6 +10,8 @@ const TruffleImageMap = ({
   const lights = useBgALightsOnOff()
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
+  // const [screenWidth, setScreenWidth] = useState("")
+  // const [screenHeight, setScreenHeight] = useState("")
 
   const handleClick = e => {
     setCurrentClick([e.target.id])
@@ -19,6 +21,9 @@ const TruffleImageMap = ({
   }
 
   useEffect(() => {
+    const screenArea = document.getElementById("screenArea")
+    // setScreenWidth(screenArea.width)
+    // setScreenHeight(screenArea.height)
     setMapLoaded(true)
   }, [])
 
@@ -70,7 +75,14 @@ const TruffleImageMap = ({
         <path id="btn3" d="M1773.5 1598.5H1962.5V1725.5H1773.5z" />
         <path id="btn2" d="M1583.5 1598.5H1772.5V1725.5H1583.5z" />
         <path id="btn1" d="M1393.5 1598.5H1582.5V1725.5H1393.5z" />
-        <path id="screenArea" d="M1321.5 643.5H2418.5V1225.5H1321.5z" />
+        <path id="screenArea" x="0.5" y="0.5" width="1097" height="582" />
+        <image
+          xlinkHref="https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg"
+          x="1300"
+          y="1300"
+          height="582"
+          width="1097"
+        />
         <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
         <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" />
         <path id="leftArrow" d="M2419.5 1360.5H2639.5V1486.5H2419.5z" />

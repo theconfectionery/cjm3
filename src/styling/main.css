@@ -2,6 +2,7 @@
 
 html,
 body {
+  background-color: black;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -54,8 +55,21 @@ path {
   z-index: 6;
 }
 
+#screenAreaDiv {
+  fill-opacity: 1;
+  background-color: greenyellow;
+  width: 100%;
+  height: 100%;
+}
+
+.screenArea {
+  /* fill-opacity: 0; */
+}
+
 .card {
+  fill-opacity: 1;
   max-width: 100%;
+  z-index: 1000;
 }
 
 .react-slideshow-container {
@@ -70,7 +84,12 @@ path {
   align-items: center;
 }
 
-.topCard {
+.react-3d-carousel {
+  fill-opacity: 1;
+  z-index: 100;
+}
+
+/* .topCard {
   position: absolute;
   width: 80%;
   height: 84%;
@@ -98,11 +117,11 @@ path {
   box-shadow: 0px 0px 27px 23px rgba(0, 0, 0, 0.13);
   z-index: 2;
   animation: fanOut 1.25s ease-out;
-}
+} */
 
 .screenImage {
-  max-width: 80%;
-  height: 84%;
+  width: 100%;
+  height: auto;
 }
 
 .react-player {

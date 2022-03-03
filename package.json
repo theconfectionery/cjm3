@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.15.2",
+    "3d-react-carousal": "^4.0.2",
     "contentful": "^9.1.10",
     "gatsby": "^4.6.2",
     "gatsby-plugin-image": "^2.7.0",
@@ -30,9 +31,11 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-id-swiper": "^4.0.0",
     "react-player": "^2.9.0",
     "react-slideshow-image": "^3.7.0",
-    "start": "^5.1.0"
+    "start": "^5.1.0",
+    "swiper": "^8.0.6"
   },
   "devDependencies": {
     "@types/loadable__component": "^5.13.4",

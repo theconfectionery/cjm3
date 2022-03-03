@@ -54,7 +54,7 @@ export default function App({ arrowClickedStack }) {
   useEffect(() => {
     if (mapLoaded) {
       var screenArea = document.getElementById("screenArea")
-      const screen = (
+      const screenComponent = (
         <Screen
           cards={cards}
           videos={videos}
@@ -62,7 +62,7 @@ export default function App({ arrowClickedStack }) {
           arrowClickedStack={arrowClickedStack}
         />
       )
-      reactDom.render(screen, screenArea)
+      reactDom.render(screenComponent, screenArea)
     }
   })
 
