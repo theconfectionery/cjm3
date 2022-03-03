@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useBgALightsOnOff } from "./imgs/useBgLights"
+import { useResizeObserver } from "@mantine/hooks"
 
 const TruffleImageMap = ({
   setMapLoaded,
@@ -10,8 +11,7 @@ const TruffleImageMap = ({
   const lights = useBgALightsOnOff()
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url
-  // const [screenWidth, setScreenWidth] = useState("")
-  // const [screenHeight, setScreenHeight] = useState("")
+  const [ref, rect] = useResizeObserver()
 
   const handleClick = e => {
     setCurrentClick([e.target.id])
@@ -21,11 +21,12 @@ const TruffleImageMap = ({
   }
 
   useEffect(() => {
-    const screenArea = document.getElementById("screenArea")
-    // setScreenWidth(screenArea.width)
-    // setScreenHeight(screenArea.height)
     setMapLoaded(true)
   }, [])
+
+  useEffect(() => {
+    console.log(rect)
+  })
 
   return (
     <div className="wrapper">
@@ -77,11 +78,12 @@ const TruffleImageMap = ({
         <path id="btn1" d="M1393.5 1598.5H1582.5V1725.5H1393.5z" />
         <path id="screenArea" x="0.5" y="0.5" width="1097" height="582" />
         <image
-          xlinkHref="https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg"
-          x="1300"
-          y="1300"
+          href="https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg"
+          x="1320"
+          y="645"
           height="582"
           width="1097"
+          ref={ref}
         />
         <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
         <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" />
