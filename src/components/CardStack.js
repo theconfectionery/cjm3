@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react"
-import { Carousel } from "3d-react-carousal"
+// import { Carousel } from "3d-react-carousal"
 
 const CardStack = ({ cards, showCards, currentClickId }) => {
   const imageUrls = cards.map(card => card.file.url)
