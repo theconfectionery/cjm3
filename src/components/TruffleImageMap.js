@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
-import { useBgALightsOnOff } from "./imgs/useBgLights"
-// import { useResizeObserver } from "@mantine/hooks"
+import React, { useState, useEffect } from 'react';
+import { useBgALightsOnOff } from './imgs/useBgLights';
+import { useResizeObserver } from '@mantine/hooks';
 
 const TruffleImageMap = ({
   setMapLoaded,
@@ -8,21 +8,21 @@ const TruffleImageMap = ({
   setCurrentClick,
   arrowClickedStack,
 }) => {
-  const lights = useBgALightsOnOff()
-  const bgImageLightsOn = lights.bg_a_lightsOn.file.url
-  const bgImageLightsOff = lights.bg_a_lightsOff.file.url
-  // const [ref, rect] = useResizeObserver()
+  const lights = useBgALightsOnOff();
+  const bgImageLightsOn = lights.bg_a_lightsOn.file.url;
+  const bgImageLightsOff = lights.bg_a_lightsOff.file.url;
+  const [ref, rect] = useResizeObserver();
 
   const handleClick = e => {
-    setCurrentClick([e.target.id])
-    if (e.target.id === "leftArrow" || e.target.id === "rightArrow") {
-      arrowClickedStack.push(e.target.id)
+    setCurrentClick([e.target.id]);
+    if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
+      arrowClickedStack.push(e.target.id);
     }
-  }
+  };
 
   useEffect(() => {
-    setMapLoaded(true)
-  }, [])
+    setMapLoaded(true);
+  }, []);
 
   // useEffect(() => {
   //   console.log(rect)
@@ -42,11 +42,12 @@ const TruffleImageMap = ({
           x="0"
           y="0"
           height="2747"
+      
           width="4096"
         />
         <image
           href={bgImageLightsOff}
-          style={lightsOn ? { opacity: "0" } : { opacity: "1" }}
+          style={lightsOn ? { opacity: '0' } : { opacity: '1' }}
           id="bgLightsOff"
           x="0"
           y="0"
@@ -76,15 +77,22 @@ const TruffleImageMap = ({
         <path id="btn3" d="M1773.5 1598.5H1962.5V1725.5H1773.5z" />
         <path id="btn2" d="M1583.5 1598.5H1772.5V1725.5H1583.5z" />
         <path id="btn1" d="M1393.5 1598.5H1582.5V1725.5H1393.5z" />
-        <path id="screenArea" x="0.5" y="0.5" width="1097" height="582" />
-        <image
+        <div
+          id="screenArea"
+          x="1320"
+          y="645"
+          width="1097"
+          height="582"
+          ref={ref}
+        />
+        {/* <image
           href="https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg"
           x="1320"
           y="645"
           height="582"
           width="1097"
           // ref={ref}
-        />
+        /> */}
         <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
         <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" />
         <path id="leftArrow" d="M2419.5 1360.5H2639.5V1486.5H2419.5z" />
@@ -99,7 +107,7 @@ const TruffleImageMap = ({
         />
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default TruffleImageMap
+export default TruffleImageMap;

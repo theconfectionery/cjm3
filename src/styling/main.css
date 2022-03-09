@@ -1,4 +1,4 @@
-@import "react-slideshow-image/dist/styles.css";
+@import 'react-slideshow-image/dist/styles.css';
 
 html,
 body {
@@ -68,6 +68,8 @@ path {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
+  z-index: 2000;
 }
 
 #displayCard {
@@ -90,8 +92,8 @@ path {
   height: 100%;
 }
 
-.screenArea {
-  /* fill-opacity: 0; */
+screenArea {
+  fill-opacity: 0;
 }
 
 .card {
@@ -117,7 +119,7 @@ path {
   z-index: 100;
 }
 
-/* .topCard {
+.topCard {
   position: absolute;
   width: 80%;
   height: 84%;
@@ -145,7 +147,7 @@ path {
   box-shadow: 0px 0px 27px 23px rgba(0, 0, 0, 0.13);
   z-index: 2;
   animation: fanOut 1.25s ease-out;
-} */
+}
 
 .screenImage {
   width: 100%;
@@ -173,6 +175,8 @@ path {
   -o-animation: fadeout 2s; /* Opera < 12.1 */
   animation: fadeout 2s;
 }
+
+
 
 /* ____ANIMATIONS____ */
 @keyframes fadein {

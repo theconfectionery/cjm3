@@ -1,27 +1,27 @@
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby';
 
 const imageListToObject = edges => {
-  const imagesObject = {}
+  const imagesObject = {};
 
   edges.forEach(edge => {
-    const { node } = edge
-    const image = node
-    imagesObject[image.title] = image
-  })
-  return imagesObject
-}
+    const { node } = edge;
+    const image = node;
+    imagesObject[image.title] = image;
+  });
+  return imagesObject;
+};
 
 const sortImageObjects = objectOfImages => {
   const sorted_images = Object.keys(objectOfImages).map(key => {
-    const mapping = { contact: Infinity, info: -Infinity }
-    const _key = key.split("_")[1]
-    const sortKey = Number(mapping[_key] || Number(_key))
-    return { key, sortKey, ...objectOfImages[key] }
-  })
+    const mapping = { contact: Infinity, info: -Infinity };
+    const _key = key.split('_')[1];
+    const sortKey = Number(mapping[_key] || Number(_key));
+    return { key, sortKey, ...objectOfImages[key] };
+  });
   return sorted_images.sort((a, b) => {
-    return a.sortKey < b.sortKey ? -1 : 1
-  })
-}
+    return a.sortKey < b.sortKey ? -1 : 1;
+  });
+};
 
 export const useCards = () => {
   const { allContentfulAsset } = useStaticQuery(graphql`
@@ -40,11 +40,11 @@ export const useCards = () => {
         }
       }
     }
-  `)
-  const { edges } = allContentfulAsset
+  `);
+  const { edges } = allContentfulAsset;
 
-  const objectOfImages = imageListToObject(edges)
-  const sortedListOfObjects = sortImageObjects(objectOfImages)
+  const objectOfImages = imageListToObject(edges);
+  const sortedListOfObjects = sortImageObjects(objectOfImages);
 
-  return sortedListOfObjects
-}
+  return sortedListOfObjects;
+};

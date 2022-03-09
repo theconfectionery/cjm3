@@ -1,54 +1,56 @@
-import React, { useEffect, useState } from "react"
-import CardStack from "./CardStack"
-import MediaPlayer from "./MediaPlayer"
-import { usePrevious } from "./utils"
+import React, { useEffect, useState } from 'react';
+import CardStack from './CardStack';
+import MediaPlayer from './MediaPlayer';
+import { usePrevious } from './utils';
 
-const fakeVideo = { embeddedUrl: "" }
+const fakeVideo = { embeddedUrl: '' };
 
 const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
-  const [showCards, setShowCards] = useState(false)
+  const [showCards, setShowCards] = useState(false);
   const getVideoArray = currentClickId => {
-    return videos[currentClickId] || [fakeVideo]
-  }
+    return videos[currentClickId] || [fakeVideo];
+  };
   const [videoDetails, setVideoDetails] = useState({
     playVideo: false,
     videoIndex: 0,
     currentVideoArray: getVideoArray(currentClickId),
-  })
-  const prevClickId = usePrevious(currentClickId)
-  const { playVideo } = videoDetails
+  });
+  const prevClickId = usePrevious(currentClickId);
+  const { playVideo } = videoDetails;
 
-  const showCardBtns = ["infoBtn", "contactBtn"]
+  const showCardBtns = ['infoBtn', 'contactBtn'];
   const hideCardBtns = [
-    "btn1",
-    "btn2",
-    "btn3",
-    "btn4",
-    "btn5",
-    "btn6",
-    "btn7",
-    "btn8",
-    "btn9",
-    "btn11",
-    "btn12",
-    "btn13",
-    "bgAreaLeft",
-    "bgAreaRight",
-  ]
+    'btn1',
+    'btn2',
+    'btn3',
+    'btn4',
+    'btn5',
+    'btn6',
+    'btn7',
+    'btn8',
+    'btn9',
+    'btn11',
+    'btn12',
+    'btn13',
+    'bgAreaLeft',
+    'bgAreaRight',
+  ];
+
+  console.log(showCards);
 
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
-      setShowCards(true)
-      console.log("<Screen> useEffect triggered: setShowCards(true)")
+      setShowCards(true);
+      // console.log('<Screen> useEffect triggered: setShowCards(true)');
     }
 
     if (showCards) {
       if (hideCardBtns.includes(currentClickId)) {
-        setShowCards(false)
-        console.log("<Screen> useEffect triggered: setShowCards(false)")
+        setShowCards(false);
+        // console.log('<Screen> useEffect triggered: setShowCards(false)');
       }
     }
-  }, [currentClickId])
+  }, [currentClickId]);
 
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
@@ -57,19 +59,19 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
           videoIndex: 0,
           currentVideoArray: getVideoArray(currentClickId),
           playVideo: true,
-        })
+        });
       } else {
         if (currentClickId !== prevClickId) {
           setVideoDetails({
             ...videoDetails,
             videoIndex: 0,
             currentVideoArray: getVideoArray(currentClickId),
-          })
+          });
         }
       }
-    } else if (currentClickId === "rightArrow") {
+    } else if (currentClickId === 'rightArrow') {
       // console.log("Setting Click Count")
-    } else if (currentClickId === "leftArrow") {
+    } else if (currentClickId === 'leftArrow') {
       // console.log("Setting Click Count")
     } else {
       if (playVideo) {
@@ -77,10 +79,10 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
           playVideo: false,
           currentVideoArray: getVideoArray(currentClickId),
           videoIndex: 0,
-        })
+        });
       }
     }
-  })
+  });
 
   const cardStack = (
     <>
@@ -92,7 +94,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
         />
       ) : null}
     </>
-  )
+  );
 
   return (
     <div>
@@ -114,7 +116,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Screen
+export default Screen;

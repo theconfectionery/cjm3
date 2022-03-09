@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import ReactPlayer from "react-player"
+import React, { useEffect, useState } from 'react';
+import ReactPlayer from 'react-player';
 
 const MediaPlayer = ({
   currentClick,
@@ -8,15 +8,15 @@ const MediaPlayer = ({
   setVideoDetails,
   getVideoArray,
 }) => {
-  const { currentClickId } = currentClick
-  const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex)
+  const { currentClickId } = currentClick;
+  const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
   const getNextVideo = () => {
     if (playVideo && currentVideoIndex < currentVideoArray.length - 1) {
-      setCurrentVideoIndex(currentVideoIndex + 1)
+      setCurrentVideoIndex(currentVideoIndex + 1);
     } else {
-      setCurrentVideoIndex(0)
+      setCurrentVideoIndex(0);
       setVideoDetails({
         videoIndex: 0,
         currentVideoArray: getVideoArray(currentClickId),
@@ -26,15 +26,15 @@ const MediaPlayer = ({
         file: {
           forceVideo: true,
         },
-      })
+      });
     }
-  }
+  };
 
   const getPrevVideo = () => {
     if (playVideo && currentVideoIndex > 0) {
-      setCurrentVideoIndex(currentVideoIndex - 1)
+      setCurrentVideoIndex(currentVideoIndex - 1);
     } else {
-      setCurrentVideoIndex(0)
+      setCurrentVideoIndex(0);
       setVideoDetails({
         videoIndex: 0,
         currentVideoArray: getVideoArray(currentClickId),
@@ -44,19 +44,19 @@ const MediaPlayer = ({
         file: {
           forceVideo: true,
         },
-      })
+      });
     }
-  }
+  };
 
   useEffect(() => {
     // console.log(`The stack has ${arrowClickedStack.length} elements`)
-    if (currentClickId === "leftArrow" || currentClickId === "rightArrow") {
+    if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
       if (playVideo && arrowClickedStack.length > 0) {
-        const arrow = arrowClickedStack.pop()
-        arrow === "rightArrow" ? getNextVideo() : getPrevVideo()
+        const arrow = arrowClickedStack.pop();
+        arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
       }
     }
-  })
+  });
 
   const mediaPlayer = (
     <ReactPlayer
@@ -68,9 +68,9 @@ const MediaPlayer = ({
       controls={false}
       onEnded={getNextVideo}
     />
-  )
+  );
 
-  return mediaPlayer
-}
+  return mediaPlayer;
+};
 
-export default MediaPlayer
+export default MediaPlayer;
