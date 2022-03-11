@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useBgALightsOnOff } from './imgs/useBgLights';
-import { useResizeObserver } from '@mantine/hooks';
 
 const TruffleImageMap = ({
   setMapLoaded,
@@ -11,7 +10,6 @@ const TruffleImageMap = ({
   const lights = useBgALightsOnOff();
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url;
   const bgImageLightsOff = lights.bg_a_lightsOff.file.url;
-  const [ref, rect] = useResizeObserver();
 
   const handleClick = e => {
     setCurrentClick([e.target.id]);
@@ -23,10 +21,6 @@ const TruffleImageMap = ({
   useEffect(() => {
     setMapLoaded(true);
   }, []);
-
-  // useEffect(() => {
-  //   console.log(rect)
-  // })
 
   return (
     <div className="wrapper">
@@ -42,7 +36,6 @@ const TruffleImageMap = ({
           x="0"
           y="0"
           height="2747"
-      
           width="4096"
         />
         <image
@@ -77,24 +70,16 @@ const TruffleImageMap = ({
         <path id="btn3" d="M1773.5 1598.5H1962.5V1725.5H1773.5z" />
         <path id="btn2" d="M1583.5 1598.5H1772.5V1725.5H1583.5z" />
         <path id="btn1" d="M1393.5 1598.5H1582.5V1725.5H1393.5z" />
-        <div
+        <foreignObject
+          className="screenArea"
           id="screenArea"
           x="1320"
           y="645"
-          width="1097"
-          height="582"
-          ref={ref}
-        />
-        {/* <image
-          href="https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg"
-          x="1320"
-          y="645"
-          height="582"
-          width="1097"
-          // ref={ref}
-        /> */}
-        <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
-        <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" />
+          // width="1097"
+          // height="582"
+        ></foreignObject>
+        {/* <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
+        <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" /> */}
         <path id="leftArrow" d="M2419.5 1360.5H2639.5V1486.5H2419.5z" />
         <path id="rightArrow" d="M2451.5 1487.5H2671.5V1613.5H2451.5z" />
         <path

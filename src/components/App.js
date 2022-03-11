@@ -64,7 +64,7 @@ export default function App({ arrowClickedStack }) {
       );
       reactDom.render(screen, screenArea);
     }
-  });
+  }, [mapLoaded, cards, videos, currentClick]);
 
   return (
     <div id="mapContainer">

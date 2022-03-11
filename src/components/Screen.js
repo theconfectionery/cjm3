@@ -6,7 +6,7 @@ import { usePrevious } from './utils';
 const fakeVideo = { embeddedUrl: '' };
 
 const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
-  const [showCards, setShowCards] = useState(false);
+  const [showCards, setShowCards] = useState(true);
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo];
   };
@@ -84,38 +84,24 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
   });
 
-  const cardStack = (
-    <>
-      {showCards ? (
-        <CardStack
-          cards={cards}
-          showCards={showCards}
-          currentClickId={currentClickId}
-        />
-      ) : null}
-    </>
-  );
+  const cardStack = showCards ? (
+    <CardStack
+      cards={cards}
+      showCards={showCards}
+      currentClickId={currentClickId}
+    />
+  ) : null;
 
-  return (
-    <div>
-      <div>
-        {playVideo ? (
-          <div className="screenImage">
-            {
-              <MediaPlayer
-                currentVideoDetails={videoDetails}
-                currentClick={{ currentClickId: currentClickId }}
-                arrowClickedStack={arrowClickedStack}
-                setVideoDetails={setVideoDetails}
-                getVideoArray={getVideoArray}
-              />
-            }
-          </div>
-        ) : (
-          <div>{cardStack}</div>
-        )}
-      </div>
-    </div>
+  return playVideo ? (
+    <MediaPlayer
+      currentVideoDetails={videoDetails}
+      currentClick={{ currentClickId: currentClickId }}
+      arrowClickedStack={arrowClickedStack}
+      setVideoDetails={setVideoDetails}
+      getVideoArray={getVideoArray}
+    />
+  ) : (
+    cardStack
   );
 };
 
