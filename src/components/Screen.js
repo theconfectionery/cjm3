@@ -6,7 +6,8 @@ import { usePrevious } from './utils';
 const fakeVideo = { embeddedUrl: '' };
 
 const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
-  const [showCards, setShowCards] = useState(true);
+  const [showCards, setShowCards] = useState(false);
+  const [contactBtnClicked, setContactBtnClicked] = useState();
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo];
   };
@@ -36,11 +37,13 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     'bgAreaRight',
   ];
 
-  console.log(showCards);
 
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
       setShowCards(true);
+      if (currentClickId === 'contactBtn') {
+        setContactBtnClicked(true);
+      }
       // console.log('<Screen> useEffect triggered: setShowCards(true)');
     }
 
@@ -88,6 +91,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     <CardStack
       cards={cards}
       showCards={showCards}
+      contactBtnClicked={contactBtnClicked}
       currentClickId={currentClickId}
     />
   ) : null;

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import Carousel from './utils/Carousel';
 
-const CardStack = ({ cards, showCards, currentClickId }) => {
+const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
   const imageUrls = cards.map(card => card.file.url);
   const infoCard = cards[0];
   const contactCard = cards.length - 1;
@@ -18,40 +17,47 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
   ];
 
   useEffect(() => {
+    setTimeout(() => {
+      const container = document.querySelector('.slider-container');
+      container.style.transform = 'translateY(0)';
+    }, 500);
+  }, [showCards]);
+
+  // Carousel JS
+  useEffect(() => {
     const repeat = false;
     const noArrows = false;
     const noBullets = false;
 
-    const container = document.querySelector('.slider-container');
+    const screenArea = document.querySelector('.screenArea');
     var slide = document.querySelectorAll('.slider-single');
     var slideTotal = slide.length - 1;
     var slideCurrent = -1;
-
 
     function initArrows() {
       if (noArrows) {
         return;
       }
       const leftArrow = document.createElement('a');
-      const iLeft = document.createElement('i');
-      iLeft.classList.add('fa');
-      iLeft.classList.add('fa-arrow-left');
+      // const iLeft = document.createElement('i');
+      // iLeft.classList.add('fa');
+      // iLeft.classList.add('fa-arrow-left');
       leftArrow.classList.add('slider-left');
-      leftArrow.appendChild(iLeft);
+      // leftArrow.appendChild(iLeft);
       leftArrow.addEventListener('click', () => {
         slideLeft();
       });
       const rightArrow = document.createElement('a');
-      const iRight = document.createElement('i');
-      iRight.classList.add('fa');
-      iRight.classList.add('fa-arrow-right');
+      // const iRight = document.createElement('i');
+      // iRight.classList.add('fa');
+      // iRight.classList.add('fa-arrow-right');
       rightArrow.classList.add('slider-right');
-      rightArrow.appendChild(iRight);
+      // rightArrow.appendChild(iRight);
       rightArrow.addEventListener('click', () => {
         slideRight();
       });
-      container.appendChild(leftArrow);
-      container.appendChild(rightArrow);
+      screenArea.appendChild(leftArrow);
+      screenArea.appendChild(rightArrow);
     }
 
     function slideInitial() {
@@ -60,7 +66,6 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
         slideRight();
       }, 500);
     }
-
 
     function checkRepeat() {
       if (!repeat) {
@@ -152,7 +157,6 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
       proactiveSlide.classList.remove('active');
       proactiveSlide.classList.remove('proactivede');
       proactiveSlide.classList.add('proactive');
-
     }
 
     function slideLeft() {
@@ -208,10 +212,10 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
       proactiveSlide.classList.remove('active');
       proactiveSlide.classList.remove('proactivede');
       proactiveSlide.classList.add('proactive');
-
     }
 
     function goToIndexSlide(index) {
+      console.log('hello');
       const sliding =
         slideCurrent > index ? () => slideRight() : () => slideLeft();
       while (slideCurrent !== index) {
@@ -219,16 +223,21 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
       }
     }
 
+    if (contactBtnClicked) {
+      console.log(contactCard);
+      console.log(slideCurrent);
+    }
+
     slideInitial();
-  }, []);
+  }, [currentClickId, contactBtnClicked]);
 
   return (
     <>
-      <div class="slider-container">
-        <div class="slider-content">
-          {slides.map(slide => {
+      <div className="slider-container slider-container_intro">
+        <div className="slider-content">
+          {slides.map((slide, i) => {
             return (
-              <div className="slider-single">
+              <div className="slider-single" key={i}>
                 <img className="slider-single-image" src={slide} alt="hi" />
               </div>
             );
