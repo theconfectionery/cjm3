@@ -3,7 +3,7 @@ import reactDom from 'react-dom';
 import Screen from '../components/Screen';
 import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
-import '../styling/main.css';
+
 
 import loadable from '@loadable/component';
 import { useVideos } from '../components/imgs/useVideos';
