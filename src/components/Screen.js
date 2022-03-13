@@ -50,15 +50,9 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
 
     // clicking outside hides card stack
     if (showCards && hideCardBtns.includes(currentClickId)) {
-      // const screenArea = document.querySelector('.screenArea');
-      // const cardSliderLeft = document.querySelector('.slider-left');
-      // const cardSliderRight = document.querySelector('.slider-right');
-
       setShowCards(false);
       setInfoBtnClicked(false);
       setContactBtnClicked(false);
-      // screenArea.removeChild(cardSliderLeft);
-      // screenArea.removeChild(cardSliderRight);
     }
 
     // // for 'toggling' the card stack if you click the info/contact buttons twice
@@ -72,6 +66,19 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     //   setContactBtnClicked(false);
     // }
   }, [currentClickId]);
+
+  // hide appended DOM node arrows (created in CardStack) when CardStack is unmounted
+  useEffect(() => {
+    const cardSliderLeft = document.querySelector('.slider-left');
+    const cardSliderRight = document.querySelector('.slider-right');
+    if (!showCards && document.querySelector('.slider-left')) {
+      cardSliderLeft.classList.add('slider_hidden');
+      cardSliderRight.classList.add('slider_hidden');
+    } else if (showCards && document.querySelector('.slider-left')) {
+      cardSliderLeft.classList.remove('slider_hidden');
+      cardSliderRight.classList.remove('slider_hidden');
+    }
+  }, [showCards]);
 
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
