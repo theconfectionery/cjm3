@@ -7,7 +7,8 @@ const fakeVideo = { embeddedUrl: '' };
 
 const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   const [showCards, setShowCards] = useState(false);
-  const [contactBtnClicked, setContactBtnClicked] = useState();
+  const [contactBtnClicked, setContactBtnClicked] = useState(false);
+  const [infoBtnClicked, setInfoBtnClicked] = useState(false);
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo];
   };
@@ -37,22 +38,39 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     'bgAreaRight',
   ];
 
-
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
       setShowCards(true);
       if (currentClickId === 'contactBtn') {
         setContactBtnClicked(true);
+      } else if (currentClickId === 'infoBtn') {
+        setInfoBtnClicked(true);
       }
-      // console.log('<Screen> useEffect triggered: setShowCards(true)');
     }
 
-    if (showCards) {
-      if (hideCardBtns.includes(currentClickId)) {
-        setShowCards(false);
-        // console.log('<Screen> useEffect triggered: setShowCards(false)');
-      }
+    // clicking outside hides card stack
+    if (showCards && hideCardBtns.includes(currentClickId)) {
+      // const screenArea = document.querySelector('.screenArea');
+      // const cardSliderLeft = document.querySelector('.slider-left');
+      // const cardSliderRight = document.querySelector('.slider-right');
+
+      setShowCards(false);
+      setInfoBtnClicked(false);
+      setContactBtnClicked(false);
+      // screenArea.removeChild(cardSliderLeft);
+      // screenArea.removeChild(cardSliderRight);
     }
+
+    // // for 'toggling' the card stack if you click the info/contact buttons twice
+    // if (
+    //   showCards &&
+    //   ((currentClickId === 'infoBtn' && infoBtnClicked) ||
+    //     (currentClickId === 'contactBtn' && contactBtnClicked))
+    // ) {
+    //   setShowCards(false);
+    //   setInfoBtnClicked(false);
+    //   setContactBtnClicked(false);
+    // }
   }, [currentClickId]);
 
   useEffect(() => {
@@ -91,7 +109,6 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     <CardStack
       cards={cards}
       showCards={showCards}
-      contactBtnClicked={contactBtnClicked}
       currentClickId={currentClickId}
     />
   ) : null;
@@ -99,7 +116,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   return playVideo ? (
     <MediaPlayer
       currentVideoDetails={videoDetails}
-      currentClick={{ currentClickId: currentClickId }}
+      currentClickId={currentClickId}
       arrowClickedStack={arrowClickedStack}
       setVideoDetails={setVideoDetails}
       getVideoArray={getVideoArray}

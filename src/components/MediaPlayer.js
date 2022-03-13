@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 const MediaPlayer = ({
-  currentClick,
+  currentClickId,
   currentVideoDetails,
   arrowClickedStack,
   setVideoDetails,
   getVideoArray,
 }) => {
-  const { currentClickId } = currentClick;
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
@@ -48,6 +47,8 @@ const MediaPlayer = ({
     }
   };
 
+  console.log(currentVideoArray[currentVideoIndex].embeddedUrl)
+
   useEffect(() => {
     // console.log(`The stack has ${arrowClickedStack.length} elements`)
     if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
@@ -65,7 +66,7 @@ const MediaPlayer = ({
       height="95%"
       width="95%"
       playing // Sets autoplay on click
-      controls={false}
+      controls={true}
       onEnded={getNextVideo}
     />
   );

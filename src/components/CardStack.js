@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
+const CardStack = ({ cards, showCards, currentClickId }) => {
   const imageUrls = cards.map(card => card.file.url);
   const infoCard = cards[0];
   const contactCard = cards.length - 1;
@@ -16,6 +16,7 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
     'https://images.ctfassets.net/jotoby554kx0/4GExflYYHixT6c0bgnu4OI/23d950c158ec15d0a2f49e660b8ed51b/CARD_05.jpg',
   ];
 
+  // slide up intro event
   useEffect(() => {
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
@@ -25,10 +26,7 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
 
   // Carousel JS
   useEffect(() => {
-    const repeat = false;
     const noArrows = false;
-    const noBullets = false;
-
     const screenArea = document.querySelector('.screenArea');
     var slide = document.querySelectorAll('.slider-single');
     var slideTotal = slide.length - 1;
@@ -39,20 +37,12 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
         return;
       }
       const leftArrow = document.createElement('a');
-      // const iLeft = document.createElement('i');
-      // iLeft.classList.add('fa');
-      // iLeft.classList.add('fa-arrow-left');
       leftArrow.classList.add('slider-left');
-      // leftArrow.appendChild(iLeft);
       leftArrow.addEventListener('click', () => {
         slideLeft();
       });
       const rightArrow = document.createElement('a');
-      // const iRight = document.createElement('i');
-      // iRight.classList.add('fa');
-      // iRight.classList.add('fa-arrow-right');
       rightArrow.classList.add('slider-right');
-      // rightArrow.appendChild(iRight);
       rightArrow.addEventListener('click', () => {
         slideRight();
       });
@@ -61,46 +51,26 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
     }
 
     function slideInitial() {
-      initArrows();
-      setTimeout(function () {
-        slideRight();
-      }, 500);
-    }
+      console.log(currentClickId);
 
-    function checkRepeat() {
-      if (!repeat) {
-        if (slideCurrent === slide.length - 1) {
-          slide[0].classList.add('not-visible');
-          slide[slide.length - 1].classList.remove('not-visible');
-          if (!noArrows) {
-            document
-              .querySelector('.slider-right')
-              .classList.add('not-visible');
-            document
-              .querySelector('.slider-left')
-              .classList.remove('not-visible');
-          }
-        } else if (slideCurrent === 0) {
-          slide[slide.length - 1].classList.add('not-visible');
-          slide[0].classList.remove('not-visible');
-          if (!noArrows) {
-            document.querySelector('.slider-left').classList.add('not-visible');
-            document
-              .querySelector('.slider-right')
-              .classList.remove('not-visible');
-          }
-        } else {
-          slide[slide.length - 1].classList.remove('not-visible');
-          slide[0].classList.remove('not-visible');
-          if (!noArrows) {
-            document
-              .querySelector('.slider-left')
-              .classList.remove('not-visible');
-            document
-              .querySelector('.slider-right')
-              .classList.remove('not-visible');
-          }
-        }
+      // two event listeners below necessary for listening to info/contact button clicks while card stack is already open (not covered by the below if-statement buttons)
+      const contactButton = document.querySelector('#contactBtn');
+      const infoButton = document.querySelector('#infoBtn');
+      contactButton.addEventListener('click', () => {
+        goToIndexSlide(slideTotal);
+      });
+      infoButton.addEventListener('click', () => {
+        goToIndexSlide(0);
+      });
+
+      // initial clicks related to cardstack, also for clicking back and forth between buttons (not covered by above event listeners)
+      initArrows();
+      if (currentClickId === 'contactBtn') {
+        goToIndexSlide(slideTotal);
+      } else if (currentClickId === 'infoBtn') {
+        goToIndexSlide(0);
+      } else {
+        slideRight();
       }
     }
 
@@ -215,7 +185,6 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
     }
 
     function goToIndexSlide(index) {
-      console.log('hello');
       const sliding =
         slideCurrent > index ? () => slideRight() : () => slideLeft();
       while (slideCurrent !== index) {
@@ -223,13 +192,8 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
       }
     }
 
-    if (contactBtnClicked) {
-      console.log(contactCard);
-      console.log(slideCurrent);
-    }
-
     slideInitial();
-  }, [currentClickId, contactBtnClicked]);
+  }, [currentClickId]);
 
   return (
     <>
@@ -249,3 +213,5 @@ const CardStack = ({ cards, showCards, currentClickId, contactBtnClicked }) => {
 };
 
 export default CardStack;
+
+
