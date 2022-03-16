@@ -6,6 +6,7 @@ const TruffleImageMap = ({
   lightsOn,
   setCurrentClick,
   arrowClickedStack,
+  setClickEvent,
 }) => {
   const lights = useBgALightsOnOff();
   const bgImageLightsOn = lights.bg_a_lightsOn.file.url;
@@ -16,6 +17,7 @@ const TruffleImageMap = ({
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
     }
+      setClickEvent(e);
   };
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const TruffleImageMap = ({
         />
         <image
           href={bgImageLightsOff}
-          style={lightsOn ? { opacity: '0' } : { opacity: '1' }}
+          className={lightsOn ? 'lights-off_hidden' : ''}
           id="bgLightsOff"
           x="0"
           y="0"
@@ -73,15 +75,19 @@ const TruffleImageMap = ({
         <foreignObject
           className="screenArea"
           id="screenArea"
-          x="1320"
+          x="1323"
           y="645"
-          // width="1097"
-          // height="582"
         ></foreignObject>
         {/* <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
         <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" /> */}
-        <path id="leftArrow" d="M2419.5 1360.5H2639.5V1486.5H2419.5z" />
-        <path id="rightArrow" d="M2451.5 1487.5H2671.5V1613.5H2451.5z" />
+        <path
+          id="leftArrow"
+          d="M2419.5 1360.5H2639.5V1486.5H2419.5z"
+        />
+        <path
+          id="rightArrow"
+          d="M2451.5 1487.5H2671.5V1613.5H2451.5z"
+        />
         <path
           id="bgAreaLeft"
           d="M1858 8H6V2741H1858V1830H1292L1248 1812L1230 1784L1314 1308V1274L1292 1224V610L1314 572H1858V8Z"

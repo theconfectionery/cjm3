@@ -5,7 +5,7 @@ import { usePrevious } from './utils';
 
 const fakeVideo = { embeddedUrl: '' };
 
-const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
+const Screen = ({ cards, videos, currentClickId, arrowClickedStack, clickEvent }) => {
   const [showCards, setShowCards] = useState(false);
   const [contactBtnClicked, setContactBtnClicked] = useState(false);
   const [infoBtnClicked, setInfoBtnClicked] = useState(false);
@@ -102,7 +102,11 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     } else if (currentClickId === 'leftArrow') {
       // console.log("Setting Click Count")
     } else {
-      if (playVideo) {
+      if (
+        playVideo &&
+        (hideCardBtns.includes(currentClickId) ||
+          showCardBtns.includes(currentClickId))
+      ) {
         setVideoDetails({
           playVideo: false,
           currentVideoArray: getVideoArray(currentClickId),
@@ -116,20 +120,30 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     <CardStack
       cards={cards}
       showCards={showCards}
+      setShowCards={setShowCards}
       currentClickId={currentClickId}
+      clickEvent={clickEvent}
     />
   ) : null;
 
-  return playVideo ? (
-    <MediaPlayer
-      currentVideoDetails={videoDetails}
-      currentClickId={currentClickId}
-      arrowClickedStack={arrowClickedStack}
-      setVideoDetails={setVideoDetails}
-      getVideoArray={getVideoArray}
-    />
-  ) : (
-    cardStack
+  return (
+    <>
+      {playVideo ? (
+        <MediaPlayer
+          currentVideoDetails={videoDetails}
+          currentClickId={currentClickId}
+          arrowClickedStack={arrowClickedStack}
+          setCurrentVideoDetails={setVideoDetails}
+          getVideoArray={getVideoArray}
+        />
+      ) : (
+        cardStack
+      )}
+      <div
+        className={`black-screen ${playVideo ? 'black-screen_visible' : ''}`}
+      ></div>
+      ;
+    </>
   );
 };
 

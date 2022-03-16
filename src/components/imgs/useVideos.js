@@ -1,5 +1,5 @@
-import { useStaticQuery, graphql } from "gatsby"
-import { videosExample } from "./static"
+import { useStaticQuery, graphql } from 'gatsby';
+import { videosExample } from './static';
 
 const contentfulFactory = (
   sortKey,
@@ -7,31 +7,36 @@ const contentfulFactory = (
   embeddedUrl,
   redirectUrl
 ) => {
-  return { sortKey, uniqueVideoId, embeddedUrl, redirectUrl }
-}
+  return { sortKey, uniqueVideoId, embeddedUrl, redirectUrl };
+};
 
 const makeVideoArray = edges => {
-  const result = Object()
+  const result = Object();
   edges.forEach(({ node }) => {
-    result[node.buttonId] = node.videos
-  })
-  return result
-}
+    result[node.buttonId] = node.videos;
+  });
+  return result;
+};
 
 const makeExampleVideoArrayFromStatic = () => {
-  const result = Object()
+  const result = Object();
   Object.keys(videosExample).map(key => {
-    const urlList = videosExample[key]
+    const urlList = videosExample[key];
     result[key] = urlList
       .map((url, i) => {
-        return contentfulFactory(i, key, url.replace("watch?v=", "embed/"), url)
+        return contentfulFactory(
+          i,
+          key,
+          url.replace('watch?v=', 'embed/'),
+          url
+        );
       })
       .sort((a, b) => {
-        return a.sortKey < b.sortKey
-      })
-  })
-  return result
-}
+        return a.sortKey < b.sortKey;
+      });
+  });
+  return result;
+};
 
 export const useVideos = () => {
   const { allContentfulVideoList } = useStaticQuery(graphql`
@@ -51,8 +56,9 @@ export const useVideos = () => {
         }
       }
     }
-  `)
-  const { edges } = allContentfulVideoList
-  const videos = makeVideoArray(edges)
-  return videos
-}
+  `);
+  const { edges } = allContentfulVideoList;
+  const videos = makeVideoArray(edges);
+  // console.log(videos)
+  return videos;
+};

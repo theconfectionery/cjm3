@@ -1,10 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const CardStack = ({ cards, showCards, currentClickId }) => {
+const CardStack = ({
+  cards,
+  showCards,
+  setShowCards,
+  currentClickId,
+  clickEvent,
+}) => {
   const imageUrls = cards.map(card => card.file.url);
   const infoCard = cards[0];
   const contactCard = cards.length - 1;
-  const [imageIndex, setImageIndex] = useState(0);
+  // const [imageIndex, setImageIndex] = useState(0);
+  const [prevClickEvent, setPrevClickEvent] = useState();
   const nextArea = document.querySelector('#screenRight');
   const prevArea = document.querySelector('#screenLeft');
 
@@ -60,8 +67,6 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
     }
 
     function slideInitial() {
-      console.log(currentClickId);
-
       // two event listeners below necessary for listening to info/contact button clicks while card stack is already open (not covered by the below if-statement buttons)
       const contactButton = document.querySelector('#contactBtn');
       const infoButton = document.querySelector('#infoBtn');
@@ -201,8 +206,38 @@ const CardStack = ({ cards, showCards, currentClickId }) => {
       }
     }
 
+    // setPrevClickEvent(clickEvent);
+    // setImageIndex(slideCurrent);
     slideInitial();
-  }, [currentClickId]);
+  }, [currentClickId, clickEvent]);
+
+  // useEffect(() => {
+  //   const cardsArray = document.querySelectorAll('.slider-single');
+  //   const infoButton = document.querySelector('#infoBtn');
+
+  //   function hideCards() {
+  //     setShowCards(false);
+  //     infoButton.removeEventListener('click', hideCards);
+  //     console.log('eventlistener removed');
+  //   }
+  //   console.log(cardsArray[0], currentClickId);
+
+
+  //   if (showCards && cardsArray[0].classList.contains('active')) {
+  //     console.log('eventlistener added');
+  //     infoButton.addEventListener('click', hideCards);
+  //   } else {
+  //     console.log('eventlistener removed');
+
+  //     infoButton.removeEventListener('click', hideCards);
+  //   }
+  //   // setTimeout(() => {
+  //   // if (showCards && imageIndex === 0 && currentClickId === 'infoBtn') {
+  //   //   setShowCards(false);
+  //   //   console.log('yay');
+  //   // }
+  //   // })
+  // }, [currentClickId, clickEvent]);
 
   return (
     <>

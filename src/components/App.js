@@ -4,7 +4,6 @@ import Screen from '../components/Screen';
 import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
 
-
 import loadable from '@loadable/component';
 import { useVideos } from '../components/imgs/useVideos';
 
@@ -14,6 +13,7 @@ export default function App({ arrowClickedStack }) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [lightsOn, setLightsOn] = useState(true);
   const [currentClick, setCurrentClick] = useState(['']);
+  const [clickEvent, setClickEvent] = useState();
   const cards = useCards();
   const videos = useVideos();
   const currentClickId = currentClick[0];
@@ -60,6 +60,7 @@ export default function App({ arrowClickedStack }) {
           videos={videos}
           currentClickId={currentClickId}
           arrowClickedStack={arrowClickedStack}
+          clickEvent={clickEvent}
         />
       );
       reactDom.render(screen, screenArea);
@@ -74,6 +75,7 @@ export default function App({ arrowClickedStack }) {
         lightsOn={lightsOn}
         setCurrentClick={setCurrentClick}
         arrowClickedStack={arrowClickedStack}
+        setClickEvent={setClickEvent}
       />
     </div>
   );

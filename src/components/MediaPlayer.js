@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { Carousel } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const MediaPlayer = ({
   currentClickId,
   currentVideoDetails,
   arrowClickedStack,
-  setVideoDetails,
+  setCurrentVideoDetails,
   getVideoArray,
 }) => {
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
   const getNextVideo = () => {
+    // increase index
     if (playVideo && currentVideoIndex < currentVideoArray.length - 1) {
       setCurrentVideoIndex(currentVideoIndex + 1);
+    }
+    // if at last video in array, go to zero index
+    else if (playVideo && currentVideoIndex === currentVideoArray.length - 1) {
+      setCurrentVideoIndex(0);
     } else {
       setCurrentVideoIndex(0);
-      setVideoDetails({
+      setCurrentVideoDetails({
         videoIndex: 0,
         currentVideoArray: getVideoArray(currentClickId),
         playVideo: true,
@@ -30,11 +37,16 @@ const MediaPlayer = ({
   };
 
   const getPrevVideo = () => {
+    // decrease index
     if (playVideo && currentVideoIndex > 0) {
       setCurrentVideoIndex(currentVideoIndex - 1);
+    }
+    // if at 0, go to last video in array
+    else if (playVideo && currentVideoIndex === 0) {
+      setCurrentVideoIndex(currentVideoArray.length - 1);
     } else {
       setCurrentVideoIndex(0);
-      setVideoDetails({
+      setCurrentVideoDetails({
         videoIndex: 0,
         currentVideoArray: getVideoArray(currentClickId),
         playVideo: true,
@@ -47,8 +59,6 @@ const MediaPlayer = ({
     }
   };
 
-  console.log(currentVideoArray[currentVideoIndex].embeddedUrl)
-
   useEffect(() => {
     // console.log(`The stack has ${arrowClickedStack.length} elements`)
     if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
@@ -59,16 +69,53 @@ const MediaPlayer = ({
     }
   });
 
+  useEffect(() => {
+    const carouselIndicators = document.querySelector('.carousel-indicators');
+    const carouselButtons = carouselIndicators.querySelectorAll(
+      'button[type="button"]'
+    );
+    carouselButtons.forEach((button, i) => {
+      button.addEventListener('click', () => {
+        setCurrentVideoIndex(i);
+      });
+    });
+  });
+
+  // useEffect(
+  //   i => {
+  //     if (i === currentVideoIndex) {
+  //       // setIsVideoPlaying(true);
+  //     } else {
+  //       // setIsVideoPlaying(false);
+  //     }
+  //   },
+  //   [currentVideoIndex]
+  // );
+
   const mediaPlayer = (
-    <ReactPlayer
-      className="react-player"
-      url={currentVideoArray[currentVideoIndex].embeddedUrl}
-      height="95%"
-      width="95%"
-      playing // Sets autoplay on click
-      controls={true}
-      onEnded={getNextVideo}
-    />
+    <Carousel
+      touch={true}
+      interval={null}
+      controls={false}
+      activeIndex={currentVideoIndex}
+    >
+      {currentVideoArray.map((video, i) => {
+        return (
+          <Carousel.Item key={i}>
+            <ReactPlayer
+              className="react-player"
+              url={video.embeddedUrl}
+              height="95%"
+              width="95%"
+              controls={true}
+              // playing={i === currentVideoIndex ? true : false}
+              playing={false}
+              onEnded={getNextVideo}
+            />
+          </Carousel.Item>
+        );
+      })}
+    </Carousel>
   );
 
   return mediaPlayer;
