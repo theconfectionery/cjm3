@@ -88,10 +88,15 @@ path {
 }
 
 .screenArea {
+  position: fixed;
   outline: none;
-  width: 1097px;
-  height: 582px;
+  /* width: 1097px;
+  height: 582px; */
 }
+/* 
+.screen-wrap {
+  position: fixed;
+} */
 
 /* 
 .card {

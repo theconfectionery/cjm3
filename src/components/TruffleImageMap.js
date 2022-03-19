@@ -77,6 +77,8 @@ const TruffleImageMap = ({
           id="screenArea"
           x="1323"
           y="645"
+          width="1097"
+          height="582"
         ></foreignObject>
         {/* <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
         <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" /> */}
