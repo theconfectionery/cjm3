@@ -17,7 +17,7 @@ const TruffleImageMap = ({
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
     }
-      setClickEvent(e);
+    setClickEvent(e);
   };
 
   useEffect(() => {
@@ -26,6 +26,7 @@ const TruffleImageMap = ({
 
   return (
     <div className="wrapper">
+      <div className="screenArea" id="screenArea"></div>
       <svg
         viewBox="0 0 4096 2747"
         id="svg-image"
@@ -72,24 +73,19 @@ const TruffleImageMap = ({
         <path id="btn3" d="M1773.5 1598.5H1962.5V1725.5H1773.5z" />
         <path id="btn2" d="M1583.5 1598.5H1772.5V1725.5H1583.5z" />
         <path id="btn1" d="M1393.5 1598.5H1582.5V1725.5H1393.5z" />
-        <foreignObject
+        {/* <foreignObject
+          requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
           className="screenArea"
           id="screenArea"
           x="1323"
           y="645"
           width="1097"
           height="582"
-        ></foreignObject>
+        ></foreignObject> */}
         {/* <path id="screenLeft" d="M1324.5 657.5H1807.5V1211.5H1324.5z" />
         <path id="screenRight" d="M1935.5 657.5H2418.5V1211.5H1935.5z" /> */}
-        <path
-          id="leftArrow"
-          d="M2419.5 1360.5H2639.5V1486.5H2419.5z"
-        />
-        <path
-          id="rightArrow"
-          d="M2451.5 1487.5H2671.5V1613.5H2451.5z"
-        />
+        <path id="leftArrow" d="M2419.5 1360.5H2639.5V1486.5H2419.5z" />
+        <path id="rightArrow" d="M2451.5 1487.5H2671.5V1613.5H2451.5z" />
         <path
           id="bgAreaLeft"
           d="M1858 8H6V2741H1858V1830H1292L1248 1812L1230 1784L1314 1308V1274L1292 1224V610L1314 572H1858V8Z"
@@ -104,3 +100,15 @@ const TruffleImageMap = ({
 };
 
 export default TruffleImageMap;
+
+{
+  /* <foreignObject
+  // requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+  className="screenArea"
+  id="screenArea"
+  x="1323"
+  y="645"
+  width="1097"
+  height="582"
+></foreignObject> */
+}

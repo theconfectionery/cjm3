@@ -35,68 +35,32 @@ body {
   overflow: hidden;
 }
 
-@media screen and (max-width: 1600px) {
-  #svg-image {
-    min-width: 150%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  #svg-image {
-    min-width: 325%;
-    left: 64%;
-  }
-}
-
-@media screen and (max-width: 800px) and (orientation: landscape) {
-  #svg-image {
-    top: 63%;
-    left: 57%;
-    height: auto;
-    width: 175%;
-  }
-}
-
-/*
-@media only screen and (min-device-width: 345px) and (max-device-width: 1600) and (orientation: portrait) {
-  #svg-image {
-    width: 151.108118vh;
-    left: 64%;
-  }
-}
-
-@media only screen and (min-device-width: 345px) and (max-device-width: 1600) and (orientation: landscape) {
-  #svg-image {
-    height: 94vw;
-    top: 57%;
-  }
-  .wrapper {
-    height: 105vh !important;
-    width: 112vw !important;
-  } 
-} */
-
-/* @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-}
-
-
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-} */
-
 path {
   fill-opacity: 0;
 }
 
-.screenArea {
-  position: fixed;
-  outline: none;
-  /* width: 1097px;
-  height: 582px; */
-}
-/* 
-.screen-wrap {
-  position: fixed;
+/* .screenArea {
 } */
+
+/* .media-body {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top:645px;
+  left: 1323px;
+} */
+
+.screenArea {
+  position: absolute;
+  outline: none;
+  width: 32.042473454%;
+  height: 25%;
+  z-index: 10000;
+  top: 273px;
+  left: 474px;
+  top: 22.75%;
+  left: 29.60649594%;
+}
 
 /* 
 .card {
@@ -117,12 +81,14 @@ path {
 
 .black-screen {
   position: absolute;
-  top: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: -1;
-  width: 100%;
+  width: 90%;
   height: 100%;
   background-color: black;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   opacity: 0;
   transition: opacity 0.7s ease;
 }
@@ -264,6 +230,7 @@ path {
 
 .carousel {
   height: 100%;
+  position: fixed;
 }
 
 .carousel-inner {
@@ -287,4 +254,32 @@ path {
 
 .carousel-indicators .active {
   background-color: #0c4152 !important;
+}
+
+@media screen and (max-width: 1600px) {
+  #svg-image {
+    min-width: 150%;
+  }
+
+  /* .screenArea {
+    width: 31.792629606%;
+    top: 50%;
+    left: 50%;
+  } */
+}
+
+@media screen and (max-width: 500px) {
+  #svg-image {
+    min-width: 325%;
+    left: 64%;
+  }
+}
+
+@media screen and (max-width: 800px) and (orientation: landscape) {
+  #svg-image {
+    top: 63%;
+    left: 57%;
+    height: auto;
+    width: 175%;
+  }
 }

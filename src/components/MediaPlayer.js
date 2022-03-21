@@ -93,29 +93,33 @@ const MediaPlayer = ({
   // );
 
   const mediaPlayer = (
-    <Carousel
-      touch={true}
-      interval={null}
-      controls={false}
-      activeIndex={currentVideoIndex}
-    >
-      {currentVideoArray.map((video, i) => {
-        return (
-          <Carousel.Item key={i}>
-            <ReactPlayer
-              className="react-player"
-              url={video.embeddedUrl}
-              height="95%"
-              width="95%"
-              controls={true}
-              playing={i === currentVideoIndex ? true : false}
-              // playing={false}
-              onEnded={getNextVideo}
-            />
-          </Carousel.Item>
-        );
-      })}
-    </Carousel>
+    // <body className="media-body" xmlns="http://www.w3.org/1999/xhtml">
+      <Carousel
+        xmlns="http://www.w3.org/1999/xhtml"
+        touch={true}
+        interval={null}
+        controls={false}
+        activeIndex={currentVideoIndex}
+      >
+        {currentVideoArray.map((video, i) => {
+          return (
+            <Carousel.Item key={i}>
+              <ReactPlayer
+                className="react-player"
+                url={video.embeddedUrl}
+                height="95%"
+                width="95%"
+                controls={true}
+                playing={i === currentVideoIndex ? true : false}
+                // playing={false}
+                onEnded={getNextVideo}
+                muted={true}
+              />
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    // </body>
   );
 
   return mediaPlayer;

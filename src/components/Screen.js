@@ -5,7 +5,13 @@ import { usePrevious } from './utils';
 
 const fakeVideo = { embeddedUrl: '' };
 
-const Screen = ({ cards, videos, currentClickId, arrowClickedStack, clickEvent }) => {
+const Screen = ({
+  cards,
+  videos,
+  currentClickId,
+  arrowClickedStack,
+  clickEvent,
+}) => {
   const [showCards, setShowCards] = useState(false);
   const [contactBtnClicked, setContactBtnClicked] = useState(false);
   const [infoBtnClicked, setInfoBtnClicked] = useState(false);
@@ -142,7 +148,6 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack, clickEvent }
       <div
         className={`black-screen ${playVideo ? 'black-screen_visible' : ''}`}
       ></div>
-      ;
     </>
   );
 };
