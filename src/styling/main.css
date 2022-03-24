@@ -1,21 +1,234 @@
 @import 'react-slideshow-image/dist/styles.css';
 
+
+:root {
+  --indicator-height: 3px;
+}
+
 html,
 body {
   background-color: black;
-  /* overflow: hidden; */
+  overflow: hidden;
   padding: 0;
   margin: 0;
 }
 
-/* body {
-  color: #fff;
-  background-color: #27292d;
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: black;
   overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
+  /* transform: scale(1) translate(0, 0);
+   */
+}
+/* 
+.bgArea {
+  position: absolute;
+  height: 1000vh;
+  width: 50%;
+  background-color: blue;
+  opacity: 0.4;
+  display: none;
+}
+
+#bgAreaLeft {
+  left: 0;
+}
+
+#bgAreaRight {
+  right: 0;
+  background-color: yellow;
 } */
+
+.background-image {
+  /* position: absolute;
+  left: 0;
+  right: 0; */
+  width: 100%;
+}
+
+.screenArea {
+  position: absolute;
+  outline: none;
+  width: 26.6%;
+  height: 25%;
+  z-index: 10000;
+  top: 21.5%;
+  left: 32.4%;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.plzyer-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.black-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* transform: translate(-50%, -50%); */
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  border-radius: 5%;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.black-screen_visible {
+  opacity: 1;
+}
+
+.button-container_type_truffle {
+  position: absolute;
+  display: flex;
+  /* border: 1px solid red; */
+  opacity: 1;
+  top: 49%;
+  left: 34%;
+  width: 23%;
+  height: 15%;
+}
+
+.truffle-button {
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  height: 35%;
+  border: none;
+  position: absolute;
+  /* background-color: red; */
+  background: none;
+}
+
+.truffle-button_1 {
+  top: 60%;
+  left: 1%;
+}
+
+.truffle-button_2 {
+  top: 60%;
+  left: 22%;
+}
+
+.truffle-button_3 {
+  top: 60%;
+  left: 43%;
+}
+
+.truffle-button_4 {
+  top: 60%;
+  left: 65%;
+}
+
+.truffle-button_5 {
+  top: 60%;
+  left: 85%;
+}
+
+.truffle-button_6 {
+  top: 30%;
+  left: 2%;
+  height: 30%;
+}
+
+.truffle-button_7 {
+  top: 31%;
+  left: 23%;
+  height: 29%;
+}
+
+.truffle-button_8 {
+  top: 33%;
+  left: 43%;
+  height: 27%;
+}
+
+.truffle-button_9 {
+  top: 30%;
+  left: 63%;
+  height: 30%;
+}
+
+.truffle-button_10 {
+  top: 33%;
+  left: 84%;
+  height: 27%;
+}
+
+.truffle-button_11 {
+  top: 4%;
+  left: 24%;
+  height: 27%;
+}
+
+.truffle-button_12 {
+  top: 4%;
+  left: 44%;
+  height: 29%;
+}
+
+.truffle-button_13 {
+  top: 4%;
+  left: 63%;
+  height: 26%;
+}
+
+.truffle-button_info {
+  top: 4%;
+  left: 4%;
+  height: 26%;
+}
+
+.truffle-button_contact {
+  top: 4%;
+  left: 84%;
+  height: 28%;
+}
+
+.button-container_type_direction {
+  position: absolute;
+  top: 49%;
+  left: 60%;
+  width: 5%;
+  height: 10%;
+  /* border: 1px solid blue; */
+}
+
+.direction-button {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  height: 35%;
+  border: none;
+  position: absolute;
+  /* background-color: red; */
+  background: none;
+}
+
+.direction-button_left {
+  top: 6%;
+  left: 24%;
+  height: 37%;
+}
+
+.direction-button_right {
+  top: 43%;
+  left: 33%;
+  height: 40%;
+}
+
 
 #svg-image {
   height: 100%;
@@ -28,46 +241,9 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.wrapper {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
 path {
   fill-opacity: 0;
 }
-
-/* .screenArea {
-} */
-
-/* .media-body {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top:645px;
-  left: 1323px;
-} */
-
-/* .screenArea {
-  position: absolute;
-  outline: none;
-  width: 32.042473454%;
-  height: 25%;
-  z-index: 10000;
-  top: 273px;
-  left: 474px;
-  top: 22.75%;
-  left: 29.60649594%;
-} */
-
-/* 
-.card {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-} */
 
 /* Background Light Effect */
 
@@ -79,32 +255,15 @@ path {
   opacity: 0;
 }
 
-.black-screen {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  width: 90%;
-  height: 100%;
-  background-color: black;
-  /* border-radius: 50px; */
-  opacity: 0;
-  transition: opacity 0.7s ease;
-}
-
-.black-screen_visible {
-  opacity: 1;
-}
-
 /* Card Carousel CSS */
 .slider-container {
   position: relative;
   margin: 0 auto;
-  width: 800px;
-  height: 600px;
-  transform: translateY(580px);
-  transition: transform 0.4s ease;
+  width: 70%;
+  height: 80%;
+  /* transform: translateY(580px); */
+  transition: opacity 0.6s ease;
+  opacity: 0;
 }
 
 .slider-container .slider-content {
@@ -224,13 +383,14 @@ path {
 
 .react-player {
   position: absolute;
-  top: 1%;
-  left: 3%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .carousel {
   height: 100%;
-  position: fixed;
+  width: 100%;
 }
 
 .carousel-inner {
@@ -241,13 +401,20 @@ path {
   height: 100%;
 }
 
+
+@media only screen and (min-width: 500px) {
+  .main {
+    transform: scale()
+  }
+}
+
 .carousel-indicators {
-  bottom: -25px !important;
+  bottom: -20px !important;
 }
 
 .carousel-indicators button[type='button'] {
   width: 100%;
-  height: 10px;
+  height: var(--indicator-height);
   opacity: 1;
   background-color: #062734;
 }
@@ -256,30 +423,89 @@ path {
   background-color: #0c4152 !important;
 }
 
-@media screen and (max-width: 1600px) {
+/* @media screen and (max-width: 1600px) {
   #svg-image {
     min-width: 150%;
   }
 
-  /* .screenArea {
+  .screenArea {
     width: 31.792629606%;
     top: 50%;
     left: 50%;
-  } */
-}
+  }
+} */
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   #svg-image {
     min-width: 325%;
     left: 64%;
   }
-}
+} */
 
-@media screen and (max-width: 800px) and (orientation: landscape) {
+/* @media screen and (max-width: 800px) and (orientation: landscape) {
   #svg-image {
     top: 63%;
     left: 57%;
     height: auto;
     width: 175%;
   }
+} */
+
+/*
+
+@media screen and (max-width: 2500px) {
+  .main {
+    transform: scale(.3) translate(0, -4%);
+  }
+
+  /* .screenArea {
+    background: blue;
+  } 
 }
+
+@media screen and (max-width: 1700px) {
+  .main {
+    transform: scale(1.2) translate(0, 1%);
+  }
+
+  /* .screenArea {
+    background: green;
+  } 
+}
+
+@media screen and (max-width: 1300px) {
+  .main {
+    transform: scale(1.8) translate(0, 0);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .main {
+    transform: scale(2.3) translate(4%, 4%);
+  }
+  /* .screenArea {
+    background: yellow;
+  } 
+}
+
+@media screen and (max-width: 900px) {
+  .main {
+    transform: scale(2.4) translate(5%, 1.5%);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main {
+    transform: scale(3) translate(4%, 2%);
+  }
+  /* .screenArea {
+    background: red;
+  } 
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    transform: scale(3.3) translate(4.4%, 0);
+  }
+}
+*/

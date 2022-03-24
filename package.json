@@ -38,7 +38,8 @@
     "react-id-swiper": "^4.0.0",
     "react-player": "^2.9.0",
     "react-slideshow-image": "^3.7.0",
-    "start": "^5.1.0"
+    "start": "^5.1.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@types/loadable__component": "^5.13.4",

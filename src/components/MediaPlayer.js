@@ -93,9 +93,7 @@ const MediaPlayer = ({
   // );
 
   const mediaPlayer = (
-    // <body className="media-body" xmlns="http://www.w3.org/1999/xhtml">
       <Carousel
-        xmlns="http://www.w3.org/1999/xhtml"
         touch={true}
         interval={null}
         controls={false}
@@ -119,7 +117,6 @@ const MediaPlayer = ({
           );
         })}
       </Carousel>
-    // </body>
   );
 
   return mediaPlayer;

@@ -26,7 +26,7 @@ const Screen = ({
   const prevClickId = usePrevious(currentClickId);
   const { playVideo } = videoDetails;
 
-  const showCardBtns = ['infoBtn', 'contactBtn'];
+  const showCardBtns = ['infoBtn', 'contactBtn', 'screenArea'];
   const hideCardBtns = [
     'btn1',
     'btn2',
@@ -40,6 +40,7 @@ const Screen = ({
     'btn11',
     'btn12',
     'btn13',
+    'bgImage',
     'bgAreaLeft',
     'bgAreaRight',
   ];
@@ -55,7 +56,7 @@ const Screen = ({
     }
 
     // clicking outside hides card stack
-    if (showCards && hideCardBtns.includes(currentClickId)) {
+    if (showCards && !showCardBtns.includes(currentClickId)) {
       setShowCards(false);
       setInfoBtnClicked(false);
       setContactBtnClicked(false);

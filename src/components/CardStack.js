@@ -27,7 +27,7 @@ const CardStack = ({
   useEffect(() => {
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
-      container.style.transform = 'translateY(0)';
+      container.style.opacity = '1';
     }, 500);
   }, [showCards]);
 
@@ -222,7 +222,6 @@ const CardStack = ({
   //   }
   //   console.log(cardsArray[0], currentClickId);
 
-
   //   if (showCards && cardsArray[0].classList.contains('active')) {
   //     console.log('eventlistener added');
   //     infoButton.addEventListener('click', hideCards);
@@ -251,7 +250,9 @@ const CardStack = ({
             );
           })}
         </div>
+        ;
       </div>
+      ;
     </>
   );
 };
