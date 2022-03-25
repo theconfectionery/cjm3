@@ -15,6 +15,10 @@ export const ScreenContainer = styled.div`
     margin-top: 5%;
   }
 
+    @media (orientation: landscape) and (max-width: 900px) {
+    transform: scale(0.34) translate(-10%, -3%);
+  }
+
   @media (min-width: 900px) {
     transform: scale(0.7);
     margin-right: 8%;
@@ -35,4 +39,10 @@ export const ScreenContainer = styled.div`
     transform: scale(0.3);
     margin-right: 30%;
   }
+
+
+  /*
+  @media (orientation: landscape) and (min-width: 900px) {
+    transform: scale(0.4) translate(0, 0);
+  } */
 `;

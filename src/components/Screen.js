@@ -11,6 +11,7 @@ const Screen = ({
   currentClickId,
   arrowClickedStack,
   clickEvent,
+  swipe,
 }) => {
   const [showCards, setShowCards] = useState(false);
   const [contactBtnClicked, setContactBtnClicked] = useState(false);
@@ -40,7 +41,8 @@ const Screen = ({
     'btn11',
     'btn12',
     'btn13',
-    'bgImage',
+    'bgImageLight',
+    'bgImageDark',
     'bgAreaLeft',
     'bgAreaRight',
   ];
@@ -142,6 +144,7 @@ const Screen = ({
           arrowClickedStack={arrowClickedStack}
           setCurrentVideoDetails={setVideoDetails}
           getVideoArray={getVideoArray}
+          swipe={swipe}
         />
       ) : (
         cardStack

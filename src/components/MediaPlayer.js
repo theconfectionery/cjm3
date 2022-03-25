@@ -9,6 +9,7 @@ const MediaPlayer = ({
   arrowClickedStack,
   setCurrentVideoDetails,
   getVideoArray,
+  swipe,
 }) => {
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
@@ -60,11 +61,62 @@ const MediaPlayer = ({
   };
 
   useEffect(() => {
+    let touchstartX = {
+      value: 0,
+      id: '',
+    };
+    let touchendX = 0;
+
+    const screenArea = document.querySelector('.screenArea');
+    function handleGesture() {
+      console.log(touchstartX, touchendX);
+      if (touchendX < touchstartX.value) {
+        getNextVideo();
+      }
+      if (touchendX > touchstartX.value) {
+        getPrevVideo();
+      }
+    }
+    function addTouchstartPosition(e) {
+      console.log(e.target)
+      if (
+        e.target.id.includes('video-swipe-left') ||
+        e.target.id.includes('video-swipe-right')
+      ) {
+        touchstartX.value = e.changedTouches[0].screenX;
+        touchstartX.id = e.target.id;
+      }
+    }
+
+    function addTouchendPosition(e) {
+      if (
+        touchstartX.id === 'video-swipe-right' ||
+        touchstartX.id === 'video-swipe-left'
+      ) {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+      }
+    }
+
+    screenArea.addEventListener('touchstart', addTouchstartPosition);
+    screenArea.addEventListener('touchend', addTouchendPosition);
+
+    return () => {
+      screenArea.removeEventListener('touchstart', addTouchstartPosition);
+      screenArea.removeEventListener('touchend', addTouchendPosition);
+    };
+  });
+
+  useEffect(() => {
     // console.log(`The stack has ${arrowClickedStack.length} elements`)
-    if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
-      if (playVideo && arrowClickedStack.length > 0) {
-        const arrow = arrowClickedStack.pop();
-        arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
+    const windowWidth = window.matchMedia('(min-width: 900px)');
+
+    if (windowWidth.matches) {
+      if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
+        if (playVideo && arrowClickedStack.length > 0) {
+          const arrow = arrowClickedStack.pop();
+          arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
+        }
       }
     }
   });
@@ -93,8 +145,13 @@ const MediaPlayer = ({
   // );
 
   const mediaPlayer = (
+    <>
+      <div
+        className="video-swipe video-swipe_right"
+        id="video-swipe-right"
+      ></div>
+      <div className="video-swipe video-swipe_left" id="video-swipe-left"></div>
       <Carousel
-        touch={true}
         interval={null}
         controls={false}
         activeIndex={currentVideoIndex}
@@ -109,14 +166,14 @@ const MediaPlayer = ({
                 width="95%"
                 controls={true}
                 playing={i === currentVideoIndex ? true : false}
-                // playing={false}
                 onEnded={getNextVideo}
-                muted={true}
+                playsinline={true}
               />
             </Carousel.Item>
           );
         })}
       </Carousel>
+    </>
   );
 
   return mediaPlayer;

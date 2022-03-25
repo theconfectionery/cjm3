@@ -22,6 +22,7 @@ export default function App({ arrowClickedStack }) {
   const videos = useVideos();
   const currentClickId = currentClick[0];
   const [containerMarginTop, setContainerMarginTop] = useState();
+  const [swipe, setSwipe] = useState();
 
   const lightsOffAreas = [
     'btn1',
@@ -38,13 +39,18 @@ export default function App({ arrowClickedStack }) {
     'btn12',
     'btn13',
   ];
-  const lightsOnAreas = ['infoBtn', 'contactBtn', 'bgImage'];
+  const lightsOnAreas = [
+    'infoBtn',
+    'contactBtn',
+    'bgImageLight',
+    'bgImageDark',
+  ];
 
   const toggleLights = () => {
-    if (lightsOn && lightsOffAreas.includes(currentClickId)) {
+    if (lightsOffAreas.includes(currentClickId)) {
       setLightsOn(false);
     }
-    if (!lightsOn && lightsOnAreas.includes(currentClickId)) {
+    if (lightsOnAreas.includes(currentClickId)) {
       setLightsOn(true);
     }
   };
@@ -65,13 +71,13 @@ export default function App({ arrowClickedStack }) {
         currentClickId={currentClickId}
         arrowClickedStack={arrowClickedStack}
         clickEvent={clickEvent}
+        swipe={swipe}
       />
     );
     reactDom.render(screen, screenArea);
   }, [(mapLoaded, cards, videos, currentClick)]);
 
   const handleClick = e => {
-    console.log('hi');
     setCurrentClick([e.target.id]);
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
@@ -153,18 +159,19 @@ export default function App({ arrowClickedStack }) {
       <div className="bgArea" id="bgAreaLeft"></div>
       <div className="bgArea" id="bgAreaRight"></div> */}
       <img
-        className="background-image background-image_on"
-        id="bgImage"
-        src={lightsOn ? backgroundImageOn : backgroundImageOff}
+        className={`background-image ${
+          lightsOn ? '' : 'background-image_hidden'
+        }`}
+        id="bgImageLight"
+        src={backgroundImageOn}
         onClick={e => handleClick(e)}
       />
-      {/* <img
-        className="background-image background-image_off"
-        id="bgImage"
+      <img
+        className="background-image background-image-off"
+        id="bgImageDark"
         src={backgroundImageOff}
         onClick={e => handleClick(e)}
-      /> */}
-      ;
+      />
     </ScreenContainer>
   );
 }

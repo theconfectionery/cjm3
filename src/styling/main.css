@@ -1,8 +1,8 @@
 @import 'react-slideshow-image/dist/styles.css';
 
-
 :root {
   --indicator-height: 3px;
+  background-color: black;
 }
 
 html,
@@ -11,6 +11,16 @@ body {
   overflow: hidden;
   padding: 0;
   margin: 0;
+}
+
+@supports (padding: max(0px)) {
+  body,
+  html,
+  main {
+    padding-left: min(0vmin, env(safe-area-inset-left));
+    padding-right: min(0vmin, env(safe-area-inset-right));
+    padding: env(safe-area-inset);
+  }
 }
 
 .main {
@@ -44,10 +54,24 @@ body {
 } */
 
 .background-image {
-  /* position: absolute;
-  left: 0;
-  right: 0; */
+  position: relative;
   width: 100%;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.background-image_hidden {
+  opacity: 0;
+}
+
+.background-image-off {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
 }
 
 .screenArea {
@@ -75,7 +99,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 14px;
   /* transform: translate(-50%, -50%); */
   z-index: -1;
   width: 100%;
@@ -99,6 +123,7 @@ body {
   left: 34%;
   width: 23%;
   height: 15%;
+  z-index: 2;
 }
 
 .truffle-button {
@@ -204,6 +229,7 @@ body {
   width: 5%;
   height: 10%;
   /* border: 1px solid blue; */
+  z-index: 2;
 }
 
 .direction-button {
@@ -228,7 +254,6 @@ body {
   left: 33%;
   height: 40%;
 }
-
 
 #svg-image {
   height: 100%;
@@ -386,6 +411,7 @@ path {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  outline: none;
 }
 
 .carousel {
@@ -401,15 +427,8 @@ path {
   height: 100%;
 }
 
-
-@media only screen and (min-width: 500px) {
-  .main {
-    transform: scale()
-  }
-}
-
 .carousel-indicators {
-  bottom: -20px !important;
+  bottom: -16px !important;
 }
 
 .carousel-indicators button[type='button'] {
@@ -421,6 +440,22 @@ path {
 
 .carousel-indicators .active {
   background-color: #0c4152 !important;
+}
+
+.video-swipe {
+  position: absolute;
+  width: 25%;
+  height: 69%;
+  z-index: 1;
+  top: 0;
+}
+
+.video-swipe_left {
+  left: 0;
+}
+
+.video-swipe_right {
+  right: 0;
 }
 
 /* @media screen and (max-width: 1600px) {
