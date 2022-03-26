@@ -78,7 +78,7 @@ const MediaPlayer = ({
       }
     }
     function addTouchstartPosition(e) {
-      console.log(e.target)
+      console.log(e.target);
       if (
         e.target.id.includes('video-swipe-left') ||
         e.target.id.includes('video-swipe-right')
@@ -144,6 +144,8 @@ const MediaPlayer = ({
   //   [currentVideoIndex]
   // );
 
+  console.log(currentVideoArray);
+
   const mediaPlayer = (
     <>
       <div
@@ -159,16 +161,21 @@ const MediaPlayer = ({
         {currentVideoArray.map((video, i) => {
           return (
             <Carousel.Item key={i}>
-              <ReactPlayer
-                className="react-player"
-                url={video.embeddedUrl}
-                height="95%"
-                width="95%"
-                controls={true}
-                playing={i === currentVideoIndex ? true : false}
-                onEnded={getNextVideo}
-                playsinline={true}
-              />
+              {video.is360 ? (
+                <div></div>
+              ) : (
+                <ReactPlayer
+                  className="react-player"
+                  url={video.embeddedUrl}
+                  height="100%"
+                  width="100%"
+                  controls={true}
+                  playing={i === currentVideoIndex ? true : false}
+                  onEnded={getNextVideo}
+                  playsinline={true}
+                  muted={true}
+                />
+              )}
             </Carousel.Item>
           );
         })}

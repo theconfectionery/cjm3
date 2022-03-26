@@ -23,6 +23,7 @@ export default function App({ arrowClickedStack }) {
   const currentClickId = currentClick[0];
   const [containerMarginTop, setContainerMarginTop] = useState();
   const [swipe, setSwipe] = useState();
+  const [infoButtonClicked, setInfoButtonClicked] = useState(false);
 
   const lightsOffAreas = [
     'btn1',
@@ -62,21 +63,6 @@ export default function App({ arrowClickedStack }) {
     }
   }, [currentClick]);
 
-  useEffect(() => {
-    let screenArea = document.getElementById('screenArea');
-    const screen = (
-      <Screen
-        cards={cards}
-        videos={videos}
-        currentClickId={currentClickId}
-        arrowClickedStack={arrowClickedStack}
-        clickEvent={clickEvent}
-        swipe={swipe}
-      />
-    );
-    reactDom.render(screen, screenArea);
-  }, [(mapLoaded, cards, videos, currentClick)]);
-
   const handleClick = e => {
     setCurrentClick([e.target.id]);
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
@@ -90,7 +76,7 @@ export default function App({ arrowClickedStack }) {
       let bodyStyles = document.body.style;
       bodyStyles.setProperty(
         '--indicator-height',
-        `${window.innerWidth * 0.01}px`
+        `${window.innerWidth * 0.006}px`
       );
       setContainerMarginTop(window.innerWidth * 0.04);
     }
@@ -104,7 +90,18 @@ export default function App({ arrowClickedStack }) {
       className="screen-container"
       containerMarginTop={containerMarginTop}
     >
-      <div className="screenArea" id="screenArea"></div>
+      <div className="screenArea" id="screenArea">
+        <Screen
+          cards={cards}
+          videos={videos}
+          currentClickId={currentClickId}
+          arrowClickedStack={arrowClickedStack}
+          clickEvent={clickEvent}
+          swipe={swipe}
+          infoButtonClicked={infoButtonClicked}
+          setInfoButtonClicked={setInfoButtonClicked}
+        />
+      </div>
       <div
         className="button-container_type_truffle"
         onClick={e => handleClick(e)}
@@ -137,6 +134,7 @@ export default function App({ arrowClickedStack }) {
         <button
           className="truffle-button truffle-button_info"
           id="infoBtn"
+          onClick={() => setInfoButtonClicked(true)}
         ></button>
         <button
           className="truffle-button truffle-button_contact"

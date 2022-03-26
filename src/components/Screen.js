@@ -12,10 +12,13 @@ const Screen = ({
   arrowClickedStack,
   clickEvent,
   swipe,
+  infoButtonClicked,
+  setInfoButtonClicked,
 }) => {
   const [showCards, setShowCards] = useState(false);
   const [contactBtnClicked, setContactBtnClicked] = useState(false);
   const [infoBtnClicked, setInfoBtnClicked] = useState(false);
+  const [showWebpage, setShowWebpage] = useState(false);
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo];
   };
@@ -43,17 +46,15 @@ const Screen = ({
     'btn13',
     'bgImageLight',
     'bgImageDark',
-    'bgAreaLeft',
-    'bgAreaRight',
+    // 'bgAreaLeft',
+    // 'bgAreaRight',
   ];
 
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
       setShowCards(true);
-      if (currentClickId === 'contactBtn') {
-        setContactBtnClicked(true);
-      } else if (currentClickId === 'infoBtn') {
-        setInfoBtnClicked(true);
+      if (currentClickId === 'infoBtn') {
+        // setInfoBtnClicked(true);
       }
     }
 
@@ -64,16 +65,23 @@ const Screen = ({
       setContactBtnClicked(false);
     }
 
-    // // for 'toggling' the card stack if you click the info/contact buttons twice
+    // // for 'toggling' the card stack if you click the info buttons while on info card
     // if (
     //   showCards &&
-    //   ((currentClickId === 'infoBtn' && infoBtnClicked) ||
-    //     (currentClickId === 'contactBtn' && contactBtnClicked))
+    //   ((currentClickId === 'infoBtn' && infoBtnClicked))
     // ) {
     //   setShowCards(false);
     //   setInfoBtnClicked(false);
     //   setContactBtnClicked(false);
     // }
+  }, [currentClickId]);
+
+  useEffect(() => {
+    if (currentClickId === 'btn8') {
+      setShowWebpage(true);
+    } else {
+      setShowWebpage(false);
+    }
   }, [currentClickId]);
 
   // hide appended DOM node arrows (created in CardStack) when CardStack is unmounted
@@ -132,12 +140,14 @@ const Screen = ({
       setShowCards={setShowCards}
       currentClickId={currentClickId}
       clickEvent={clickEvent}
+      infoButtonClicked={infoButtonClicked}
+      setInfoButtonClicked={setInfoButtonClicked}
     />
   ) : null;
 
-  return (
-    <>
-      {playVideo ? (
+  function determineScreenContent() {
+    if (playVideo) {
+      return (
         <MediaPlayer
           currentVideoDetails={videoDetails}
           currentClickId={currentClickId}
@@ -146,9 +156,23 @@ const Screen = ({
           getVideoArray={getVideoArray}
           swipe={swipe}
         />
-      ) : (
-        cardStack
-      )}
+      );
+    } else if (showWebpage) {
+      return (
+        <object
+          type="text/html"
+          data="https://www.cine.doctor/"
+          className="external-webpage"
+        ></object>
+      );
+    } else {
+      return cardStack;
+    }
+  }
+
+  return (
+    <>
+      {determineScreenContent()}
       <div
         className={`black-screen ${playVideo ? 'black-screen_visible' : ''}`}
       ></div>

@@ -6,6 +6,8 @@ const CardStack = ({
   setShowCards,
   currentClickId,
   clickEvent,
+  infoButtonClicked,
+  setInfoButtonClicked,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
   const infoCard = cards[0];
@@ -14,6 +16,12 @@ const CardStack = ({
   const [prevClickEvent, setPrevClickEvent] = useState();
   const nextArea = document.querySelector('#screenRight');
   const prevArea = document.querySelector('#screenLeft');
+
+  // useEffect(() => {
+  //   if (showCards && infoButtonClicked) {
+  //     setInfoButtonClicked(false);
+  //   }
+  // }, [infoButtonClicked, currentClickId, showCards]);
 
   let slides = [
     'https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg',
