@@ -50,6 +50,7 @@ export const useVideos = () => {
               redirectUrl
               videoName
               sortKey
+              is360
             }
             buttonId
           }

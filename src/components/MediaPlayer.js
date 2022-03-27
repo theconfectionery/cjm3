@@ -161,9 +161,6 @@ const MediaPlayer = ({
         {currentVideoArray.map((video, i) => {
           return (
             <Carousel.Item key={i}>
-              {video.is360 ? (
-                <div></div>
-              ) : (
                 <ReactPlayer
                   className="react-player"
                   url={video.embeddedUrl}
@@ -175,7 +172,6 @@ const MediaPlayer = ({
                   playsinline={true}
                   muted={true}
                 />
-              )}
             </Carousel.Item>
           );
         })}
