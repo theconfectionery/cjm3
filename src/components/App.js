@@ -71,17 +71,21 @@ export default function App({ arrowClickedStack }) {
   };
 
   useEffect(() => {
+    const isBrowser = () => typeof window !== 'undefined';
+
     function getWidth() {
       let bodyStyles = document.body.style;
-      bodyStyles.setProperty(
-        '--indicator-height',
-        `${window.innerWidth * 0.006}px`
-      );
-      setContainerMarginTop(window.innerWidth * 0.04);
+      if (isBrowser) {
+        bodyStyles.setProperty(
+          '--indicator-height',
+          `${window.innerWidth * 0.006}px`
+        );
+        setContainerMarginTop(window.innerWidth * 0.04);
+      }
+      getWidth();
+      window.addEventListener('resize', getWidth);
+      return () => window.removeEventListener('resize', getWidth);
     }
-    getWidth();
-    window.addEventListener('resize', getWidth);
-    return () => window.removeEventListener('resize', getWidth);
   });
 
   return (

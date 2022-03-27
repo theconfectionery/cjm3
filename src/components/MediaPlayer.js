@@ -68,7 +68,6 @@ const MediaPlayer = ({
 
     const screenArea = document.querySelector('.screenArea');
     function handleGesture() {
-      console.log(touchstartX, touchendX);
       if (touchendX < touchstartX.value) {
         getNextVideo();
       }
@@ -77,7 +76,6 @@ const MediaPlayer = ({
       }
     }
     function addTouchstartPosition(e) {
-      console.log(e.target);
       if (
         e.target.id.includes('video-swipe-left') ||
         e.target.id.includes('video-swipe-right')
@@ -107,10 +105,20 @@ const MediaPlayer = ({
   });
 
   useEffect(() => {
-    // console.log(`The stack has ${arrowClickedStack.length} elements`)
-    const windowWidth = window.matchMedia('(min-width: 900px)');
+    const isBrowser = () => typeof window !== 'undefined';
 
-    if (windowWidth.matches) {
+    if (isBrowser) {
+      const windowWidth = window.matchMedia('(min-width: 900px)');
+
+      if (windowWidth.matches) {
+        if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
+          if (playVideo && arrowClickedStack.length > 0) {
+            const arrow = arrowClickedStack.pop();
+            arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
+          }
+        }
+      }
+    } else {
       if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
         if (playVideo && arrowClickedStack.length > 0) {
           const arrow = arrowClickedStack.pop();
@@ -160,17 +168,17 @@ const MediaPlayer = ({
         {currentVideoArray.map((video, i) => {
           return (
             <Carousel.Item key={i}>
-                <ReactPlayer
-                  className="react-player"
-                  url={video.embeddedUrl}
-                  height="100%"
-                  width="100%"
-                  controls={true}
-                  playing={i === currentVideoIndex ? true : false}
-                  onEnded={getNextVideo}
-                  playsinline={true}
-                  muted={true}
-                />
+              <ReactPlayer
+                className="react-player"
+                url={video.embeddedUrl}
+                height="100%"
+                width="100%"
+                controls={true}
+                playing={i === currentVideoIndex ? true : false}
+                onEnded={getNextVideo}
+                playsinline={true}
+                muted={true}
+              />
             </Carousel.Item>
           );
         })}
