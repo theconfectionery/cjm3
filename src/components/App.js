@@ -75,7 +75,7 @@ export default function App({ arrowClickedStack }) {
 
     function getWidth() {
       let bodyStyles = document.body.style;
-      if (isBrowser) {
+      // if (isBrowser) {
         bodyStyles.setProperty(
           '--indicator-height',
           `${window.innerWidth * 0.006}px`
@@ -84,7 +84,7 @@ export default function App({ arrowClickedStack }) {
         getWidth();
         window.addEventListener('resize', getWidth);
         return () => window.removeEventListener('resize', getWidth);
-      }
+      // }
     }
   });
 

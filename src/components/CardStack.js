@@ -1,4 +1,3 @@
-import { Slider } from 'materialize-css';
 import React, { useEffect, useRef, useState } from 'react';
 
 const CardStack = ({

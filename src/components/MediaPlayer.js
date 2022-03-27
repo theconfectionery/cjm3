@@ -107,7 +107,7 @@ const MediaPlayer = ({
   useEffect(() => {
     const isBrowser = () => typeof window !== 'undefined';
 
-    if (isBrowser) {
+    // if (isBrowser) {
       const windowWidth = window.matchMedia('(min-width: 900px)');
 
       if (windowWidth.matches) {
@@ -118,14 +118,14 @@ const MediaPlayer = ({
           }
         }
       }
-    } else {
-      if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
-        if (playVideo && arrowClickedStack.length > 0) {
-          const arrow = arrowClickedStack.pop();
-          arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
-        }
-      }
-    }
+    // } else {
+    //   if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
+    //     if (playVideo && arrowClickedStack.length > 0) {
+    //       const arrow = arrowClickedStack.pop();
+    //       arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
+    //     }
+    //   }
+    // }
   });
 
   useEffect(() => {
