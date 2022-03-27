@@ -6,30 +6,14 @@ const CardStack = ({
   setShowCards,
   currentClickId,
   clickEvent,
-  infoButtonClicked,
-  setInfoButtonClicked,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
   const infoCard = cards[0];
   const contactCard = cards.length - 1;
-  // const [imageIndex, setImageIndex] = useState(0);
+  const [currentCard, setCurrentCard] = useState(0);
   const [prevClickEvent, setPrevClickEvent] = useState();
   const nextArea = document.querySelector('#screenRight');
   const prevArea = document.querySelector('#screenLeft');
-
-  // useEffect(() => {
-  //   if (showCards && infoButtonClicked) {
-  //     setInfoButtonClicked(false);
-  //   }
-  // }, [infoButtonClicked, currentClickId, showCards]);
-
-  let slides = [
-    'https://images.ctfassets.net/jotoby554kx0/4bhIAoUyQeYysPWgIe5SCK/4c223a881085f01d75dd5c440bf6fde1/CARD01.jpg',
-    'https://images.ctfassets.net/jotoby554kx0/3wzwAUSG70EhPvHVphmKJw/e161255869e20cc89e8dd2aba42d1206/CARD02.jpg',
-    'https://images.ctfassets.net/jotoby554kx0/4CPyxfldz8iqMERcrakx4u/59e8d7786dac2ed2677a5d3c98a5a818/CARD_03.jpg',
-    'https://images.ctfassets.net/jotoby554kx0/4SWFGjRIXZwtcB1GgF3sk6/b0a3dcf52e8512c975c63fef3728b4ba/CARD_04.jpg',
-    'https://images.ctfassets.net/jotoby554kx0/4GExflYYHixT6c0bgnu4OI/23d950c158ec15d0a2f49e660b8ed51b/CARD_05.jpg',
-  ];
 
   // slide up intro event
   useEffect(() => {
@@ -128,7 +112,12 @@ const CardStack = ({
         goToIndexSlide(slideTotal);
       });
       infoButton.addEventListener('click', () => {
-        goToIndexSlide(0);
+        if (showCards && currentCard === 0) {
+          console.log('closing card stack');
+          setShowCards(false);
+        } else {
+          goToIndexSlide(0);
+        }
       });
 
       // initial clicks related to cardstack, also for clicking back and forth between buttons (not covered by above event listeners)
@@ -260,8 +249,7 @@ const CardStack = ({
       }
     }
 
-    // setPrevClickEvent(clickEvent);
-    // setImageIndex(slideCurrent);
+    setCurrentCard(slideCurrent);
     slideInitial();
   }, [currentClickId, clickEvent]);
 
@@ -296,7 +284,7 @@ const CardStack = ({
     <>
       <div className="slider-container slider-container_intro">
         <div className="slider-content">
-          {slides.map((slide, i) => {
+          {imageUrls.map((slide, i) => {
             return (
               <div className="slider-single" key={i}>
                 <img className="slider-single-image" src={slide} alt="hi" />

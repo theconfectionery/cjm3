@@ -15,8 +15,6 @@ const Screen = ({
   setInfoButtonClicked,
 }) => {
   const [showCards, setShowCards] = useState(false);
-  const [contactBtnClicked, setContactBtnClicked] = useState(false);
-  const [infoBtnClicked, setInfoBtnClicked] = useState(false);
   const [showWebpage, setShowWebpage] = useState(false);
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo];
@@ -28,6 +26,10 @@ const Screen = ({
   });
   const prevClickId = usePrevious(currentClickId);
   const { playVideo } = videoDetails;
+
+
+  console.log(clickEvent);
+
 
   const showCardBtns = ['infoBtn', 'contactBtn', 'screenArea'];
   const hideCardBtns = [
@@ -50,8 +52,8 @@ const Screen = ({
   ];
 
   useEffect(() => {
-    if (showCardBtns.includes(currentClickId)) {
-      setShowCards(true);
+    if (showCardBtns.includes(currentClickId) && !showCards) {
+      setShowCards(prevState => {return !prevState});
       if (currentClickId === 'infoBtn') {
         // setInfoBtnClicked(true);
       }
@@ -60,8 +62,6 @@ const Screen = ({
     // clicking outside hides card stack
     if (showCards && !showCardBtns.includes(currentClickId)) {
       setShowCards(false);
-      setInfoBtnClicked(false);
-      setContactBtnClicked(false);
     }
 
     // // for 'toggling' the card stack if you click the info buttons while on info card
@@ -73,7 +73,7 @@ const Screen = ({
     //   setInfoBtnClicked(false);
     //   setContactBtnClicked(false);
     // }
-  }, [currentClickId]);
+  }, [currentClickId, clickEvent, showCards]);
 
   useEffect(() => {
     if (currentClickId === 'btn8') {
@@ -139,8 +139,6 @@ const Screen = ({
       setShowCards={setShowCards}
       currentClickId={currentClickId}
       clickEvent={clickEvent}
-      infoButtonClicked={infoButtonClicked}
-      setInfoButtonClicked={setInfoButtonClicked}
     />
   ) : null;
 
