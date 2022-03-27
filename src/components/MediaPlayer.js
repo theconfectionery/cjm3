@@ -105,27 +105,16 @@ const MediaPlayer = ({
   });
 
   useEffect(() => {
-    const isBrowser = () => typeof window !== 'undefined';
+    const windowWidth = window.matchMedia('(min-width: 900px)');
 
-    // if (isBrowser) {
-      const windowWidth = window.matchMedia('(min-width: 900px)');
-
-      if (windowWidth.matches) {
-        if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
-          if (playVideo && arrowClickedStack.length > 0) {
-            const arrow = arrowClickedStack.pop();
-            arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
-          }
+    if (windowWidth.matches) {
+      if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
+        if (playVideo && arrowClickedStack.length > 0) {
+          const arrow = arrowClickedStack.pop();
+          arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
         }
       }
-    // } else {
-    //   if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
-    //     if (playVideo && arrowClickedStack.length > 0) {
-    //       const arrow = arrowClickedStack.pop();
-    //       arrow === 'rightArrow' ? getNextVideo() : getPrevVideo();
-    //     }
-    //   }
-    // }
+    }
   });
 
   useEffect(() => {

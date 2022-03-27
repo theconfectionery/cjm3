@@ -22,6 +22,7 @@ export default function App({ arrowClickedStack }) {
   const videos = useVideos();
   const currentClickId = currentClick[0];
   const [containerMarginTop, setContainerMarginTop] = useState();
+  const [swipe, setSwipe] = useState();
   const [infoButtonClicked, setInfoButtonClicked] = useState(false);
 
   const lightsOffAreas = [
@@ -71,21 +72,17 @@ export default function App({ arrowClickedStack }) {
   };
 
   useEffect(() => {
-    const isBrowser = () => typeof window !== 'undefined';
-
     function getWidth() {
       let bodyStyles = document.body.style;
-      // if (isBrowser) {
-        bodyStyles.setProperty(
-          '--indicator-height',
-          `${window.innerWidth * 0.006}px`
-        );
-        setContainerMarginTop(window.innerWidth * 0.04);
-        getWidth();
-        window.addEventListener('resize', getWidth);
-        return () => window.removeEventListener('resize', getWidth);
-      // }
+      bodyStyles.setProperty(
+        '--indicator-height',
+        `${window.innerWidth * 0.006}px`
+      );
+      setContainerMarginTop(window.innerWidth * 0.04);
     }
+    getWidth();
+    window.addEventListener('resize', getWidth);
+    return () => window.removeEventListener('resize', getWidth);
   });
 
   return (
@@ -100,6 +97,7 @@ export default function App({ arrowClickedStack }) {
           currentClickId={currentClickId}
           arrowClickedStack={arrowClickedStack}
           clickEvent={clickEvent}
+          swipe={swipe}
           infoButtonClicked={infoButtonClicked}
           setInfoButtonClicked={setInfoButtonClicked}
         />
