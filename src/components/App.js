@@ -81,10 +81,10 @@ export default function App({ arrowClickedStack }) {
           `${window.innerWidth * 0.006}px`
         );
         setContainerMarginTop(window.innerWidth * 0.04);
+        getWidth();
+        window.addEventListener('resize', getWidth);
+        return () => window.removeEventListener('resize', getWidth);
       }
-      getWidth();
-      window.addEventListener('resize', getWidth);
-      return () => window.removeEventListener('resize', getWidth);
     }
   });
 
