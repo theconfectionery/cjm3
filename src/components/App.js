@@ -22,7 +22,6 @@ export default function App({ arrowClickedStack }) {
   const videos = useVideos();
   const currentClickId = currentClick[0];
   const [containerMarginTop, setContainerMarginTop] = useState();
-  const [swipe, setSwipe] = useState();
   const [infoButtonClicked, setInfoButtonClicked] = useState(false);
 
   const lightsOffAreas = [
@@ -97,7 +96,6 @@ export default function App({ arrowClickedStack }) {
           currentClickId={currentClickId}
           arrowClickedStack={arrowClickedStack}
           clickEvent={clickEvent}
-          swipe={swipe}
           infoButtonClicked={infoButtonClicked}
           setInfoButtonClicked={setInfoButtonClicked}
         />

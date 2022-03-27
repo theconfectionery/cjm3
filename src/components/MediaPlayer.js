@@ -9,7 +9,6 @@ const MediaPlayer = ({
   arrowClickedStack,
   setCurrentVideoDetails,
   getVideoArray,
-  swipe,
 }) => {
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);

@@ -1,3 +1,4 @@
+import { Slider } from 'materialize-css';
 import React, { useEffect, useRef, useState } from 'react';
 
 const CardStack = ({
@@ -47,30 +48,76 @@ const CardStack = ({
     var slideTotal = slide.length - 1;
     var slideCurrent = -1;
 
+    // functions for swiping the card carousel
+    let touchstartX = {
+      value: 0,
+      className: '',
+    };
+    let touchendX = 0;
+
+    function handleGesture() {
+      if (touchendX < touchstartX.value) {
+        slideRight();
+      }
+      if (touchendX > touchstartX.value) {
+        slideLeft();
+      }
+      touchstartX.value = 0;
+      touchstartX.className = '';
+      touchendX = 0;
+    }
+    function addTouchstartPosition(e) {
+      if (
+        e.target.className.includes('slider-left') ||
+        e.target.className.includes('slider-right')
+      ) {
+        touchstartX.value = e.changedTouches[0].screenX;
+        touchstartX.className = e.target.className;
+      }
+    }
+
+    function addTouchendPosition(e) {
+      if (
+        touchstartX.className === 'slider-left' ||
+        touchstartX.className === 'slider-right'
+      ) {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+      }
+    }
+
     function initArrows() {
       // if arrow DOM nodes exist, assign event listeners to them; if arrow DOM nodes do not exist, create the elements and assign event listeners to them, append to screenArea
       if (!!document.getElementsByClassName('slider-left').length) {
         const leftArrow = document.querySelector('.slider-left');
         const rightArrow = document.querySelector('.slider-right');
-        leftArrow.addEventListener('click', () => {
-          slideLeft();
-        });
-        rightArrow.addEventListener('click', () => {
-          slideRight();
-        });
+        leftArrow.addEventListener('click', slideLeft);
+        rightArrow.addEventListener('click', slideRight);
+        screenArea.addEventListener('touchstart', addTouchstartPosition);
+        screenArea.addEventListener('touchend', addTouchendPosition);
+        return () => {
+          document.removeEventListener('click', slideLeft);
+          document.removeEventListener('click', slideRight);
+          screenArea.removeEventListener('touchstart', addTouchstartPosition);
+          screenArea.removeEventListener('touchend', addTouchendPosition);
+        };
       } else {
         const leftArrow = document.createElement('a');
-        leftArrow.classList.add('slider-left');
         const rightArrow = document.createElement('a');
-        leftArrow.addEventListener('click', () => {
-          slideLeft();
-        });
+        leftArrow.classList.add('slider-left');
         rightArrow.classList.add('slider-right');
-        rightArrow.addEventListener('click', () => {
-          slideRight();
-        });
+        leftArrow.addEventListener('click', slideLeft);
+        rightArrow.addEventListener('click', slideRight);
+        screenArea.addEventListener('touchstart', addTouchstartPosition);
+        screenArea.addEventListener('touchend', addTouchendPosition);
         screenArea.appendChild(leftArrow);
         screenArea.appendChild(rightArrow);
+        return () => {
+          document.removeEventListener('click', slideLeft);
+          document.removeEventListener('click', slideRight);
+          screenArea.removeEventListener('touchstart', addTouchstartPosition);
+          screenArea.removeEventListener('touchend', addTouchendPosition);
+        };
       }
     }
 

@@ -11,7 +11,6 @@ const Screen = ({
   currentClickId,
   arrowClickedStack,
   clickEvent,
-  swipe,
   infoButtonClicked,
   setInfoButtonClicked,
 }) => {
@@ -154,7 +153,6 @@ const Screen = ({
           arrowClickedStack={arrowClickedStack}
           setCurrentVideoDetails={setVideoDetails}
           getVideoArray={getVideoArray}
-          swipe={swipe}
         />
       );
     } else if (showWebpage) {
