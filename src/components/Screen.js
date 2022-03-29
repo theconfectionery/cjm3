@@ -10,9 +10,6 @@ const Screen = ({
   videos,
   currentClickId,
   arrowClickedStack,
-  clickEvent,
-  infoButtonClicked,
-  setInfoButtonClicked,
 }) => {
   const [showCards, setShowCards] = useState(false);
   const [showWebpage, setShowWebpage] = useState(false);
@@ -26,10 +23,6 @@ const Screen = ({
   });
   const prevClickId = usePrevious(currentClickId);
   const { playVideo } = videoDetails;
-
-
-  console.log(clickEvent);
-
 
   const showCardBtns = ['infoBtn', 'contactBtn', 'screenArea'];
   const hideCardBtns = [
@@ -52,11 +45,8 @@ const Screen = ({
   ];
 
   useEffect(() => {
-    if (showCardBtns.includes(currentClickId) && !showCards) {
-      setShowCards(prevState => {return !prevState});
-      if (currentClickId === 'infoBtn') {
-        // setInfoBtnClicked(true);
-      }
+    if (showCardBtns.includes(currentClickId)) {
+      setShowCards(true);
     }
 
     // clicking outside hides card stack
@@ -73,7 +63,7 @@ const Screen = ({
     //   setInfoBtnClicked(false);
     //   setContactBtnClicked(false);
     // }
-  }, [currentClickId, clickEvent, showCards]);
+  }, [currentClickId]);
 
   useEffect(() => {
     if (currentClickId === 'btn8') {
@@ -136,9 +126,7 @@ const Screen = ({
     <CardStack
       cards={cards}
       showCards={showCards}
-      setShowCards={setShowCards}
       currentClickId={currentClickId}
-      clickEvent={clickEvent}
     />
   ) : null;
 

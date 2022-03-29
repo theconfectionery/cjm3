@@ -22,8 +22,6 @@ export default function App({ arrowClickedStack }) {
   const videos = useVideos();
   const currentClickId = currentClick[0];
   const [containerMarginTop, setContainerMarginTop] = useState();
-  const [swipe, setSwipe] = useState();
-  const [infoButtonClicked, setInfoButtonClicked] = useState(false);
 
   const lightsOffAreas = [
     'btn1',
@@ -71,6 +69,7 @@ export default function App({ arrowClickedStack }) {
     setClickEvent(e);
   };
 
+  // because website gets scaled responsively, have to increase video elements so they dont look to small on desktop
   useEffect(() => {
     function getWidth() {
       let bodyStyles = document.body.style;
@@ -96,10 +95,6 @@ export default function App({ arrowClickedStack }) {
           videos={videos}
           currentClickId={currentClickId}
           arrowClickedStack={arrowClickedStack}
-          clickEvent={clickEvent}
-          swipe={swipe}
-          infoButtonClicked={infoButtonClicked}
-          setInfoButtonClicked={setInfoButtonClicked}
         />
       </div>
       <div
@@ -134,7 +129,6 @@ export default function App({ arrowClickedStack }) {
         <button
           className="truffle-button truffle-button_info"
           id="infoBtn"
-          onClick={() => setInfoButtonClicked(true)}
         ></button>
         <button
           className="truffle-button truffle-button_contact"

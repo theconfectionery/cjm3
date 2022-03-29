@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import 'bootstrap/dist/css/bootstrap.css';
+import { VrVideo } from './VrVideo';
+import 'videojs-youtube';
+import Player from '@vimeo/player';
+import VrTestVideo from '../vr-test.mp4';
 
 const MediaPlayer = ({
   currentClickId,
@@ -129,18 +133,49 @@ const MediaPlayer = ({
     });
   });
 
-  // useEffect(
-  //   i => {
-  //     if (i === currentVideoIndex) {
-  //       // setIsVideoPlaying(true);
-  //     } else {
-  //       // setIsVideoPlaying(false);
-  //     }
-  //   },
-  //   [currentVideoIndex]
-  // );
+  // const playerRef = React.useRef(null);
+
+  // const handlePlayerReady = player => {
+  //   playerRef.current = player;
+
+  //   // you can handle player events here
+  //   player.on('waiting', () => {
+  //     console.log('player is waiting');
+  //   });
+
+  //   player.on('dispose', () => {
+  //     console.log('player will dispose');
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   const options = {
+  //     url: 'https://vimeo.com/690111491/51eded40c3',
+  //     loop: true,
+  //   };
+  //   const vrDiv = document.querySelector('.vr-div');
+  //   const player = new Player(vrDiv, options);
+  //   console.log(currentVideoArray);
+
+  //   player.on('play', function () {
+  //     console.log('played the video!');
+  //   });
+  // }, [currentVideoArray]);
 
   console.log(currentVideoArray);
+  
+  function runVrPlayer(video) {
+    const options = {
+      url: video.embeddedUrl,
+      loop: true,
+    };
+    const vrDiv = document.querySelector('.vr-div');
+    const player = new Player(vrDiv, options);
+
+    player.on('play', function () {
+      console.log('played the video!');
+    });
+  }
 
   const mediaPlayer = (
     <>
@@ -157,17 +192,21 @@ const MediaPlayer = ({
         {currentVideoArray.map((video, i) => {
           return (
             <Carousel.Item key={i}>
-              <ReactPlayer
-                className="react-player"
-                url={video.embeddedUrl}
-                height="100%"
-                width="100%"
-                controls={true}
-                playing={i === currentVideoIndex ? true : false}
-                onEnded={getNextVideo}
-                playsinline={true}
-                muted={true}
-              />
+              {video.is360 ? (
+                <div className="vr-div">{() => runVrPlayer(video)}</div>
+              ) : (
+                <ReactPlayer
+                  className="react-player"
+                  url={video.embeddedUrl}
+                  height="100%"
+                  width="100%"
+                  controls={true}
+                  playing={i === currentVideoIndex ? true : false}
+                  onEnded={getNextVideo}
+                  playsinline={true}
+                  muted={true}
+                />
+              )}
             </Carousel.Item>
           );
         })}
