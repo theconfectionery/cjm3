@@ -133,9 +133,7 @@ const MediaPlayer = ({
     });
   });
 
-
   console.log(currentVideoArray);
-
 
   const mediaPlayer = (
     <>
@@ -151,23 +149,28 @@ const MediaPlayer = ({
       >
         {currentVideoArray.map((video, i) => {
           return (
-            <Carousel.Item key={i}>
-              {video.is360 ? (
-                // <VrPlayer video={video} currentVideoArray={currentVideoArray} />
-                <div></div>
-              ) : (
+            <Carousel.Item
+              key={i}
+              // className={`${currentVideoIndex ? 'active' : ''}`}
+            >
+              {/* {video.is360 ? (
+                <VrPlayer
+                  video={video.embeddedUrl}
+                  currentVideoArray={currentVideoArray}
+                />
+              ) : ( */}
                 <ReactPlayer
                   className="react-player"
                   url={video.embeddedUrl}
-                  height="100%"
-                  width="100%"
+                  height="95%"
+                  width="95%"
                   controls={true}
                   playing={i === currentVideoIndex ? true : false}
                   onEnded={getNextVideo}
                   playsinline={true}
                   muted={true}
                 />
-              )}
+              {/* )} */}
             </Carousel.Item>
           );
         })}
