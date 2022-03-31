@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'normalize.css';
 import '../styling/main.css';
 import Screen from '../components/Screen';
 import { useCards } from '../components/imgs/useCards';
