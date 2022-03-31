@@ -1,7 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import "normalize.css"
-import "../styling/main.css"
 import App from "../components/App"
 
 export default function Home() {
