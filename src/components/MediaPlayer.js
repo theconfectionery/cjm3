@@ -159,16 +159,17 @@ const MediaPlayer = ({
                   currentVideoArray={currentVideoArray}
                 />
               ) : ( */}
-                <ReactPlayer
-                  className="react-player"
-                  url={video.embeddedUrl}
-                  height="95%"
-                  width="95%"
-                  controls={true}
-                  playing={i === currentVideoIndex ? true : false}
-                  onEnded={getNextVideo}
-                  playsinline={true}
-                />
+              <ReactPlayer
+                className="react-player"
+                url={video.embeddedUrl}
+                height="100%"
+                width="100%"
+                controls={true}
+                playing={i === currentVideoIndex ? true : false}
+                onEnded={getNextVideo}
+                playsinline={true}
+                muted={true}
+              />
               {/* )} */}
             </Carousel.Item>
           );

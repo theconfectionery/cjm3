@@ -3,7 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 const CardStack = ({
   cards,
   showCards,
+  setShowCards,
   currentClickId,
+  fadeoutCards,
+  setFadeoutCards,
+  hideCardBtns,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
   const infoCard = cards[0];
@@ -11,13 +15,25 @@ const CardStack = ({
   const nextArea = document.querySelector('#screenRight');
   const prevArea = document.querySelector('#screenLeft');
 
-  // slide up intro event
+  // fade in animation when opening cardstaack
   useEffect(() => {
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
       container.style.opacity = '1';
     }, 500);
   }, [showCards]);
+
+  // fade out animation when closing cardstack
+  useEffect(() => {
+    if (fadeoutCards) {
+      setFadeoutCards(false);
+      const container = document.querySelector('.slider-container');
+      container.style.opacity = '0';
+      setTimeout(() => {
+        setShowCards(false);
+      }, 700);
+    }
+  }, [fadeoutCards]);
 
   // Carousel JS
   useEffect(() => {
@@ -65,6 +81,7 @@ const CardStack = ({
       }
     }
 
+    // creating arrow nodes and making them clickable/swipeable
     function initArrows() {
       // if arrow DOM nodes exist, assign event listeners to them; if arrow DOM nodes do not exist, create the elements and assign event listeners to them, append to screenArea
       if (!!document.getElementsByClassName('slider-left').length) {
@@ -117,6 +134,8 @@ const CardStack = ({
         goToIndexSlide(slideTotal);
       } else if (currentClickId === 'infoBtn') {
         goToIndexSlide(0);
+      } else if (hideCardBtns.includes(currentClickId)) {
+        return;
       } else {
         slideRight();
       }
@@ -242,7 +261,6 @@ const CardStack = ({
 
     slideInitial();
   }, [currentClickId]);
-
 
   return (
     <>

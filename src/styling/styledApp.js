@@ -9,13 +9,17 @@ export const ScreenContainer = styled.div`
   margin-top: ${props =>
     props.containerMarginTop ? props.containerMarginTop : 0};
 
+  @media (min-width: 550px) {
+    transform: scale(0.85);
+  }
+
   @media (min-width: 700px) {
     transform: scale(0.8);
     margin-right: 5%;
     margin-top: 5%;
   }
 
-    @media (orientation: landscape) and (max-width: 900px) {
+  @media (orientation: landscape) and (max-width: 900px) {
     transform: scale(0.34) translate(-10%, -3%);
   }
 
@@ -25,21 +29,20 @@ export const ScreenContainer = styled.div`
   }
 
   @media (min-width: 1000px) {
-    transform: scale(0.5);
+    transform: scale(0.65);
     margin-right: 30%;
   }
 
   @media (min-width: 1300px) {
-    transform: scale(0.4);
+    transform: scale(0.45);
     margin-right: 30%;
     /* margin-top: 10%; */
   }
 
   @media (min-width: 1800px) {
-    transform: scale(0.3);
+    transform: scale(0.4);
     margin-right: 30%;
   }
-
 
   /*
   @media (orientation: landscape) and (min-width: 900px) {

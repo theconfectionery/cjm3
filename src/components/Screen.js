@@ -5,13 +5,9 @@ import { usePrevious } from './utils';
 
 const fakeVideo = { embeddedUrl: '' };
 
-const Screen = ({
-  cards,
-  videos,
-  currentClickId,
-  arrowClickedStack,
-}) => {
+const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   const [showCards, setShowCards] = useState(false);
+  const [fadeoutCards, setFadeoutCards] = useState(false);
   const [showWebpage, setShowWebpage] = useState(false);
   const getVideoArray = currentClickId => {
     return videos[currentClickId] || [fakeVideo];
@@ -45,13 +41,19 @@ const Screen = ({
   ];
 
   useEffect(() => {
+    setTimeout(() => {
+      setShowCards(true);
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
       setShowCards(true);
     }
 
     // clicking outside hides card stack
     if (showCards && !showCardBtns.includes(currentClickId)) {
-      setShowCards(false);
+      setFadeoutCards(true);
     }
 
     // // for 'toggling' the card stack if you click the info buttons while on info card
@@ -126,7 +128,11 @@ const Screen = ({
     <CardStack
       cards={cards}
       showCards={showCards}
+      setShowCards={setShowCards}
       currentClickId={currentClickId}
+      fadeoutCards={fadeoutCards}
+      setFadeoutCards={setFadeoutCards}
+      hideCardBtns={hideCardBtns}
     />
   ) : null;
 
