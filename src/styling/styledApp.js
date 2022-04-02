@@ -33,6 +33,10 @@ export const ScreenContainer = styled.div`
     margin-right: 30%;
   }
 
+   @media (min-width: 1150px) {
+    transform: scale(0.5);
+  }
+
   @media (min-width: 1300px) {
     transform: scale(0.45);
     margin-right: 30%;
