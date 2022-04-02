@@ -8,42 +8,42 @@ require('dotenv').config({
   path: `.env`,
 });
 
-/**
- * The currently active environment.
- * This is used to set the corresponding Tag Manager environment config.
- */
-const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
-console.log(`Using environment config: '${activeEnv}'`);
+// /**
+//  * The currently active environment.
+//  * This is used to set the corresponding Tag Manager environment config.
+//  */
+// const activeEnv =
+//   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+// console.log(`Using environment config: '${activeEnv}'`);
 
-// The Tag Manager Container ID.
-const gtmContainerId = 'GTM-MC7WV3M';
+// // The Tag Manager Container ID.
+// const gtmContainerId = 'GTM-MC7WV3M';
 
-/**
- * Tag Manager Environment values to configure gatsby-plugin-google-tagmanager.
- * null values will cause the default (live/production) snippet to load.
- */
-const gtmEnv = {
-  // If tag manager plugin is configured with includeInDevelopment set to
-  // true then you should create a corresponding Development environment in
-  // Tag Manager and replace the null values with the container environment
-  // auth and preview values. Otherwise the production snippet will load.
-  development: {
-    gtmAuth: null,
-    gtmPreview: null,
-  },
+// /**
+//  * Tag Manager Environment values to configure gatsby-plugin-google-tagmanager.
+//  * null values will cause the default (live/production) snippet to load.
+//  */
+// const gtmEnv = {
+//   // If tag manager plugin is configured with includeInDevelopment set to
+//   // true then you should create a corresponding Development environment in
+//   // Tag Manager and replace the null values with the container environment
+//   // auth and preview values. Otherwise the production snippet will load.
+//   development: {
+//     gtmAuth: null,
+//     gtmPreview: null,
+//   },
 
-  staging: {
-    gtmAuth: 'Cg319kjsWc6vaqZmLPIw3w',
-    gtmPreview: 'env-3',
-  },
+//   staging: {
+//     gtmAuth: 'Cg319kjsWc6vaqZmLPIw3w',
+//     gtmPreview: 'env-3',
+//   },
 
-  // According to GTM docs you should use standard tag for prod so we'll set to null.
-  production: {
-    gtmAuth: null,
-    gtmPreview: null,
-  },
-};
+//   // According to GTM docs you should use standard tag for prod so we'll set to null.
+//   production: {
+//     gtmAuth: null,
+//     gtmPreview: null,
+//   },
+// };
 
 // .${process.env.NODE_ENV}
 
@@ -57,10 +57,10 @@ module.exports = {
       options: {
         id: 'GTM-MC7WV3M',
         includeInDevelopment: false,
-        // Defaults to false
-        enableWebVitalsTracking: true,
-        // Defaults to https://www.googletagmanager.com
-        selfHostedOrigin: 'YOUR_SELF_HOSTED_ORIGIN',
+        // // Defaults to false
+        // enableWebVitalsTracking: true,
+        // // Defaults to https://www.googletagmanager.com
+        // selfHostedOrigin: 'YOUR_SELF_HOSTED_ORIGIN',
       },
     },
     `gatsby-plugin-react-helmet`,
