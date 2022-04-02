@@ -52,6 +52,17 @@ module.exports = {
     title: `Confectionery`,
   },
   plugins: [
+     {
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "GTM-MC7WV3M",
+      includeInDevelopment: false,
+      // Defaults to false
+      enableWebVitalsTracking: true,
+      // Defaults to https://www.googletagmanager.com
+      selfHostedOrigin: "YOUR_SELF_HOSTED_ORIGIN",
+    },
+  },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -95,16 +106,16 @@ module.exports = {
         generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       },
     },
-    {
-      resolve: 'gatsby-plugin-google-tagmanager',
-      options: {
-        id: gtmContainerId,
-        includeInDevelopment: false,
+    // {
+    //   resolve: 'gatsby-plugin-google-tagmanager',
+    //   options: {
+    //     id: gtmContainerId,
+    //     includeInDevelopment: false,
 
-        // GTM environment details.
-        gtmAuth: gtmEnv[activeEnv].gtmAuth,
-        gtmPreview: gtmEnv[activeEnv].gtmPreview,
-      },
+    //     // GTM environment details.
+    //     gtmAuth: gtmEnv[activeEnv].gtmAuth,
+    //     gtmPreview: gtmEnv[activeEnv].gtmPreview,
+    //   },
     },
   ],
 };
