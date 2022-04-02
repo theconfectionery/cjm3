@@ -62,7 +62,8 @@ module.exports = {
         // Defaults to https://www.googletagmanager.com
         selfHostedOrigin: 'YOUR_SELF_HOSTED_ORIGIN',
       },
-    }`gatsby-plugin-react-helmet`,
+    },
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
