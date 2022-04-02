@@ -52,18 +52,17 @@ module.exports = {
     title: `Confectionery`,
   },
   plugins: [
-     {
-    resolve: "gatsby-plugin-google-tagmanager",
-    options: {
-      id: "GTM-MC7WV3M",
-      includeInDevelopment: false,
-      // Defaults to false
-      enableWebVitalsTracking: true,
-      // Defaults to https://www.googletagmanager.com
-      selfHostedOrigin: "YOUR_SELF_HOSTED_ORIGIN",
-    },
-  },
-    `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-MC7WV3M',
+        includeInDevelopment: false,
+        // Defaults to false
+        enableWebVitalsTracking: true,
+        // Defaults to https://www.googletagmanager.com
+        selfHostedOrigin: 'YOUR_SELF_HOSTED_ORIGIN',
+      },
+    }`gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -116,6 +115,6 @@ module.exports = {
     //     gtmAuth: gtmEnv[activeEnv].gtmAuth,
     //     gtmPreview: gtmEnv[activeEnv].gtmPreview,
     //   },
-    },
+    // },
   ],
 };
