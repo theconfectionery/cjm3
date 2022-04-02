@@ -10,10 +10,10 @@ const CardStack = ({
   hideCardBtns,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
-  const infoCard = cards[0];
-  const contactCard = cards.length - 1;
-  const nextArea = document.querySelector('#screenRight');
-  const prevArea = document.querySelector('#screenLeft');
+  // const infoCard = cards[0];
+  // const contactCard = cards.length - 1;
+  // const nextArea = document.querySelector('#screenRight');
+  // const prevArea = document.querySelector('#screenLeft');
 
   // fade in animation when opening cardstaack
   useEffect(() => {
@@ -37,7 +37,7 @@ const CardStack = ({
 
   // Carousel JS
   useEffect(() => {
-    const noArrows = false;
+    // const noArrows = false;
     const screenArea = document.querySelector('.screenArea');
     var slide = document.querySelectorAll('.slider-single');
     var slideTotal = slide.length - 1;

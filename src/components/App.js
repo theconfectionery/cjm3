@@ -13,12 +13,11 @@ import { useVideos } from '../components/imgs/useVideos';
 // const TruffleImageMap = loadable(() => import('../components/TruffleImageMap'));
 
 export default function App({ arrowClickedStack }) {
-  const [mapLoaded, setMapLoaded] = useState(false);
   const [lightsOn, setLightsOn] = useState(true);
   const [currentClick, setCurrentClick] = useState(['']);
+  const currentClickId = currentClick[0];
   const cards = useCards();
   const videos = useVideos();
-  const currentClickId = currentClick[0];
   const [containerMarginTop, setContainerMarginTop] = useState();
 
   const lightsOffAreas = [
@@ -66,7 +65,7 @@ export default function App({ arrowClickedStack }) {
     }
   };
 
-  // because website gets scaled responsively, have to increase video elements so they dont look to small on desktop
+  // because website gets 'scaled' instead of being 'responsive', have to increase video elements on increase browser width (video elements do not normally scale with rest of page)
   useEffect(() => {
     function getWidth() {
       let bodyStyles = document.body.style;

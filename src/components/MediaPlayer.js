@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import 'bootstrap/dist/css/bootstrap.css';
-// import { VrVideo } from './VrVideo';
 import 'videojs-youtube';
 import VrTestVideo from '../vr-test.mp4';
 import VrPlayer from './VrPlayer';
@@ -17,6 +16,7 @@ const MediaPlayer = ({
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
+  // set video index to 0 when changing truffle buttons
   useEffect(() => {
     setCurrentVideoIndex(0);
   }, [currentVideoDetails]);
@@ -66,7 +66,7 @@ const MediaPlayer = ({
       });
     }
   };
-
+  // enables swiping for videos
   useEffect(() => {
     let touchstartX = {
       value: 0,
@@ -112,6 +112,7 @@ const MediaPlayer = ({
     };
   });
 
+  // only enables the left/right buttons above 900px
   useEffect(() => {
     const windowWidth = window.matchMedia('(min-width: 900px)');
 
@@ -125,6 +126,7 @@ const MediaPlayer = ({
     }
   });
 
+  // enables carousel indicator lines
   useEffect(() => {
     const carouselIndicators = document.querySelector('.carousel-indicators');
     const carouselButtons = carouselIndicators.querySelectorAll(
