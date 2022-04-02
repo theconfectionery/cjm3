@@ -396,7 +396,6 @@ path {
   transform: translateY(-50%);
   padding: 20px 15px;
   margin-left: -2px;
-  border: 1px solid red;
 }
 .slider-container .not-visible {
   display: none !important;
