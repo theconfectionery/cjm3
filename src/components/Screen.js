@@ -90,6 +90,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
 
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
+      setFadeoutCards(false);
       if (!playVideo) {
         setVideoDetails({
           videoIndex: 0,

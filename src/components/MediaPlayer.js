@@ -17,6 +17,10 @@ const MediaPlayer = ({
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
+  useEffect(() => {
+    setCurrentVideoIndex(0);
+  }, [currentVideoDetails]);
+
   const getNextVideo = () => {
     // increase index
     if (playVideo && currentVideoIndex < currentVideoArray.length - 1) {
@@ -132,8 +136,6 @@ const MediaPlayer = ({
       });
     });
   });
-
-  console.log(currentVideoArray);
 
   const mediaPlayer = (
     <>
