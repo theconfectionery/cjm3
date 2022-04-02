@@ -170,7 +170,6 @@ const MediaPlayer = ({
                 playing={i === currentVideoIndex ? true : false}
                 onEnded={getNextVideo}
                 playsinline={true}
-                muted={true}
               />
               {/* )} */}
             </Carousel.Item>
