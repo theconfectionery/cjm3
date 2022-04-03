@@ -172,7 +172,7 @@ const MediaPlayer = ({
                 onEnded={getNextVideo}
                 playsinline={true}
                 // muted={true}
-                light
+                // light
               />
               {/* )} */}
             </Carousel.Item>
