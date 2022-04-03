@@ -112,7 +112,7 @@ const MediaPlayer = ({
 
   // only enables the left/right buttons above 900px
   useEffect(() => {
-    const windowWidth = window.matchMedia('(min-width: 900px)');
+    const windowWidth = window.matchMedia('(min-width: 500px)');
 
     if (windowWidth.matches) {
       if (currentClickId === 'leftArrow' || currentClickId === 'rightArrow') {
@@ -137,8 +137,23 @@ const MediaPlayer = ({
     });
   });
 
+  useEffect(() => {
+    console.log('changed video array')
+    const blackOverlay = document.querySelector('.black-overlay');
+    blackOverlay.style.display = 'block';
+    console.log('hewwo');
+    setTimeout(() => {
+      blackOverlay.classList.add('black-overlay_hidden');
+    }, 500);
+    setTimeout(() => {
+      blackOverlay.style.display = 'none';
+      blackOverlay.classList.remove('black-overlay_hidden');
+    }, 1000);
+  }, [currentVideoArray]);
+
   const mediaPlayer = (
     <>
+      <div className="black-overlay"></div>
       <div
         className="video-swipe video-swipe_right"
         id="video-swipe-right"
@@ -172,7 +187,7 @@ const MediaPlayer = ({
                 onEnded={getNextVideo}
                 playsinline={true}
                 // muted={true}
-                light
+                light={(i === currentVideoIndex || i === currentVideoIndex + 1 || i === currentVideoIndex - 1) ? true : false}
               />
               {/* )} */}
             </Carousel.Item>

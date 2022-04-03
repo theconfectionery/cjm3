@@ -37,8 +37,6 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     'btn13',
     'bgImageLight',
     'bgImageDark',
-    // 'bgAreaLeft',
-    // 'bgAreaRight',
   ];
 
   useEffect(() => {
