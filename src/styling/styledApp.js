@@ -16,7 +16,7 @@ export const ScreenContainer = styled.div`
   @media (min-width: 700px) {
     transform: scale(0.8);
     margin-right: 5%;
-    margin-top: 5%;
+    margin-top: 20%;
   }
 
   @media (orientation: landscape) and (max-width: 900px) {
@@ -40,7 +40,7 @@ export const ScreenContainer = styled.div`
   @media (min-width: 1300px) {
     transform: scale(0.45);
     margin-right: 30%;
-    /* margin-top: 10%; */
+    margin-top: 10%;
   }
 
   @media (min-width: 1800px) {
