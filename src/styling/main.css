@@ -77,11 +77,11 @@ body {
 .screenArea {
   position: absolute;
   outline: none;
-  width: 26.6%;
+  width: 26.85%;
   height: 25%;
   z-index: 10000;
-  top: 21.5%;
-  left: 32.4%;
+  top: 21.46%;
+  left: 32.3%;
   aspect-ratio: 16/9;
   display: flex;
   justify-content: center;
@@ -462,111 +462,22 @@ path {
   right: 0;
 }
 
+/* External Webpage */
+
 .external-webpage {
   overflow: hidden;
   border: 1px solid black;
   width: 100%;
   height: 90%;
   border-radius: 1%;
+  opacity: 0;
+  transition: opacity 0.7s ease;
 }
 
-.vr-div {
+/* Vr Player */
+
+.vr-player {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
-.vr-div > iframe {
-  width: 100%;
-  height: 95%;
-  border-radius: 3%;
-}
-
-/* @media screen and (max-width: 1600px) {
-  #svg-image {
-    min-width: 150%;
-  }
-
-  .screenArea {
-    width: 31.792629606%;
-    top: 50%;
-    left: 50%;
-  }
-} */
-
-/* @media screen and (max-width: 500px) {
-  #svg-image {
-    min-width: 325%;
-    left: 64%;
-  }
-} */
-
-/* @media screen and (max-width: 800px) and (orientation: landscape) {
-  #svg-image {
-    top: 63%;
-    left: 57%;
-    height: auto;
-    width: 175%;
-  }
-} */
-
-/*
-
-@media screen and (max-width: 2500px) {
-  .main {
-    transform: scale(.3) translate(0, -4%);
-  }
-
-  /* .screenArea {
-    background: blue;
-  } 
-}
-
-@media screen and (max-width: 1700px) {
-  .main {
-    transform: scale(1.2) translate(0, 1%);
-  }
-
-  /* .screenArea {
-    background: green;
-  } 
-}
-
-@media screen and (max-width: 1300px) {
-  .main {
-    transform: scale(1.8) translate(0, 0);
-  }
-}
-
-@media screen and (max-width: 1100px) {
-  .main {
-    transform: scale(2.3) translate(4%, 4%);
-  }
-  /* .screenArea {
-    background: yellow;
-  } 
-}
-
-@media screen and (max-width: 900px) {
-  .main {
-    transform: scale(2.4) translate(5%, 1.5%);
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .main {
-    transform: scale(3) translate(4%, 2%);
-  }
-  /* .screenArea {
-    background: red;
-  } 
-}
-
-@media screen and (max-width: 500px) {
-  .main {
-    transform: scale(3.3) translate(4.4%, 0);
-  }
-}
-*/

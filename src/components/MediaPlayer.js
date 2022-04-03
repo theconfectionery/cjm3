@@ -3,8 +3,6 @@ import { Carousel } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'videojs-youtube';
-import VrTestVideo from '../vr-test.mp4';
-import VrPlayer from './VrPlayer';
 
 const MediaPlayer = ({
   currentClickId,
@@ -158,10 +156,11 @@ const MediaPlayer = ({
               // className={`${currentVideoIndex ? 'active' : ''}`}
             >
               {/* {video.is360 ? (
-                <VrPlayer
-                  video={video.embeddedUrl}
-                  currentVideoArray={currentVideoArray}
-                />
+                <iframe src={video.embeddedUrl} className="vr-player" />
+                // <VrPlayer
+                //   video={video.embeddedUrl}
+                //   currentVideoArray={currentVideoArray}
+                // />
               ) : ( */}
               <ReactPlayer
                 className="react-player"
@@ -173,6 +172,7 @@ const MediaPlayer = ({
                 onEnded={getNextVideo}
                 playsinline={true}
                 // muted={true}
+                light
               />
               {/* )} */}
             </Carousel.Item>

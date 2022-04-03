@@ -19,7 +19,9 @@ const CardStack = ({
   useEffect(() => {
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
-      container.style.opacity = '1';
+      if (container) {
+        container.style.opacity = '1';
+      }
     }, 500);
   }, [showCards]);
 

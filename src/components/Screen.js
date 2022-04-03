@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardStack from './CardStack';
+import ExternalWebpage from './ExternalWebpage';
 import MediaPlayer from './MediaPlayer';
 import { usePrevious } from './utils';
 
@@ -90,7 +91,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
 
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
-      setShowCards(false)
+      setShowCards(false);
       if (!playVideo) {
         setVideoDetails({
           videoIndex: 0,
@@ -150,13 +151,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
         />
       );
     } else if (showWebpage) {
-      return (
-        <object
-          type="text/html"
-          data="https://www.cine.doctor/"
-          className="external-webpage"
-        ></object>
-      );
+      return <ExternalWebpage />;
     } else {
       return cardStack;
     }
