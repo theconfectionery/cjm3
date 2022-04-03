@@ -20,7 +20,7 @@ export const ScreenContainer = styled.div`
   }
 
   @media (orientation: landscape) and (max-width: 900px) {
-    transform: scale(0.34) translate(-10%, 7%);
+    transform: scale(0.34) translate(-10%, -3%);
   }
 
   @media (min-width: 900px) {
