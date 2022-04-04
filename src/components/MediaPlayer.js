@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import ReactPlayer from 'react-player';
+import PlayerComponent from './PlayerComponent';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'videojs-youtube';
 
@@ -13,6 +13,18 @@ const MediaPlayer = ({
 }) => {
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
+
+  useEffect(() => {
+    const mediaPlayerContainer = document.querySelector(
+      '.media-player-container'
+    );
+    mediaPlayerContainer.style.opacity = 0;
+    if (playVideo) {
+      setTimeout(() => {
+        mediaPlayerContainer.style.opacity = 1;
+      }, 2000);
+    }
+  }, playVideo);
 
   // set video index to 0 when changing truffle buttons
   useEffect(() => {
@@ -138,7 +150,7 @@ const MediaPlayer = ({
   });
 
   useEffect(() => {
-    console.log('changed video array')
+    console.log('changed video array');
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
     console.log('hewwo');
@@ -152,7 +164,7 @@ const MediaPlayer = ({
   }, [currentVideoArray]);
 
   const mediaPlayer = (
-    <>
+    <div className="media-player-container">
       <div className="black-overlay"></div>
       <div
         className="video-swipe video-swipe_right"
@@ -177,24 +189,18 @@ const MediaPlayer = ({
                 //   currentVideoArray={currentVideoArray}
                 // />
               ) : ( */}
-              <ReactPlayer
-                className="react-player"
-                url={video.embeddedUrl}
-                height="100%"
-                width="100%"
-                controls={true}
-                playing={i === currentVideoIndex ? true : false}
-                onEnded={getNextVideo}
-                playsinline={true}
-                // muted={true}
-                light={(i === currentVideoIndex || i === currentVideoIndex + 1 || i === currentVideoIndex - 1) ? true : false}
+              <PlayerComponent
+                video={video}
+                i={i}
+                currentVideoIndex={currentVideoIndex}
+                getNextVideo={getNextVideo}
               />
               {/* )} */}
             </Carousel.Item>
           );
         })}
       </Carousel>
-    </>
+    </div>
   );
 
   return mediaPlayer;

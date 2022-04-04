@@ -125,6 +125,16 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
   });
 
+  function showBlackScreen() {
+    const blackScreen = document.querySelector('.black-screen');
+
+    if (playVideo) {
+      setTimeout(() => {
+        return blackScreen.classList.add('black-screen_visible');
+      }, 500);
+    }
+  }
+
   const cardStack = showCards ? (
     <CardStack
       cards={cards}
