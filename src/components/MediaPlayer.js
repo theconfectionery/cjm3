@@ -176,6 +176,12 @@ const MediaPlayer = ({
         controls={false}
         activeIndex={currentVideoIndex}
       >
+        <Carousel.Item>
+          <iframe
+            src="https://iframe.dacast.com/vod/55a0a9cd-17b9-d489-d360-590b5a7f14dc/ba7fb9e9-ad42-23e0-b824-cc7986045037"
+            className="vr-player"
+          />
+        </Carousel.Item>
         {currentVideoArray.map((video, i) => {
           return (
             <Carousel.Item
