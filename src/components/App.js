@@ -35,6 +35,7 @@ export default function App({ arrowClickedStack }) {
     'btn12',
     'btn13',
   ];
+  
   const lightsOnAreas = [
     'infoBtn',
     'contactBtn',
@@ -68,11 +69,11 @@ export default function App({ arrowClickedStack }) {
   // because website gets 'scaled' instead of being 'responsive', have to increase video elements on increase browser width (video elements do not normally scale with rest of page)
   useEffect(() => {
     function getWidth() {
-      let bodyStyles = document.body.style;
-      bodyStyles.setProperty(
-        '--indicator-height',
-        `${window.innerWidth * 0.006}px`
-      );
+      // let bodyStyles = document.body.style;
+      // bodyStyles.setProperty(
+      //   '--indicator-height',
+      //   `${window.innerWidth * 0.006}px`
+      // );
       setContainerMarginTop(window.innerWidth * 0.04);
     }
     getWidth();

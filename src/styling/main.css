@@ -449,7 +449,7 @@ path {
 
 .carousel-indicators button[type='button'] {
   width: 100%;
-  height: var(--indicator-height);
+  height: 3px;
   opacity: 1;
   background-color: #062734;
 }

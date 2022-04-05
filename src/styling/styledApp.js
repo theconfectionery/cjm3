@@ -6,6 +6,7 @@ export const ScreenContainer = styled.div`
   margin-left: 29%;
   margin-right: 0;
   margin-bottom: 0;
+  transition: margin-left 1s ease;
   /* margin-top: ${props =>
     props.containerMarginTop ? props.containerMarginTop : 0}px; */
 
