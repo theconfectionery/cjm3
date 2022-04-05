@@ -510,3 +510,8 @@ path {
   height: 100%;
   display: flex;
 }
+
+.vr-player iframe {
+  width: 100% !important;
+  height: 100% !important;
+}

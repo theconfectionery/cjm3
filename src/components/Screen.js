@@ -14,7 +14,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     return videos[currentClickId] || [fakeVideo];
   };
   const [videoDetails, setVideoDetails] = useState({
-    playVideo: true,
+    playVideo: false,
     videoIndex: 0,
     currentVideoArray: getVideoArray(currentClickId),
   });

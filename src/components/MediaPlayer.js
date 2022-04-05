@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import PlayerComponent from './PlayerComponent';
+import VimeoPlayer from './VimeoPlayer';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'videojs-youtube';
 
@@ -150,7 +151,6 @@ const MediaPlayer = ({
   });
 
   useEffect(() => {
-    console.log('changed video array');
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
     console.log('hewwo');
@@ -176,32 +176,37 @@ const MediaPlayer = ({
         controls={false}
         activeIndex={currentVideoIndex}
       >
-        <Carousel.Item>
-          <iframe
-            src="https://iframe.dacast.com/vod/55a0a9cd-17b9-d489-d360-590b5a7f14dc/ba7fb9e9-ad42-23e0-b824-cc7986045037"
-            className="vr-player"
-          />
-        </Carousel.Item>
         {currentVideoArray.map((video, i) => {
           return (
             <Carousel.Item
               key={i}
               // className={`${currentVideoIndex ? 'active' : ''}`}
             >
-              {/* {video.is360 ? (
-                <iframe src={video.embeddedUrl} className="vr-player" />
+              {video.is360 ? (
+                <>
+                  {video.embeddedUrl.includes('vimeo.com') ? (
+                    <VimeoPlayer
+                      url={video.embeddedUrl}
+                      className="vr-player"
+                    />
+                  ) : (
+                    <div className="vr-player">
+                      <iframe src={video.embeddedUrl} />
+                    </div>
+                  )}
+                </>
+              ) : (
                 // <VrPlayer
                 //   video={video.embeddedUrl}
                 //   currentVideoArray={currentVideoArray}
                 // />
-              ) : ( */}
-              <PlayerComponent
-                video={video}
-                i={i}
-                currentVideoIndex={currentVideoIndex}
-                getNextVideo={getNextVideo}
-              />
-              {/* )} */}
+                <PlayerComponent
+                  video={video}
+                  i={i}
+                  currentVideoIndex={currentVideoIndex}
+                  getNextVideo={getNextVideo}
+                />
+              )}
             </Carousel.Item>
           );
         })}
