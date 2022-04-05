@@ -173,8 +173,11 @@ const MediaPlayer = ({
       <div className="video-swipe video-swipe_left" id="video-swipe-left"></div>
       <Carousel
         interval={null}
-        controls={false}
         activeIndex={currentVideoIndex}
+        controls={false}
+        onSelect={eventKey => {
+          setCurrentVideoIndex(eventKey);
+        }}
       >
         {currentVideoArray.map((video, i) => {
           return (
