@@ -153,14 +153,19 @@ const MediaPlayer = ({
   useEffect(() => {
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
-    console.log('hewwo');
     setTimeout(() => {
       blackOverlay.classList.add('black-overlay_hidden');
-    }, 500);
+    }, 550);
     setTimeout(() => {
       blackOverlay.style.display = 'none';
       blackOverlay.classList.remove('black-overlay_hidden');
-    }, 1000);
+    }, 1100);
+
+    // const carousel = document.querySelector('.carousel-inner');
+    // carousel.classList.remove('carousel-inner_visible');
+    // setTimeout(() => {
+    //   carousel.classList.add('carousel-inner_visible');
+    // }, 100);
   }, [currentVideoArray]);
 
   const mediaPlayer = (
@@ -199,10 +204,6 @@ const MediaPlayer = ({
                   )}
                 </>
               ) : (
-                // <VrPlayer
-                //   video={video.embeddedUrl}
-                //   currentVideoArray={currentVideoArray}
-                // />
                 <PlayerComponent
                   video={video}
                   i={i}

@@ -6,9 +6,31 @@ export const ScreenContainer = styled.div`
   margin-left: 29%;
   margin-right: 0;
   margin-bottom: 0;
-  margin-top: ${props =>
-    props.containerMarginTop ? props.containerMarginTop : 0}px;
+  transition: margin-left 1s ease;
+  /* margin-top: ${props =>
+    props.containerMarginTop ? props.containerMarginTop : 0}px; */
 
+  @media (min-width: 550px) {
+    min-width: 1793px;
+    margin-left: 158px;
+  }
+
+  @media (orientation: landscape) and (hover: none) and (pointer: coarse) and (max-width: 1000px) {
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  @media (orientation: portrait) and (hover: none) and (pointer: coarse) and (max-width: 1440px) 
+  and (min-width: 768px) 
+  {
+    transform: scale(1.2);
+  }
+
+  @media (min-width: 1440px) {
+    margin-left: 0;
+  }
+
+  /* 
   @media (min-width: 550px) {
     transform: scale(0.85);
   }
@@ -46,7 +68,7 @@ export const ScreenContainer = styled.div`
   @media (min-width: 1800px) {
     transform: scale(0.4);
     margin-right: 30%;
-  }
+  } */
 
   /*
   @media (orientation: landscape) and (min-width: 900px) {
