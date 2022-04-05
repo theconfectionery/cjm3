@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 export default function VimeoPlayer({ url }) {
   const [info, setInfo] = useState('');
   useEffect(() => {
-    fetch('https://vimeo.com/api/oembed.json?url=' + url)
+    fetch('https://vimeo.com/api/oembed.json?url=' + url + '&playsinline=true')
       .then(res => res.json())
       .then(res => {
         console.log(res);
