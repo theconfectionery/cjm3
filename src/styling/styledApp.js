@@ -20,6 +20,12 @@ export const ScreenContainer = styled.div`
     margin-left: 0;
   }
 
+  @media (orientation: portrait) and (hover: none) and (pointer: coarse) and (max-width: 1440px) 
+  and (min-width: 768px) 
+  {
+    transform: scale(1.2);
+  }
+
   @media (min-width: 1440px) {
     margin-left: 0;
   }

@@ -159,7 +159,7 @@ const MediaPlayer = ({
     setTimeout(() => {
       blackOverlay.style.display = 'none';
       blackOverlay.classList.remove('black-overlay_hidden');
-    }, 600);
+    }, 1100);
 
     // const carousel = document.querySelector('.carousel-inner');
     // carousel.classList.remove('carousel-inner_visible');
