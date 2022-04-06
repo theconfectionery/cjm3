@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
 export default function PlayerComponent({
@@ -7,26 +7,22 @@ export default function PlayerComponent({
   currentVideoIndex,
   getNextVideo,
 }) {
-  const [showThumbnail, setShowThumbnail] = useState(false);
-  const [play, setPlay] = useState(false);
+  const ref = useRef(null);
   useEffect(() => {
-    setPlay(false);
+    ref.current.showPreview();
   }, [currentVideoIndex, i, video]);
 
   return (
     <ReactPlayer
+      ref={ref}
       className="react-player"
       url={video.embeddedUrl}
       height="100%"
       width="100%"
-      playing={play}
       controls={true}
-      onClickPreview={() => setPlay(true)}
       onEnded={getNextVideo}
       playsinline={true}
-      light={currentVideoIndex === i}
-      onPlay={() => setPlay(true)}
-      onPause={() => setPlay(false)}
+      light={true}
       // muted={true}
     />
   );
