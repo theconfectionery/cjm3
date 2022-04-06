@@ -3,7 +3,6 @@ import { Carousel } from 'react-bootstrap';
 import PlayerComponent from './PlayerComponent';
 import VimeoPlayer from './VimeoPlayer';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'videojs-youtube';
 
 const MediaPlayer = ({
   currentClickId,
@@ -154,7 +153,6 @@ const MediaPlayer = ({
 
   // black overlay to fade in when changing between truffle buttons
   useEffect(() => {
-    console.log(currentVideoArray)
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
     setTimeout(() => {
