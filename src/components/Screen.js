@@ -69,6 +69,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   useEffect(() => {
     if (currentClickId === 'btn8') {
       setShowWebpage(true);
+      setFadeoutCards(false);
     } else {
       setShowWebpage(false);
     }
@@ -87,6 +88,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
   }, [showCards]);
 
+  // handle video details when clicking truffles
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
       setShowCards(false);
@@ -135,6 +137,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
   }
 
+  console.log(showCards);
   const cardStack = showCards ? (
     <CardStack
       cards={cards}
@@ -169,7 +172,9 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     <>
       {determineScreenContent()}
       <div
-        className={`black-screen ${playVideo ? 'black-screen_visible' : ''}`}
+        className={`black-screen ${
+          playVideo || showWebpage ? 'black-screen_visible' : ''
+        }`}
       ></div>
     </>
   );

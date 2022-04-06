@@ -15,6 +15,8 @@ const MediaPlayer = ({
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
+
+  // fade in media player after showing black screen for a moment
   useEffect(() => {
     const mediaPlayerContainer = document.querySelector(
       '.media-player-container'
@@ -23,7 +25,7 @@ const MediaPlayer = ({
     if (playVideo) {
       setTimeout(() => {
         mediaPlayerContainer.style.opacity = 1;
-      }, 2000);
+      }, 1200);
     }
   }, playVideo);
 
@@ -150,7 +152,9 @@ const MediaPlayer = ({
     });
   });
 
+  // black overlay to fade in when changing between truffle buttons
   useEffect(() => {
+    console.log(currentVideoArray)
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
     setTimeout(() => {
@@ -160,12 +164,6 @@ const MediaPlayer = ({
       blackOverlay.style.display = 'none';
       blackOverlay.classList.remove('black-overlay_hidden');
     }, 1100);
-
-    // const carousel = document.querySelector('.carousel-inner');
-    // carousel.classList.remove('carousel-inner_visible');
-    // setTimeout(() => {
-    //   carousel.classList.add('carousel-inner_visible');
-    // }, 100);
   }, [currentVideoArray]);
 
   const mediaPlayer = (
