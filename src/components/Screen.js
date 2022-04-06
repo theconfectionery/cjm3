@@ -137,7 +137,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
   }
 
-  console.log(showCards);
+
   const cardStack = showCards ? (
     <CardStack
       cards={cards}

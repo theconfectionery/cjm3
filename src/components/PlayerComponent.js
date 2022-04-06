@@ -8,15 +8,13 @@ export default function PlayerComponent({
   getNextVideo,
 }) {
   const [showThumbnail, setShowThumbnail] = useState(false);
-
+  const [play, setPlay] = useState(false);
   useEffect(() => {
     if (i === currentVideoIndex) {
       setShowThumbnail(true);
-    } else {
-      setTimeout(() => {
-        setShowThumbnail(false);
-      }, 500);
     }
+
+    setPlay(false);
   }, [currentVideoIndex]);
 
   return (
@@ -26,11 +24,14 @@ export default function PlayerComponent({
       height="100%"
       width="100%"
       controls={true}
-      playing={i === currentVideoIndex ? true : false}
+      playing={play}
       onEnded={getNextVideo}
       playsinline={true}
+      onPlay={() => {
+        setShowThumbnail(false);
+        setPlay(true);
+      }}
       // muted={true}
-      light={showThumbnail ? true : false}
     />
   );
 }
