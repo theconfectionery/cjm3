@@ -27,4 +27,10 @@ The site is hosted on Netlify, and connected to Contentful, from which the clien
 ---
 
 ## ✨ Demo
-(https://www.loom.com/share/c7de178b1d9b476bbb60b6c0817260b0)
+<!-- https://www.loom.com/share/c7de178b1d9b476bbb60b6c0817260b0 -->
+
+
+
+https://user-images.githubusercontent.com/77926563/161951765-e69dc31e-d5fd-4a30-9f1c-92e91103ce74.mp4
+
+
