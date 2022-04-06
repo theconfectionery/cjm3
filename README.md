@@ -22,8 +22,9 @@ The site is hosted on Netlify, and connected to Contentful, from which the clien
 
 ---
 
-### - [Github Link](https://github.com/cjmaret/confectionery)
+### ➡️ [Github Link](https://github.com/cjmaret/confectionery)
 
 ---
 
 ## ✨ Demo
+https://www.loom.com/share/c7de178b1d9b476bbb60b6c0817260b0
