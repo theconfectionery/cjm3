@@ -196,10 +196,15 @@ const MediaPlayer = ({
                     <VimeoPlayer
                       url={video.embeddedUrl}
                       className="vr-player"
+                      currentVideoIndex={currentVideoIndex}
                     />
                   ) : (
                     <div className="vr-player">
-                      <iframe src={video.embeddedUrl} />
+                      <iframe
+                        src={
+                          video.embeddedUrl + '?current=' + currentVideoIndex
+                        }
+                      />
                     </div>
                   )}
                 </>
