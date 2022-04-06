@@ -10,12 +10,8 @@ export default function PlayerComponent({
   const [showThumbnail, setShowThumbnail] = useState(false);
   const [play, setPlay] = useState(false);
   useEffect(() => {
-    if (i === currentVideoIndex) {
-      setShowThumbnail(true);
-    }
-
     setPlay(false);
-  }, [currentVideoIndex]);
+  }, [currentVideoIndex, i, video]);
 
   return (
     <ReactPlayer
@@ -23,14 +19,14 @@ export default function PlayerComponent({
       url={video.embeddedUrl}
       height="100%"
       width="100%"
-      controls={true}
       playing={play}
+      controls={true}
+      onClickPreview={() => setPlay(true)}
       onEnded={getNextVideo}
       playsinline={true}
-      onPlay={() => {
-        setShowThumbnail(false);
-        setPlay(true);
-      }}
+      light={currentVideoIndex === i}
+      onPlay={() => setPlay(true)}
+      onPause={() => setPlay(false)}
       // muted={true}
     />
   );

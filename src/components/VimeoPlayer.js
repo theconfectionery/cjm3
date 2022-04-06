@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-export default function VimeoPlayer({ url }) {
+export default function VimeoPlayer({ url, currentVideoIndex }) {
   const [info, setInfo] = useState('');
+  const [play, setPlay] = useState(false);
   useEffect(() => {
+    setPlay(false);
     fetch('https://vimeo.com/api/oembed.json?url=' + url + '&playsinline=true')
       .then(res => res.json())
       .then(res => {
@@ -12,6 +14,11 @@ export default function VimeoPlayer({ url }) {
   }, [url]);
 
   return (
-    <div className="vr-player" dangerouslySetInnerHTML={{ __html: info }}></div>
+    <>
+      <div
+        className="react-player"
+        dangerouslySetInnerHTML={{ __html: info }}
+      ></div>
+    </>
   );
 }
