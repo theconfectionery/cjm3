@@ -142,7 +142,7 @@ export default function App({ arrowClickedStack }) {
         ></button>
       </div>
       <div className="intro-video-container">
-        <video className="intro-video" muted autoplay playsinline>
+        <video className="intro-video" muted autoplay playsInline>
           <source src={IntroVideo} type="video/mp4" />
         </video>
       </div>
