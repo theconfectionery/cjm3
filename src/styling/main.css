@@ -1,5 +1,4 @@
 :root {
-  --indicator-height: 1.5px;
   background-color: black;
 }
 
@@ -37,24 +36,12 @@ body {
    */
 }
 
-.intro-video {
-  position: absolute;
-  /* top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-  width: 50%;
-  height: 50%;
-  z-index: 99999999;
-}
-
 .background-image {
   position: relative;
   width: 100%;
   opacity: 1;
   transition: opacity 1s ease;
   z-index: 1;
-  transition-delay: 1s;
 }
 
 .background-image_hidden {
@@ -106,7 +93,7 @@ body {
   border-radius: 10%;
   opacity: 0;
   transition: opacity 0.5s ease;
-  transition-delay: 0.7s;
+  transition-delay: 0.1s;
 }
 
 .black-screen_visible {
@@ -254,31 +241,6 @@ body {
   top: 43%;
   left: 33%;
   height: 40%;
-}
-
-#svg-image {
-  height: 100%;
-  /* width: 149.108118vh; 100 * 4096 / 2747 */
-  min-width: 100%;
-  /* min-height: 67.0654297vw; 100 * 2747 / 4096 */
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-path {
-  fill-opacity: 0;
-}
-
-/* Background Light Effect */
-
-#bgLightsOff {
-  transition: opacity 0.7s ease;
-}
-
-.lights-off_hidden {
-  opacity: 0;
 }
 
 /* Card Carousel CSS */
