@@ -6,8 +6,9 @@ import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
 import backgroundImageOn from '../assets/images/background-lights-on.jpg';
 import backgroundImageOff from '../assets/images/background-lights-off.jpg';
-import IntroVideo from '../assets/intro-video.mp4';
+// import IntroVideo from '../assets/intro-video.mp4';
 import { ScreenContainer } from '../styling/styledApp';
+import IntroVideo from './IntroVideo';
 
 import { useVideos } from '../components/imgs/useVideos';
 
@@ -142,24 +143,25 @@ export default function App({ arrowClickedStack }) {
         ></button>
       </div>
       {/* <div className="intro-video-container">
-        <video className="intro-video" muted autoPlay={true} playsInline>
+        <video className="intro-video" muted autoPlay playsInline>
           <source src={IntroVideo} type="video/mp4" />
         </video>
       </div> */}
-      <div
+      {/* <div
         className="intro-video-container"
         dangerouslySetInnerHTML={{
           __html: `
         <video
           muted
-          autoplay
-          playsinline
+          autoPlay
+          playsInline
           src="${IntroVideo}"
           class="intro-video"
         />,
       `,
         }}
-      ></div>
+      ></div> */}
+      <IntroVideo />
       <img
         className={`background-image ${
           lightsOn ? '' : 'background-image_hidden'
