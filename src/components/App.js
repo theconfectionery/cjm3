@@ -141,8 +141,8 @@ export default function App({ arrowClickedStack }) {
           onClick={e => handleClick(e)}
         ></button>
       </div>
-      <div className="intro-video-container">
-        <video className="intro-video" muted autoplay playsInline>
+      <div className="intro-video-container" >
+        <video className="intro-video" muted autoPlay={true} playsInline>
           <source src={IntroVideo} type="video/mp4" />
         </video>
       </div>
