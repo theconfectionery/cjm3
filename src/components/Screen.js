@@ -39,6 +39,8 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     'bgImageDark',
   ];
 
+  const directionBtns = ['leftArrow', 'rightArrow'];
+
   useEffect(() => {
     setTimeout(() => {
       setShowCards(true);
@@ -51,7 +53,11 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
 
     // clicking outside hides card stack
-    if (showCards && !showCardBtns.includes(currentClickId)) {
+    if (
+      showCards &&
+      !showCardBtns.includes(currentClickId) &&
+      !directionBtns.includes(currentClickId)
+    ) {
       setFadeoutCards(true);
     }
 
@@ -136,7 +142,6 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
       }, 500);
     }
   }
-
 
   const cardStack = showCards ? (
     <CardStack

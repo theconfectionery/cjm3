@@ -10,6 +10,7 @@ const CardStack = ({
   hideCardBtns,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
+  const directionBtns = ['leftArrow', 'rightArrow'];
 
   // fade in animation when opening cardstaack
   useEffect(() => {
@@ -123,7 +124,7 @@ const CardStack = ({
         goToIndexSlide(slideTotal);
       });
       infoButton.addEventListener('click', () => {
-        goToIndexSlide(0);
+        slideRight();
       });
 
       // initial clicks related to cardstack, also for clicking back and forth between buttons (not covered by above event listeners)
@@ -131,8 +132,11 @@ const CardStack = ({
       if (currentClickId === 'contactBtn') {
         goToIndexSlide(slideTotal);
       } else if (currentClickId === 'infoBtn') {
-        goToIndexSlide(0);
-      } else if (hideCardBtns.includes(currentClickId)) {
+        slideRight();
+      } else if (
+        hideCardBtns.includes(currentClickId) ||
+        directionBtns.includes(currentClickId)
+      ) {
         return;
       } else {
         slideRight();

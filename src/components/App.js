@@ -56,14 +56,13 @@ export default function App({ arrowClickedStack }) {
   }, [currentClick]);
 
   const handleClick = e => {
-    console.log(e.target.id);
-    if (!e.target.id) {
-      return;
-    }
     setCurrentClick([e.target.id]);
+    console.log(e.target.id);
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
     }
+
+    return false;
   };
 
   return (
@@ -132,13 +131,13 @@ export default function App({ arrowClickedStack }) {
         }`}
         id="bgImageLight"
         src={backgroundImageOn}
-        onClick={e => setLightsOn(!lightsOn)}
+        onClick={e => handleClick(e)}
       />
       <img
         className="background-image background-image-off"
         id="bgImageDark"
         src={backgroundImageOff}
-        onClick={e => setLightsOn(!lightsOn)}
+        onClick={e => handleClick(e)}
       />
     </ScreenContainer>
   );

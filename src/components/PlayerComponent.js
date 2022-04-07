@@ -8,6 +8,7 @@ export default function PlayerComponent({
   getNextVideo,
 }) {
   const ref = useRef(null);
+  const [play, setPlay] = useState(false);
   useEffect(() => {
     ref.current.showPreview();
   }, [currentVideoIndex, i, video]);
@@ -20,6 +21,10 @@ export default function PlayerComponent({
       height="100%"
       width="100%"
       controls={true}
+      playing={play}
+      onPause={() => setPlay(false)}
+      onPlay={() => setPlay(true)}
+      onClickPreview={() => setPlay(true)}
       onEnded={getNextVideo}
       playsinline={true}
       light={true}
