@@ -4,8 +4,8 @@ import '../styling/main.css';
 import Screen from '../components/Screen';
 import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
-import backgroundImageOn from '../background-lights-on.jpg';
-import backgroundImageOff from '../background-lights-off.jpg';
+import backgroundImageOn from '../assets/images/background-lights-on.jpg';
+import backgroundImageOff from '../assets/images/background-lights-off.jpg';
 import { ScreenContainer } from '../styling/styledApp';
 
 import { useVideos } from '../components/imgs/useVideos';
@@ -57,9 +57,12 @@ export default function App({ arrowClickedStack }) {
 
   const handleClick = e => {
     setCurrentClick([e.target.id]);
+    console.log(e.target.id);
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
     }
+
+    return false;
   };
 
   return (
