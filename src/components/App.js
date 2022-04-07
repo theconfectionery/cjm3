@@ -57,9 +57,12 @@ export default function App({ arrowClickedStack }) {
 
   const handleClick = e => {
     setCurrentClick([e.target.id]);
+    console.log(e.target.id);
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
     }
+
+    return false;
   };
 
   return (
