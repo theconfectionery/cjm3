@@ -141,11 +141,25 @@ export default function App({ arrowClickedStack }) {
           onClick={e => handleClick(e)}
         ></button>
       </div>
-      <div className="intro-video-container" >
+      {/* <div className="intro-video-container">
         <video className="intro-video" muted autoPlay={true} playsInline>
           <source src={IntroVideo} type="video/mp4" />
         </video>
-      </div>
+      </div> */}
+      <div
+        className="intro-video-container"
+        dangerouslySetInnerHTML={{
+          __html: `
+        <video
+          muted
+          autoplay
+          playsinline
+          src="${IntroVideo}"
+          class="intro-video"
+        />,
+      `,
+        }}
+      ></div>
       <img
         className={`background-image ${
           lightsOn ? '' : 'background-image_hidden'
