@@ -525,3 +525,31 @@ path {
   width: 100% !important;
   height: 100% !important;
 }
+
+
+.bug-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2%;
+  background-color: black;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bug-footer__text {
+  color: white;
+  font-size: 10px;
+  margin: 0;
+  text-decoration: none;
+  transition: opacity 0.4s ease;
+}
+
+.bug-footer__text:hover {
+  cursor: pointer;
+  color: white;
+  opacity: 0.7;
+}
