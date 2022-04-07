@@ -10,6 +10,7 @@ export default function PlayerComponent({
   const ref = useRef(null);
   const [play, setPlay] = useState(false);
   useEffect(() => {
+    setPlay(false);
     ref.current.showPreview();
   }, [currentVideoIndex, i, video]);
 
