@@ -1,22 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+let prevRect = {};
 
 export default function VimeoPlayer({ url, currentVideoIndex }) {
   const [info, setInfo] = useState('');
-  const [play, setPlay] = useState(false);
+  const [rect, setRect] = useState({ width: 400, height: 300 });
+  const ref = useRef(null);
+
   useEffect(() => {
-    setPlay(false);
-    fetch('https://vimeo.com/api/oembed.json?url=' + url + '&playsinline=true')
+    handleSize();
+
+    function handleSize() {
+      const refRect = ref.current.getBoundingClientRect();
+      if (
+        prevRect.width !== refRect.width ||
+        prevRect.height !== refRect.height
+      ) {
+        setRect({ width: refRect.width, height: refRect.height });
+        prevRect = { width: refRect.width, height: refRect.height };
+      }
+    }
+
+    window.addEventListener('resize', handleSize);
+
+    return () => {
+      window.removeEventListener('resize', handleSize);
+    };
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      'https://vimeo.com/api/oembed.json?url=' +
+        url +
+        '&playsinline=true&xhtml=true' +
+        `&width=${rect.width}&height=${rect.height}`
+    )
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         setInfo(res.html);
       });
-  }, [url]);
+  }, [url, rect]);
 
   return (
     <>
       <div
+        ref={ref}
         className="react-player"
+        style={{ width: '100%', height: '100%' }}
         dangerouslySetInnerHTML={{ __html: info }}
       ></div>
     </>
