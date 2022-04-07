@@ -6,6 +6,7 @@ import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
 import backgroundImageOn from '../assets/images/background-lights-on.jpg';
 import backgroundImageOff from '../assets/images/background-lights-off.jpg';
+import IntroVideo from '../assets/intro-video.mp4';
 import { ScreenContainer } from '../styling/styledApp';
 
 import { useVideos } from '../components/imgs/useVideos';
@@ -49,6 +50,19 @@ export default function App({ arrowClickedStack }) {
     }
   };
 
+  // play intro video on load
+  useEffect(() => {
+    const introVideo = document.querySelector('.intro-video');
+    introVideo.play();
+    setTimeout(() => {
+      introVideo.classList.add('intro-video_hidden');
+    }, 2000);
+    setTimeout(() => {
+      introVideo.style.display = 'none';
+    }, 3000);
+  }, []);
+
+  
   useEffect(() => {
     if (currentClickId) {
       toggleLights();
@@ -125,6 +139,11 @@ export default function App({ arrowClickedStack }) {
           onClick={e => handleClick(e)}
         ></button>
       </div>
+      {/* <div className="intro-video-container"> */}
+      <video className="intro-video" muted autoplay>
+        <source src={IntroVideo} type="video/mp4" />
+      </video>
+      {/* </div> */}
       <img
         className={`background-image ${
           lightsOn ? '' : 'background-image_hidden'

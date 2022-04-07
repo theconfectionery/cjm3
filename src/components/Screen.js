@@ -44,7 +44,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   useEffect(() => {
     setTimeout(() => {
       setShowCards(true);
-    }, 2000);
+    }, 3000);
   }, []);
 
   useEffect(() => {
