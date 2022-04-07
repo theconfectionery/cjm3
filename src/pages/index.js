@@ -1,10 +1,10 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import App from "../components/App"
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import App from '../components/App';
 
 export default function Home() {
   // console.log("<<<<RENDERING HOME>>>>>")
-  const arrowClickedStack = []
+  const arrowClickedStack = [];
 
   return (
     <>
@@ -28,7 +28,16 @@ export default function Home() {
       </Helmet>
       <main className="main">
         <App arrowClickedStack={arrowClickedStack} />
+        <div className="bug-footer">
+          <a
+            className="bug-footer__text"
+            href="http://bug.theconfectionery.tv/"
+            target="_blank"
+          >
+            BETA RELEASE 54.73 Click here to report a bug
+          </a>
+        </div>
       </main>
     </>
-  )
+  );
 }

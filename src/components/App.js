@@ -4,11 +4,14 @@ import '../styling/main.css';
 import Screen from '../components/Screen';
 import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
-import backgroundImageOn from '../background-lights-on.jpg';
-import backgroundImageOff from '../background-lights-off.jpg';
+import backgroundImageOn from '../assets/images/background-lights-on.jpg';
+import backgroundImageOff from '../assets/images/background-lights-off.jpg';
 import { ScreenContainer } from '../styling/styledApp';
+// import IntroVideoLocal from '../assets/intro-video.mp4';
+import TestVideo from '../vr-test.mp4';
 
 import { useVideos } from '../components/imgs/useVideos';
+import { useIntroVideo } from './imgs/useIntroVideo';
 
 export default function App({ arrowClickedStack }) {
   const [lightsOn, setLightsOn] = useState(true);
@@ -16,6 +19,8 @@ export default function App({ arrowClickedStack }) {
   const currentClickId = currentClick[0];
   const cards = useCards();
   const videos = useVideos();
+  const introVideoContentful = useIntroVideo();
+
 
   const lightsOffAreas = [
     'btn1',
@@ -48,6 +53,21 @@ export default function App({ arrowClickedStack }) {
       setLightsOn(true);
     }
   };
+
+  // play intro video on load
+  useEffect(() => {
+    const introVideo = document.querySelector('.intro-video');
+    const introVideoContainer = document.querySelector(
+      '.intro-video-container'
+    );
+    // introVideo.play();
+    setTimeout(() => {
+      introVideoContainer.classList.add('intro-video-container_hidden');
+    }, 2000);
+    setTimeout(() => {
+      introVideoContainer.style.display = 'none';
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     if (currentClickId) {
@@ -124,6 +144,11 @@ export default function App({ arrowClickedStack }) {
           id="rightArrow"
           onClick={e => handleClick(e)}
         ></button>
+      </div>
+      <div className="intro-video-container">
+        <video className="intro-video" muted loop autoPlay playsInline>
+          <source src={introVideoContentful} type="video/mp4" />
+        </video>
       </div>
       <img
         className={`background-image ${

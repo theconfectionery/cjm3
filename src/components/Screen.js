@@ -44,7 +44,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   useEffect(() => {
     setTimeout(() => {
       setShowCards(true);
-    }, 2000);
+    }, 3000);
   }, []);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
       setFadeoutCards(true);
     }
 
-    // // for 'toggling' the card stack if you click the info buttons while on info card
+    // // for 'toggling' the card stack if you click the info buttons while on info card (doesnt work)
     // if (
     //   showCards &&
     //   ((currentClickId === 'infoBtn' && infoBtnClicked))
@@ -72,6 +72,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     // }
   }, [currentClickId]);
 
+  // show button 8 webpage
   useEffect(() => {
     if (currentClickId === 'btn8') {
       setShowWebpage(true);
