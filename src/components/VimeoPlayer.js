@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 let prevRect = {};
+let loading = false;
 
 export default function VimeoPlayer({ url, currentVideoIndex }) {
   const [info, setInfo] = useState('');
-  const [rect, setRect] = useState({ width: 400, height: 300 });
+  const [rect, setRect] = useState({});
   const ref = useRef(null);
 
   useEffect(() => {
@@ -28,18 +29,33 @@ export default function VimeoPlayer({ url, currentVideoIndex }) {
   }, []);
 
   useEffect(() => {
-    fetch(
-      'https://vimeo.com/api/oembed.json?url=' +
-        url +
-        '&playsinline=true&xhtml=true' +
-        `&width=${rect.width}&height=${rect.height}`
-    )
-      .then(res => res.json())
-      .then(res => {
-        setInfo(res.html);
-      });
+    if (rect.width && rect.height)
+      fetch(
+        'https://vimeo.com/api/oembed.json?url=' +
+          url +
+          '&playsinline=true&xhtml=true' +
+          `&width=${rect.width}&height=${rect.height}`
+      )
+        .then(res => res.json())
+        .then(res => {
+          setInfo(res.html);
+        });
+    else {
+      const refRect = ref.current.getBoundingClientRect();
+      fetch(
+        'https://vimeo.com/api/oembed.json?url=' +
+          url +
+          '&playsinline=true&xhtml=true' +
+          `&width=${refRect.width}&height=${refRect.height}`
+      )
+        .then(res => res.json())
+        .then(res => {
+          setInfo(res.html);
+        });
+    }
   }, [url, rect]);
 
+  console.log(info);
   return (
     <>
       <div
