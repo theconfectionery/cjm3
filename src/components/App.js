@@ -6,11 +6,12 @@ import { useCards } from '../components/imgs/useCards';
 import 'normalize.css';
 import backgroundImageOn from '../assets/images/background-lights-on.jpg';
 import backgroundImageOff from '../assets/images/background-lights-off.jpg';
-// import IntroVideo from '../assets/intro-video.mp4';
 import { ScreenContainer } from '../styling/styledApp';
-import IntroVideo from './IntroVideo';
+// import IntroVideoLocal from '../assets/intro-video.mp4';
+import TestVideo from '../vr-test.mp4';
 
 import { useVideos } from '../components/imgs/useVideos';
+import { useIntroVideo } from './imgs/useIntroVideo';
 
 export default function App({ arrowClickedStack }) {
   const [lightsOn, setLightsOn] = useState(true);
@@ -18,6 +19,8 @@ export default function App({ arrowClickedStack }) {
   const currentClickId = currentClick[0];
   const cards = useCards();
   const videos = useVideos();
+  const introVideoContentful = useIntroVideo();
+
 
   const lightsOffAreas = [
     'btn1',
@@ -57,7 +60,7 @@ export default function App({ arrowClickedStack }) {
     const introVideoContainer = document.querySelector(
       '.intro-video-container'
     );
-    introVideo.play();
+    // introVideo.play();
     setTimeout(() => {
       introVideoContainer.classList.add('intro-video-container_hidden');
     }, 2000);
@@ -142,26 +145,11 @@ export default function App({ arrowClickedStack }) {
           onClick={e => handleClick(e)}
         ></button>
       </div>
-      {/* <div className="intro-video-container">
-        <video className="intro-video" muted autoPlay playsInline>
-          <source src={IntroVideo} type="video/mp4" />
+      <div className="intro-video-container">
+        <video className="intro-video" muted loop autoPlay playsInline>
+          <source src={introVideoContentful} type="video/mp4" />
         </video>
-      </div> */}
-      {/* <div
-        className="intro-video-container"
-        dangerouslySetInnerHTML={{
-          __html: `
-        <video
-          muted
-          autoPlay
-          playsInline
-          src="${IntroVideo}"
-          class="intro-video"
-        />,
-      `,
-        }}
-      ></div> */}
-      <IntroVideo />
+      </div>
       <img
         className={`background-image ${
           lightsOn ? '' : 'background-image_hidden'
