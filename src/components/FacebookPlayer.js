@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 let prevRect = {};
 let loading = false;
 
-export default function VimeoPlayer({ url, currentVideoIndex }) {
+export default function VimeoPlayer({ url }) {
   const [info, setInfo] = useState('');
-  const [rect, setRect] = useState({});
+  const [rect, setRect] = useState({ width: 560, height: 280 });
   const ref = useRef(null);
 
   useEffect(() => {
@@ -28,41 +28,15 @@ export default function VimeoPlayer({ url, currentVideoIndex }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (rect.width && rect.height)
-      fetch(
-        'https://vimeo.com/api/oembed.json?url=' +
-          url +
-          '&playsinline=true&xhtml=true' +
-          `&width=${rect.width}&height=${rect.height}`
-      )
-        .then(res => res.json())
-        .then(res => {
-          setInfo(res.html);
-        });
-    else {
-      const refRect = ref.current.getBoundingClientRect();
-      fetch(
-        'https://vimeo.com/api/oembed.json?url=' +
-          url +
-          '&playsinline=true&xhtml=true' +
-          `&width=${refRect.width}&height=${refRect.height}`
-      )
-        .then(res => res.json())
-        .then(res => {
-          setInfo(res.html);
-        });
-    }
-  }, [url, rect]);
-
   return (
     <>
-      <div
+      <iframe
         ref={ref}
         className="react-player"
         style={{ width: '100%', height: '100%' }}
         dangerouslySetInnerHTML={{ __html: info }}
-      ></div>
+        src={`https://www.facebook.com/plugins/video.php?width=${rect.width}&height=${rect.height}&show_text=false`}
+      ></iframe>
     </>
   );
 }

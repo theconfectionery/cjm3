@@ -7,7 +7,7 @@ import 'normalize.css';
 import backgroundImageOn from '../assets/images/background-lights-on.jpg';
 import backgroundImageOff from '../assets/images/background-lights-off.jpg';
 import { ScreenContainer } from '../styling/styledApp';
-// import IntroVideoLocal from '../assets/intro-video.mp4';
+//import IntroVideoLocal from '../assets/intro-video.mp4';
 import TestVideo from '../vr-test.mp4';
 
 import { useVideos } from '../components/imgs/useVideos';
@@ -20,6 +20,7 @@ export default function App({ arrowClickedStack }) {
   const cards = useCards();
   const videos = useVideos();
   const introVideoContentful = useIntroVideo();
+  const [infoBtnClicked, setInfoBtnClicked] = useState(true);
   const [containerMarginTop, setContainerMarginTop] = useState(0);
 
   const lightsOffAreas = [
@@ -54,12 +55,13 @@ export default function App({ arrowClickedStack }) {
     }
   };
 
-
   useEffect(() => {
     function getWidth() {
       const windowWidth = window.matchMedia('(min-width: 550px)');
       if (windowWidth.matches) {
-        setContainerMarginTop(200000 / (window.innerWidth + window.innerHeight));
+        setContainerMarginTop(
+          200000 / (window.innerWidth + window.innerHeight)
+        );
       }
     }
     getWidth();
@@ -76,10 +78,10 @@ export default function App({ arrowClickedStack }) {
     // introVideo.play();
     setTimeout(() => {
       introVideoContainer.classList.add('intro-video-container_hidden');
-    }, 2000);
+    }, 4000);
     setTimeout(() => {
       introVideoContainer.style.display = 'none';
-    }, 3000);
+    }, 5000);
   }, []);
 
   // handling click events
@@ -90,8 +92,13 @@ export default function App({ arrowClickedStack }) {
   }, [currentClick]);
 
   const handleClick = e => {
+    if (e.target.id === 'infoBtn' && currentClick[0] === 'infoBtn') {
+      setInfoBtnClicked(!infoBtnClicked);
+    } else {
+      setInfoBtnClicked(true);
+    }
     setCurrentClick([e.target.id]);
-    console.log(e.target.id);
+
     if (e.target.id === 'leftArrow' || e.target.id === 'rightArrow') {
       arrowClickedStack.push(e.target.id);
     }
@@ -100,13 +107,17 @@ export default function App({ arrowClickedStack }) {
   };
 
   return (
-    <ScreenContainer className="screen-container" containerMarginTop={containerMarginTop}>
+    <ScreenContainer
+      className="screen-container"
+      containerMarginTop={containerMarginTop}
+    >
       <div className="screenArea" id="screenArea">
         <Screen
           cards={cards}
           videos={videos}
           currentClickId={currentClickId}
           arrowClickedStack={arrowClickedStack}
+          infoBtnClicked={infoBtnClicked}
         />
       </div>
       <div

@@ -6,7 +6,13 @@ import { usePrevious } from './utils';
 
 const fakeVideo = { embeddedUrl: '' };
 
-const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
+const Screen = ({
+  cards,
+  videos,
+  currentClickId,
+  arrowClickedStack,
+  infoBtnClicked,
+}) => {
   const [showCards, setShowCards] = useState(false);
   const [fadeoutCards, setFadeoutCards] = useState(false);
   const [showWebpage, setShowWebpage] = useState(false);
@@ -44,12 +50,16 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
   useEffect(() => {
     setTimeout(() => {
       setShowCards(true);
-    }, 3000);
+    }, 4000);
   }, []);
 
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
-      setShowCards(true);
+      if (currentClickId === 'infoBtn') {
+        setShowCards(infoBtnClicked);
+      } else {
+        setShowCards(true);
+      }
     }
 
     // clicking outside hides card stack
@@ -62,15 +72,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
     }
 
     // // for 'toggling' the card stack if you click the info buttons while on info card (doesnt work)
-    // if (
-    //   showCards &&
-    //   ((currentClickId === 'infoBtn' && infoBtnClicked))
-    // ) {
-    //   setShowCards(false);
-    //   setInfoBtnClicked(false);
-    //   setContactBtnClicked(false);
-    // }
-  }, [currentClickId]);
+  }, [currentClickId, infoBtnClicked]);
 
   // show button 8 webpage
   useEffect(() => {
@@ -153,6 +155,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
       fadeoutCards={fadeoutCards}
       setFadeoutCards={setFadeoutCards}
       hideCardBtns={hideCardBtns}
+      prevClickId={prevClickId}
     />
   ) : null;
 
