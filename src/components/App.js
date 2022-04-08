@@ -185,7 +185,6 @@ export default function App({ arrowClickedStack }) {
         <video
           className="intro-video"
           src={introVideoContentful}
-          loop
           autoPlay
           playsInline
           muted
