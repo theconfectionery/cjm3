@@ -75,7 +75,6 @@ export default function App({ arrowClickedStack }) {
     const introVideoContainer = document.querySelector(
       '.intro-video-container'
     );
-    // introVideo.play();
     setTimeout(() => {
       introVideoContainer.classList.add('intro-video-container_hidden');
     }, 4000);
@@ -107,88 +106,124 @@ export default function App({ arrowClickedStack }) {
   };
 
   return (
-    <ScreenContainer
-      className="screen-container"
-      containerMarginTop={containerMarginTop}
-    >
-      <div className="screenArea" id="screenArea">
-        <Screen
-          cards={cards}
-          videos={videos}
-          currentClickId={currentClickId}
-          arrowClickedStack={arrowClickedStack}
-          infoBtnClicked={infoBtnClicked}
+    <ScreenContainer containerMarginTop={containerMarginTop}>
+      <div>
+        <div className="screenArea" id="screenArea">
+          <Screen
+            cards={cards}
+            videos={videos}
+            currentClickId={currentClickId}
+            arrowClickedStack={arrowClickedStack}
+            infoBtnClicked={infoBtnClicked}
+          />
+        </div>
+        <div
+          className="button-container_type_truffle"
+          onClick={e => handleClick(e)}
+        >
+          <button
+            className="truffle-button truffle-button_1"
+            id="btn1"
+          ></button>
+          <button
+            className="truffle-button truffle-button_2"
+            id="btn2"
+          ></button>
+          <button
+            className="truffle-button truffle-button_3"
+            id="btn3"
+          ></button>
+          <button
+            className="truffle-button truffle-button_4"
+            id="btn4"
+          ></button>
+          <button
+            className="truffle-button truffle-button_5"
+            id="btn5"
+          ></button>
+          <button
+            className="truffle-button truffle-button_6"
+            id="btn6"
+          ></button>
+          <button
+            className="truffle-button truffle-button_7"
+            id="btn7"
+          ></button>
+          <button
+            className="truffle-button truffle-button_8"
+            id="btn8"
+          ></button>
+          <button
+            className="truffle-button truffle-button_9"
+            id="btn9"
+          ></button>
+          <button
+            className="truffle-button truffle-button_10"
+            id="btn10"
+          ></button>
+          <button
+            className="truffle-button truffle-button_11"
+            id="btn11"
+          ></button>
+          <button
+            className="truffle-button truffle-button_12"
+            id="btn12"
+          ></button>
+          <button
+            className="truffle-button truffle-button_13"
+            id="btn13"
+          ></button>
+          <button
+            className="truffle-button truffle-button_info"
+            id="infoBtn"
+          ></button>
+          <button
+            className="truffle-button truffle-button_contact"
+            id="contactBtn"
+          ></button>
+        </div>
+        <div className="button-container_type_direction">
+          <button
+            className="direction-button direction-button_left"
+            id="leftArrow"
+            onClick={e => handleClick(e)}
+          ></button>
+          <button
+            className="direction-button direction-button_right"
+            id="rightArrow"
+            onClick={e => handleClick(e)}
+          ></button>
+        </div>
+
+        <img
+          className={`background-image ${
+            lightsOn ? '' : 'background-image_hidden'
+          }`}
+          id="bgImageLight"
+          src={backgroundImageOn}
+          onClick={e => handleClick(e)}
+        />
+        <img
+          className="background-image background-image-off"
+          id="bgImageDark"
+          src={backgroundImageOff}
+          onClick={e => handleClick(e)}
         />
       </div>
-      <div
-        className="button-container_type_truffle"
-        onClick={e => handleClick(e)}
-      >
-        <button className="truffle-button truffle-button_1" id="btn1"></button>
-        <button className="truffle-button truffle-button_2" id="btn2"></button>
-        <button className="truffle-button truffle-button_3" id="btn3"></button>
-        <button className="truffle-button truffle-button_4" id="btn4"></button>
-        <button className="truffle-button truffle-button_5" id="btn5"></button>
-        <button className="truffle-button truffle-button_6" id="btn6"></button>
-        <button className="truffle-button truffle-button_7" id="btn7"></button>
-        <button className="truffle-button truffle-button_8" id="btn8"></button>
-        <button className="truffle-button truffle-button_9" id="btn9"></button>
-        <button
-          className="truffle-button truffle-button_10"
-          id="btn10"
-        ></button>
-        <button
-          className="truffle-button truffle-button_11"
-          id="btn11"
-        ></button>
-        <button
-          className="truffle-button truffle-button_12"
-          id="btn12"
-        ></button>
-        <button
-          className="truffle-button truffle-button_13"
-          id="btn13"
-        ></button>
-        <button
-          className="truffle-button truffle-button_info"
-          id="infoBtn"
-        ></button>
-        <button
-          className="truffle-button truffle-button_contact"
-          id="contactBtn"
-        ></button>
-      </div>
-      <div className="button-container_type_direction">
-        <button
-          className="direction-button direction-button_left"
-          id="leftArrow"
-          onClick={e => handleClick(e)}
-        ></button>
-        <button
-          className="direction-button direction-button_right"
-          id="rightArrow"
-          onClick={e => handleClick(e)}
-        ></button>
-      </div>
       <div className="intro-video-container">
-        <video className="intro-video" muted loop autoPlay playsInline>
-          <source src={introVideoContentful} type="video/mp4" />
-        </video>
+        <video
+          className="intro-video"
+          src={introVideoContentful}
+          loop
+          autoPlay
+          playsInline
+          muted
+          onLoadedData={e => {
+            console.log(e.target);
+            e.target.play();
+          }}
+        ></video>
       </div>
-      <img
-        className={`background-image ${
-          lightsOn ? '' : 'background-image_hidden'
-        }`}
-        id="bgImageLight"
-        src={backgroundImageOn}
-        onClick={e => handleClick(e)}
-      />
-      <img
-        className="background-image background-image-off"
-        id="bgImageDark"
-        src={backgroundImageOff}
-        onClick={e => handleClick(e)}
-      />
     </ScreenContainer>
   );
 }

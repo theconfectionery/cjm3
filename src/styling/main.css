@@ -59,7 +59,7 @@ body {
 }
 
 .intro-video-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -431,14 +431,16 @@ body {
 }
 
 .carousel-indicators {
-  bottom: -23px !important;
+  bottom: -15px !important;
 }
 
 .carousel-indicators button[type='button'] {
   width: 100%;
-  height: 3px;
+  height: 5px;
   opacity: 1;
   background-color: #062734;
+  border-radius: 3px;
+  border: none;
 }
 
 .carousel-indicators .active {
@@ -493,6 +495,7 @@ body {
 
 .carousel-inner {
   padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 /* Vr Player */
@@ -569,4 +572,8 @@ body {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+
+.app-content {
+  display: none;
 }
