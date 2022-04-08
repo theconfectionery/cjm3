@@ -55,7 +55,6 @@ export default function VimeoPlayer({ url, currentVideoIndex }) {
     }
   }, [url, rect]);
 
-  console.log(info);
   return (
     <>
       <div

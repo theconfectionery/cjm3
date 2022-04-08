@@ -8,6 +8,7 @@ const CardStack = ({
   fadeoutCards,
   setFadeoutCards,
   hideCardBtns,
+  prevClickId,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
   const directionBtns = ['leftArrow', 'rightArrow'];
@@ -30,7 +31,7 @@ const CardStack = ({
       container.style.opacity = '0';
       setTimeout(() => {
         setShowCards(false);
-      }, 700);
+      }, 1000);
     }
   }, [fadeoutCards]);
 
@@ -132,7 +133,8 @@ const CardStack = ({
       if (currentClickId === 'contactBtn') {
         goToIndexSlide(slideTotal);
       } else if (currentClickId === 'infoBtn') {
-        slideRight();
+        if (prevClickId !== currentClickId) goToIndexSlide(0);
+        else slideRight();
       } else if (
         hideCardBtns.includes(currentClickId) ||
         directionBtns.includes(currentClickId)

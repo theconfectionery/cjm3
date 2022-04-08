@@ -153,6 +153,7 @@ const Screen = ({ cards, videos, currentClickId, arrowClickedStack }) => {
       fadeoutCards={fadeoutCards}
       setFadeoutCards={setFadeoutCards}
       hideCardBtns={hideCardBtns}
+      prevClickId={prevClickId}
     />
   ) : null;
 

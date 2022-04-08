@@ -3,7 +3,6 @@ import ReactPlayer from 'react-player';
 
 export default function PlayerComponent({
   video,
-  i,
   currentVideoIndex,
   getNextVideo,
 }) {
@@ -12,7 +11,7 @@ export default function PlayerComponent({
   useEffect(() => {
     setPlay(false);
     ref.current.showPreview();
-  }, [currentVideoIndex, i, video]);
+  }, [currentVideoIndex, video]);
 
   return (
     <ReactPlayer
@@ -23,12 +22,10 @@ export default function PlayerComponent({
       width="100%"
       controls={true}
       playing={play}
-      onPause={() => setPlay(false)}
       onPlay={() => setPlay(true)}
       onClickPreview={() => setPlay(true)}
       onEnded={getNextVideo}
       playsinline={true}
-      light={true}
       // muted={true}
     />
   );
