@@ -14,7 +14,6 @@ const MediaPlayer = ({
   const { playVideo, currentVideoArray, videoIndex } = currentVideoDetails;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 
-
   // fade in media player after showing black screen for a moment
   useEffect(() => {
     const mediaPlayerContainer = document.querySelector(
@@ -198,7 +197,13 @@ const MediaPlayer = ({
                     <div className="vr-player">
                       <iframe
                         src={
-                          video.embeddedUrl + '?current=' + currentVideoIndex
+                          video.embeddedUrl.split('?').length > 1
+                            ? video.embeddedUrl +
+                              '&current=' +
+                              currentVideoIndex
+                            : video.embeddedUrl +
+                              '?current=' +
+                              currentVideoIndex
                         }
                       />
                     </div>
