@@ -163,8 +163,6 @@ const MediaPlayer = ({
     }, 1100);
   }, [currentVideoArray]);
 
-  console.log(currentVideoArray);
-
   const mediaPlayer = (
     <div className="media-player-container">
       <div className="black-overlay"></div>
@@ -197,17 +195,7 @@ const MediaPlayer = ({
                     />
                   ) : (
                     <div className="vr-player">
-                      <iframe
-                        src={
-                          video.embeddedUrl.split('?').length > 1
-                            ? video.embeddedUrl +
-                              '&current=' +
-                              currentVideoIndex
-                            : video.embeddedUrl +
-                              '?current=' +
-                              currentVideoIndex
-                        }
-                      />
+                      <iframe src={video.embeddedUrl} />
                     </div>
                   )}
                 </>
