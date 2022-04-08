@@ -7,12 +7,12 @@ export const ScreenContainer = styled.div`
   margin-right: 0;
   margin-bottom: 0;
   transition: margin-left 1s ease;
-  /* margin-top: ${props =>
-    props.containerMarginTop ? props.containerMarginTop : 0}px; */
 
   @media (min-width: 550px) {
     min-width: 1793px;
     margin-left: 158px;
+    margin-top: ${props =>
+      props.containerMarginTop ? props.containerMarginTop : 0}px;
   }
 
   // query for mobile in landscape
