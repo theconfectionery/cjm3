@@ -20,7 +20,7 @@ export default function App({ arrowClickedStack }) {
   const cards = useCards();
   const videos = useVideos();
   const introVideoContentful = useIntroVideo();
-
+  const [containerMarginTop, setContainerMarginTop] = useState(0);
 
   const lightsOffAreas = [
     'btn1',
@@ -54,6 +54,19 @@ export default function App({ arrowClickedStack }) {
     }
   };
 
+
+  useEffect(() => {
+    function getWidth() {
+      const windowWidth = window.matchMedia('(min-width: 550px)');
+      if (windowWidth.matches) {
+        setContainerMarginTop(200000 / (window.innerWidth + window.innerHeight));
+      }
+    }
+    getWidth();
+    window.addEventListener('resize', getWidth);
+    return () => window.removeEventListener('resize', getWidth);
+  });
+
   // play intro video on load
   useEffect(() => {
     const introVideo = document.querySelector('.intro-video');
@@ -69,6 +82,7 @@ export default function App({ arrowClickedStack }) {
     }, 3000);
   }, []);
 
+  // handling click events
   useEffect(() => {
     if (currentClickId) {
       toggleLights();
@@ -86,7 +100,7 @@ export default function App({ arrowClickedStack }) {
   };
 
   return (
-    <ScreenContainer className="screen-container">
+    <ScreenContainer className="screen-container" containerMarginTop={containerMarginTop}>
       <div className="screenArea" id="screenArea">
         <Screen
           cards={cards}
