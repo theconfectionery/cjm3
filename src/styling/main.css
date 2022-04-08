@@ -493,6 +493,10 @@ body {
   transition: opacity 1s ease;
 }
 
+.carousel-inner {
+  padding-bottom: 15px;
+}
+
 /* Vr Player */
 
 .vr-player {

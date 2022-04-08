@@ -120,12 +120,9 @@ const CardStack = ({
     function slideInitial() {
       // two event listeners below necessary for listening to info/contact button clicks while card stack is already open (not covered by the below if-statement buttons)
       const contactButton = document.querySelector('#contactBtn');
-      const infoButton = document.querySelector('#infoBtn');
+      //const infoButton = document.querySelector('#infoBtn');
       contactButton.addEventListener('click', () => {
         goToIndexSlide(slideTotal);
-      });
-      infoButton.addEventListener('click', () => {
-        slideRight();
       });
 
       // initial clicks related to cardstack, also for clicking back and forth between buttons (not covered by above event listeners)
@@ -133,8 +130,7 @@ const CardStack = ({
       if (currentClickId === 'contactBtn') {
         goToIndexSlide(slideTotal);
       } else if (currentClickId === 'infoBtn') {
-        if (prevClickId !== currentClickId) goToIndexSlide(0);
-        else slideRight();
+        goToIndexSlide(0);
       } else if (
         hideCardBtns.includes(currentClickId) ||
         directionBtns.includes(currentClickId)

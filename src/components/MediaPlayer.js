@@ -3,6 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import PlayerComponent from './PlayerComponent';
 import VimeoPlayer from './VimeoPlayer';
 import 'bootstrap/dist/css/bootstrap.css';
+import FacebookPlayer from 'react-player/facebook';
 
 const MediaPlayer = ({
   currentClickId,
@@ -191,6 +192,12 @@ const MediaPlayer = ({
                 <>
                   {video.embeddedUrl.includes('vimeo.com') ? (
                     <VimeoPlayer
+                      url={video.embeddedUrl}
+                      className="vr-player"
+                      currentVideoIndex={currentVideoIndex}
+                    />
+                  ) : /facebook.com...videos.../.test(video.embeddedUrl) ? (
+                    <FacebookPlayer
                       url={video.embeddedUrl}
                       className="vr-player"
                       currentVideoIndex={currentVideoIndex}
