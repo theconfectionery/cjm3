@@ -77,10 +77,10 @@ export default function App({ arrowClickedStack }) {
     );
     setTimeout(() => {
       introVideoContainer.classList.add('intro-video-container_hidden');
-    }, 4000);
+    }, 2000);
     setTimeout(() => {
       introVideoContainer.style.display = 'none';
-    }, 5000);
+    }, 3000);
   }, []);
 
   // handling click events

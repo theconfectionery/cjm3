@@ -409,6 +409,11 @@ body {
   outline: none;
 }
 
+.react-player iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .react-player__preview {
   background-size: contain !important;
   background-repeat: no-repeat !important;
@@ -436,7 +441,7 @@ body {
 
 .carousel-indicators button[type='button'] {
   width: 100%;
-  height: 5px;
+  height: 3px;
   opacity: 1;
   background-color: #062734;
   border-radius: 3px;
