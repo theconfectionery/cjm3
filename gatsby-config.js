@@ -77,13 +77,6 @@ module.exports = {
       resolve: 'gatsby-plugin-material-ui',
       options: { stylesProvider: { injectFirst: true } },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `image-map`,
-    //     path: `${__dirname}/src/images/image-map/`,
-    //   },
-    // },
     `gatsby-plugin-react-image-map`,
     {
       resolve: `gatsby-source-contentful`,
@@ -106,16 +99,5 @@ module.exports = {
         generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-google-tagmanager',
-    //   options: {
-    //     id: gtmContainerId,
-    //     includeInDevelopment: false,
-
-    //     // GTM environment details.
-    //     gtmAuth: gtmEnv[activeEnv].gtmAuth,
-    //     gtmPreview: gtmEnv[activeEnv].gtmPreview,
-    //   },
-    // },
   ],
 };

@@ -8,7 +8,6 @@ import backgroundImageOn from '../assets/images/background-lights-on.jpg';
 import backgroundImageOff from '../assets/images/background-lights-off.jpg';
 import { ScreenContainer } from '../styling/styledApp';
 //import IntroVideoLocal from '../assets/intro-video.mp4';
-import TestVideo from '../vr-test.mp4';
 
 import { useVideos } from '../components/imgs/useVideos';
 import { useIntroVideo } from './imgs/useIntroVideo';
@@ -71,7 +70,6 @@ export default function App({ arrowClickedStack }) {
 
   // play intro video on load
   useEffect(() => {
-    const introVideo = document.querySelector('.intro-video');
     const introVideoContainer = document.querySelector(
       '.intro-video-container'
     );

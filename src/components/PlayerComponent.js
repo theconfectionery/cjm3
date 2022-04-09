@@ -26,7 +26,6 @@ export default function PlayerComponent({
       onClickPreview={() => setPlay(true)}
       onEnded={getNextVideo}
       playsinline={true}
-      // muted={true}
     />
   );
 }

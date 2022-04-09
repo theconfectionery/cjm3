@@ -8,7 +8,6 @@ const CardStack = ({
   fadeoutCards,
   setFadeoutCards,
   hideCardBtns,
-  prevClickId,
 }) => {
   const imageUrls = cards.map(card => card.file.url);
   const directionBtns = ['leftArrow', 'rightArrow'];

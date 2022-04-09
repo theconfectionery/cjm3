@@ -155,7 +155,6 @@ const Screen = ({
       fadeoutCards={fadeoutCards}
       setFadeoutCards={setFadeoutCards}
       hideCardBtns={hideCardBtns}
-      prevClickId={prevClickId}
     />
   ) : null;
 

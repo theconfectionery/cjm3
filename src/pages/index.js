@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import App from '../components/App';
 
 export default function Home() {
-  // console.log("<<<<RENDERING HOME>>>>>")
+
   const arrowClickedStack = [];
 
   return (
