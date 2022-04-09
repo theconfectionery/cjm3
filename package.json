@@ -42,7 +42,8 @@
     "react-helmet": "^6.1.0",
     "react-player": "^2.9.0",
     "start": "^5.1.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "use-player": "^0.2.0"
   },
   "devDependencies": {
     "@types/loadable__component": "^5.13.4",

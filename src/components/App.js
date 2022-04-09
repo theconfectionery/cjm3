@@ -75,13 +75,12 @@ export default function App({ arrowClickedStack }) {
     const introVideoContainer = document.querySelector(
       '.intro-video-container'
     );
-    // introVideo.play();
     setTimeout(() => {
       introVideoContainer.classList.add('intro-video-container_hidden');
-    }, 4000);
+    }, 2000);
     setTimeout(() => {
       introVideoContainer.style.display = 'none';
-    }, 5000);
+    }, 3000);
   }, []);
 
   // handling click events
@@ -107,10 +106,7 @@ export default function App({ arrowClickedStack }) {
   };
 
   return (
-    <ScreenContainer
-      className="screen-container"
-      containerMarginTop={containerMarginTop}
-    >
+    <ScreenContainer containerMarginTop={containerMarginTop}>
       <div className="screenArea" id="screenArea">
         <Screen
           cards={cards}
@@ -170,11 +166,7 @@ export default function App({ arrowClickedStack }) {
           onClick={e => handleClick(e)}
         ></button>
       </div>
-      <div className="intro-video-container">
-        <video className="intro-video" muted loop autoPlay playsInline>
-          <source src={introVideoContentful} type="video/mp4" />
-        </video>
-      </div>
+
       <img
         className={`background-image ${
           lightsOn ? '' : 'background-image_hidden'
@@ -189,6 +181,15 @@ export default function App({ arrowClickedStack }) {
         src={backgroundImageOff}
         onClick={e => handleClick(e)}
       />
+      <div className="intro-video-container">
+        <video
+          className="intro-video"
+          src={introVideoContentful}
+          autoPlay
+          playsInline
+          muted
+        ></video>
+      </div>
     </ScreenContainer>
   );
 }

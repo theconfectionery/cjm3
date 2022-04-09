@@ -4,6 +4,7 @@ import PlayerComponent from './PlayerComponent';
 import VimeoPlayer from './VimeoPlayer';
 import 'bootstrap/dist/css/bootstrap.css';
 import FacebookPlayer from 'react-player/facebook';
+import DacastPlayer from './DacastPlayer';
 
 const MediaPlayer = ({
   currentClickId,
@@ -164,8 +165,6 @@ const MediaPlayer = ({
     }, 1100);
   }, [currentVideoArray]);
 
-  console.log(currentVideoArray);
-
   const mediaPlayer = (
     <div className="media-player-container">
       <div className="black-overlay"></div>
@@ -191,10 +190,11 @@ const MediaPlayer = ({
               {video.is360 ? (
                 <>
                   {video.embeddedUrl.includes('vimeo.com') ? (
-                    <VimeoPlayer
-                      url={video.embeddedUrl}
-                      className="vr-player"
+                    <PlayerComponent
+                      video={video}
+                      i={i}
                       currentVideoIndex={currentVideoIndex}
+                      getNextVideo={getNextVideo}
                     />
                   ) : /facebook.com...videos.../.test(video.embeddedUrl) ? (
                     <FacebookPlayer

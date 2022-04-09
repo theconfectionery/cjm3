@@ -4,6 +4,7 @@ let loading = false;
 
 export default function VimeoPlayer({ url, currentVideoIndex }) {
   const [info, setInfo] = useState('');
+
   const [rect, setRect] = useState({});
   const ref = useRef(null);
 

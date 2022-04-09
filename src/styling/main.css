@@ -409,8 +409,12 @@ body {
   outline: none;
 }
 
+.react-player iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .react-player__preview {
-  background-size: contain !important;
   background-repeat: no-repeat !important;
 }
 
@@ -431,7 +435,7 @@ body {
 }
 
 .carousel-indicators {
-  bottom: -23px !important;
+  bottom: -15px !important;
 }
 
 .carousel-indicators button[type='button'] {
@@ -439,6 +443,8 @@ body {
   height: 3px;
   opacity: 1;
   background-color: #062734;
+  border-radius: 3px;
+  border: none;
 }
 
 .carousel-indicators .active {
@@ -489,10 +495,6 @@ body {
   border-radius: 1%;
   opacity: 0;
   transition: opacity 1s ease;
-}
-
-.carousel-inner {
-  padding-bottom: 15px;
 }
 
 /* Vr Player */
@@ -569,4 +571,8 @@ body {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+
+.app-content {
+  display: none;
 }
