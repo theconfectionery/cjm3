@@ -148,7 +148,7 @@ const Screen = ({
 
   const cardStack = showCards ? (
     <CardStack
-      cards={cards}
+      cards={[...cards]}
       showCards={showCards}
       setShowCards={setShowCards}
       currentClickId={currentClickId}
@@ -156,6 +156,7 @@ const Screen = ({
       setFadeoutCards={setFadeoutCards}
       hideCardBtns={hideCardBtns}
       prevClickId={prevClickId}
+      cardBackup={cards}
     />
   ) : null;
 

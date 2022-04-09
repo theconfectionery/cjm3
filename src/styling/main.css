@@ -272,8 +272,8 @@ body {
 .slider-container {
   position: relative;
   margin: 0 auto;
-  width: 70%;
-  height: 80%;
+  width: 80%;
+  height: 70%;
   /* transform: translateY(580px); */
   transition: opacity 0.6s ease;
   opacity: 0;
@@ -407,6 +407,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   outline: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .react-player iframe {
