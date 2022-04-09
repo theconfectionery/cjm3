@@ -415,7 +415,6 @@ body {
 }
 
 .react-player__preview {
-  background-size: contain !important;
   background-repeat: no-repeat !important;
 }
 
