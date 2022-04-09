@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CardStack from './CardStack';
+import CardStack from './CardStackSwipe';
 import ExternalWebpage from './ExternalWebpage';
 import MediaPlayer from './MediaPlayer';
 import { usePrevious } from './utils';
