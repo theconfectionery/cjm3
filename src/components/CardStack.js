@@ -273,9 +273,7 @@ const CardStack = ({
             );
           })}
         </div>
-        ;
       </div>
-      ;
     </>
   );
 };
