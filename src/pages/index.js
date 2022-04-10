@@ -14,7 +14,7 @@ export default function Home() {
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.jquery.js"></script>
         <title>The Confectionery</title>
-        link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
+    
       </Helmet>
       <main className="main">
         <App arrowClickedStack={arrowClickedStack} />
