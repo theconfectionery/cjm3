@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import App from '../components/App';
+import favicon from '../assets/images/favicon.ico';
 
 export default function Home() {
-
   const arrowClickedStack = [];
 
   return (
@@ -13,7 +13,8 @@ export default function Home() {
         <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.jquery.js"></script>
-<title>The Confectionery</title>
+        <title>The Confectionery</title>
+        link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
       </Helmet>
       <main className="main">
         <App arrowClickedStack={arrowClickedStack} />
