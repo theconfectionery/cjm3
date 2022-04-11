@@ -95,7 +95,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* overflow: hidden; */
+  overflow: hidden;
+  /* comment above out to make them fly all the way off screen */
   border-radius: 5%;
 }
 
