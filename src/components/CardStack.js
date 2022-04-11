@@ -7,7 +7,10 @@ const from = i => ({ x: 0, rot: 0, scale: 1, y: -1000 })
 
 const trans = (r, s) => `perspective(1500px) rotateX(0deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`
 
-const Deck = ({ cards }) => {
+const Deck = ({ cards, currentClickId }) => {
+  if (currentClickId === 'contactBtn') {
+    cards.reverse()
+  }
   const [gone] = useState(() => new Set()) // The set flags all the cards that are flicked out
   const [props, set] = useSprings(cards.length, i => ({ ...toValue(i), from: from(i) })) // Create a bunch of springs using the helpers above
   // Create a gesture, we're interested in down-state, delta (current-pos - click-pos), direction and velocity
