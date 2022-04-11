@@ -95,7 +95,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 5%;
 }
 
@@ -267,6 +267,28 @@ body {
   left: 33%;
   height: 40%;
 }
+
+.SliderCards {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  will-change: transform;
+}
+.SliderCards > div {
+  background-color: white;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: block;
+  width: 65%;
+  height: 70%;
+  will-change: transform;
+  touch-action: none;
+  /* box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3); */
+}
+
 
 /* Card Carousel CSS */
 .slider-container {
