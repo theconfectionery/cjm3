@@ -22,13 +22,12 @@ export const ScreenContainer = styled.div`
   }
 
   // query for iPads
-  @media (orientation: portrait) 
-  /* and (hover: none) and (pointer: coarse) */
-   and (max-width: 1440px) and (min-width: 768px) {
+  @media (orientation: portrait) and (hover: none) and (pointer: coarse) and (max-width: 1440px) and (min-width: 768px) {
     transform: scale(1.4);
     margin-top: 23%;
     margin-left: 218px;
-    margin-top: 0;
+    margin-top: ${props =>
+      props.containerMarginTop ? props.containerMarginTop : 0}px;
   }
 
   @media (min-width: 1440px) {
