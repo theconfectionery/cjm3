@@ -1,4 +1,10 @@
-import React, { useEffect, createRef, useMemo, useState } from 'react';
+import React, {
+  useEffect,
+  createRef,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react';
 import SwipeCard from './SwipeCard';
 let targetUrl = '';
 const CardStack = ({
@@ -90,11 +96,11 @@ const CardStack = ({
     }
 
     const goToIndexSlide = async index => {
-      console.log(index);
+      console.log('fileindex', cardBackup[index].file.url, imageUrls[0]);
       if (imageUrls[0] !== cardBackup[index].file.url) {
         if (swipe(0, 'right')) {
           let fileurl = await swiped(imageUrls[0]);
-
+          console.log('fileurl', fileurl);
           while (fileurl !== cardBackup[index].file.url) {
             if (swipe(0, 'right')) {
               fileurl = await swiped(fileurl);
@@ -109,14 +115,18 @@ const CardStack = ({
     slideInitial();
   }, [currentClickId]);
 
-  const swipe = (i, direction = 'left') => {
-    if (childRefs[i].current) {
-      childRefs[i].current.swipe(direction);
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const swipe = useCallback(
+    (i, direction = 'left') => {
+      console.log(i, childRefs);
+      if (childRefs[i].current) {
+        childRefs[i].current.swipe(direction);
+        return true;
+      } else {
+        return false;
+      }
+    },
+    [childRefs]
+  );
 
   return (
     <>

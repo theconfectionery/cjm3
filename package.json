@@ -44,6 +44,7 @@
     "react-player": "^2.9.0",
     "start": "^5.1.0",
     "styled-components": "^5.3.5",
+    "swiper": "^8.1.0",
     "use-player": "^0.2.0"
   },
   "devDependencies": {
