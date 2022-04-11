@@ -148,7 +148,7 @@ const Screen = ({
 
   const cardStack = showCards ? (
     <CardStack
-      cards={cards}
+      cards={cards.reverse()}
       showCards={showCards}
       setShowCards={setShowCards}
       currentClickId={currentClickId}
@@ -180,9 +180,8 @@ const Screen = ({
     <>
       {determineScreenContent()}
       <div
-        className={`black-screen ${
-          playVideo || showWebpage ? 'black-screen_visible' : ''
-        }`}
+        className={`black-screen ${playVideo || showWebpage ? 'black-screen_visible' : ''
+          }`}
       ></div>
     </>
   );
