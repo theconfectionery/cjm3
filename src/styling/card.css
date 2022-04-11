@@ -1,8 +1,9 @@
-.swiper {
+.swipe {
   cursor: pointer;
   transition: all 200ms ease 0s;
   width: 90%;
   height: 90%;
+  position: absolute;
 }
 
 .swiper-wrapper {

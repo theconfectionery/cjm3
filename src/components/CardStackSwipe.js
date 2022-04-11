@@ -42,18 +42,14 @@ const CardStack = ({
   }, [showCards]);
 
   const swiped = image => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const card = cardBackup.find(item => item.file.url === image);
+    setTimeout(() => {
+      const card = cardBackup.find(item => item.file.url === image);
+      if (card) {
         cards.unshift(card);
         cards.pop();
         setRunAnimi(!runAnimi);
-
-        console.log(cards);
-
-        resolve(cards[0].file.url);
-      }, 300);
-    });
+      }
+    }, 300);
   };
 
   // fade out animation when closing cardstack
@@ -96,20 +92,24 @@ const CardStack = ({
     }
 
     const goToIndexSlide = async index => {
-      console.log('fileindex', cardBackup[index].file.url, imageUrls[0]);
-      if (imageUrls[0] !== cardBackup[index].file.url) {
-        if (swipe(0, 'right')) {
-          let fileurl = await swiped(imageUrls[0]);
-          console.log('fileurl', fileurl);
-          while (fileurl !== cardBackup[index].file.url) {
-            if (swipe(0, 'right')) {
-              fileurl = await swiped(fileurl);
-            } else {
-              return;
-            }
-          }
+      const imageItem = cardBackup[index].file.url;
+
+      while (cards[cards.length - 1].file.url !== imageItem) {
+        console.log(cards[cards.length - 1].file.url, imageItem);
+        const cardItem = cardBackup.find(
+          item => item.file.url === cards[cards.length - 1].file.url
+        );
+        if (cardItem) {
+          cards.unshift(cardItem);
+          cards.pop();
+        } else {
+          break;
         }
       }
+
+      console.log(cards);
+
+      setRunAnimi(!runAnimi);
     };
 
     slideInitial();
@@ -117,7 +117,6 @@ const CardStack = ({
 
   const swipe = useCallback(
     (i, direction = 'left') => {
-      console.log(i, childRefs);
       if (childRefs[i].current) {
         childRefs[i].current.swipe(direction);
         return true;
@@ -140,7 +139,7 @@ const CardStack = ({
                   className="swipe"
                   key={slide}
                   onClick={() => swipe(i)}
-                  onSwipe={() => swiped(slide)}
+                  onSwipe={() => swiped(imageUrls[i])}
                 >
                   <div
                     className={`card ${

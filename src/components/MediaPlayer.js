@@ -79,6 +79,7 @@ const MediaPlayer = ({
       });
     }
   };
+  
   // enables swiping for videos
   useEffect(() => {
     let touchstartX = {
@@ -185,7 +186,6 @@ const MediaPlayer = ({
           return (
             <Carousel.Item
               key={i}
-              // className={`${currentVideoIndex ? 'active' : ''}`}
             >
               {video.is360 ? (
                 <>

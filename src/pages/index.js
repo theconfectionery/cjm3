@@ -4,9 +4,9 @@ import 'swiper/css/bundle';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import App from '../components/App';
+import favicon from '../assets/images/favicon.ico';
 
 export default function Home() {
-  // console.log("<<<<RENDERING HOME>>>>>")
   const arrowClickedStack = [];
 
   return (
@@ -16,18 +16,8 @@ export default function Home() {
         <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
         <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
         <script src="https://unpkg.com/image-map/dist/image-map.jquery.js"></script>
-        {/* <script src="web-animations.min.js"></script> */}
-        {/* <link
-          rel="stylesheet"
-          type="text/css"
-          charset="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        /> */}
+        <title>The Confectionery</title>
+        <link rel="shortcut icon" type="image/png" href={favicon} />
       </Helmet>
       <main className="main">
         <App arrowClickedStack={arrowClickedStack} />

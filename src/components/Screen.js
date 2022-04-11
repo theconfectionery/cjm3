@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CardStack from './CardSwipe';
+import CardStack from './CardStack';
 import ExternalWebpage from './ExternalWebpage';
 import MediaPlayer from './MediaPlayer';
 import { usePrevious } from './utils';
@@ -148,7 +148,7 @@ const Screen = ({
 
   const cardStack = showCards ? (
     <CardStack
-      cards={[...cards]}
+      cards={cards.reverse()}
       showCards={showCards}
       setShowCards={setShowCards}
       currentClickId={currentClickId}

@@ -26,6 +26,8 @@ export const ScreenContainer = styled.div`
     transform: scale(1.4);
     margin-top: 23%;
     margin-left: 218px;
+    margin-top: ${props =>
+      props.containerMarginTop ? props.containerMarginTop : 0}px;
   }
 
   @media (min-width: 1440px) {
