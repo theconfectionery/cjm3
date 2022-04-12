@@ -57,7 +57,11 @@ const Screen = ({
     if (showCardBtns.includes(currentClickId)) {
       console.log(currentClickId);
       if (currentClickId === 'infoBtn') {
-        setShowCards(infoBtnClicked);
+        if (infoBtnClicked) {
+          setShowCards(true);
+        } else {
+          setFadeoutCards(true);
+        }
       } else {
         setShowCards(true);
       }
@@ -104,7 +108,7 @@ const Screen = ({
   // handle video details when clicking truffles
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
-      setShowCards(false);
+      setFadeoutCards(true);
       if (!playVideo) {
         setVideoDetails({
           videoIndex: 0,
@@ -135,7 +139,11 @@ const Screen = ({
           currentVideoArray: getVideoArray(currentClickId),
           videoIndex: 0,
         });
-        setFadeoutCards(false);
+        if (showCards) {
+          setFadeoutCards(true);
+        } else {
+          setFadeoutCards(false);
+        }
       }
     }
   });
@@ -165,7 +173,9 @@ const Screen = ({
   ) : null;
 
   function determineScreenContent() {
-    if (playVideo) {
+    if (showCards) {
+      return cardStack;
+    } else if (playVideo) {
       return (
         <MediaPlayer
           currentVideoDetails={videoDetails}
@@ -177,8 +187,6 @@ const Screen = ({
       );
     } else if (showWebpage) {
       return <ExternalWebpage />;
-    } else {
-      return cardStack;
     }
   }
 

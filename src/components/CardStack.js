@@ -7,7 +7,7 @@ const toValue = i => ({
   x: 0,
   y: i * -1,
   scale: 1,
-  rot: Math.random() * 3,
+  rot: ((i + 1) % 3) - 1,
   delay: i * 50,
 });
 const from = i => ({ x: 0, rot: 0, scale: 1, y: -1000 });
@@ -67,13 +67,15 @@ const Deck = ({
   );
 
   useEffect(() => {
+    if (timer) window.clearTimeout(timer);
+    console.log('timer2');
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
       if (container) {
         container.style.opacity = '1';
       }
     }, 500);
-  }, [showCards]);
+  }, [showCards, currentClickId]);
 
   useEffect(() => {
     if (fadeoutCards) {
@@ -81,6 +83,7 @@ const Deck = ({
         window.clearTimeout(timer);
       }
       setFadeoutCards(false);
+      gone.clear();
       for (let i = cards.length - 1; i >= 0; i--) {
         gone.add(i);
       }
@@ -104,10 +107,12 @@ const Deck = ({
       });
 
       timer = setTimeout(() => {
+        console.log('timer1', showCards);
         const container = document.querySelector('.slider-container');
         if (container) {
-          container.style.opacity = '1';
+          container.style.opacity = '0';
         }
+        setShowCards(false);
       }, 1000);
     }
   }, [fadeoutCards]);
