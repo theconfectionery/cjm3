@@ -45,7 +45,7 @@ const Deck = ({
     }) => {
       const trigger = velocity[0] > 0.1; // If you flick hard enough it should trigger the card to fly out
       const dir = xDir < 0 ? -1 : 1; // Direction should either point left or right
-      if (!down && trigger) gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
+      if (!down) gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
       set(i => {
         if (index !== i) return; // We're only interested in changing spring-data for the current spring
         const isGone = gone.has(index);
