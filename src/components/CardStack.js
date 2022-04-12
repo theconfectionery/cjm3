@@ -81,7 +81,7 @@ const Deck = ({
       container.style.opacity = '0';
       setTimeout(() => {
         setShowCards(false);
-      }, 1000);
+      }, 2000);
     }
   }, [fadeoutCards]);
 
