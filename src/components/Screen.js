@@ -55,13 +55,8 @@ const Screen = ({
 
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
-      console.log(currentClickId);
       if (currentClickId === 'infoBtn') {
-        if (infoBtnClicked) {
-          setShowCards(true);
-        } else {
-          setFadeoutCards(true);
-        }
+        setShowCards(infoBtnClicked);
       } else {
         setShowCards(true);
       }
@@ -73,7 +68,6 @@ const Screen = ({
       !showCardBtns.includes(currentClickId) &&
       !directionBtns.includes(currentClickId)
     ) {
-      console.log(currentClickId);
       setFadeoutCards(true);
     }
 
@@ -139,14 +133,22 @@ const Screen = ({
           currentVideoArray: getVideoArray(currentClickId),
           videoIndex: 0,
         });
-        if (showCards) {
-          setFadeoutCards(true);
-        } else {
-          setFadeoutCards(false);
-        }
+        setFadeoutCards(false);
       }
     }
   });
+
+  // useEffect(() => {
+  //   const blackOverlay = document.querySelector('.black-overlay');
+  //   blackOverlay.style.display = 'block';
+  //   setTimeout(() => {
+  //     blackOverlay.classList.add('black-overlay_hidden');
+  //   }, 550);
+  //   setTimeout(() => {
+  //     blackOverlay.style.display = 'none';
+  //     blackOverlay.classList.remove('black-overlay_hidden');
+  //   }, 1100);
+  // }, [videoDetails]);
 
   function showBlackScreen() {
     const blackScreen = document.querySelector('.black-screen');
@@ -173,9 +175,7 @@ const Screen = ({
   ) : null;
 
   function determineScreenContent() {
-    if (showCards) {
-      return cardStack;
-    } else if (playVideo) {
+    if (playVideo) {
       return (
         <MediaPlayer
           currentVideoDetails={videoDetails}
@@ -187,6 +187,8 @@ const Screen = ({
       );
     } else if (showWebpage) {
       return <ExternalWebpage />;
+    } else {
+      return cardStack;
     }
   }
 

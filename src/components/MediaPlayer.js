@@ -79,7 +79,7 @@ const MediaPlayer = ({
       });
     }
   };
-  
+
   // enables swiping for videos
   useEffect(() => {
     let touchstartX = {
@@ -184,9 +184,7 @@ const MediaPlayer = ({
       >
         {currentVideoArray.map((video, i) => {
           return (
-            <Carousel.Item
-              key={i}
-            >
+            <Carousel.Item key={i}>
               {video.is360 ? (
                 <>
                   {video.embeddedUrl.includes('vimeo.com') ? (

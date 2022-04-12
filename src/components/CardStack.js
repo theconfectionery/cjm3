@@ -5,7 +5,7 @@ import { useDrag } from '@use-gesture/react';
 let timer = null;
 const toValue = i => ({
   x: 0,
-  y: i * -1,
+  y: 0,
   scale: 1,
   rot: ((i + 1) % 3) - 1,
   delay: i * 50,
@@ -68,7 +68,6 @@ const Deck = ({
 
   useEffect(() => {
     if (timer) window.clearTimeout(timer);
-    console.log('timer2');
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
       if (container) {

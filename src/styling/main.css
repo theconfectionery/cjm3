@@ -497,12 +497,12 @@ body {
   right: 0;
   display: none;
   z-index: 90000000;
-  opacity: 1;
+  opacity: 0.5;
   transition: opacity 0.5s ease;
 }
 
 .black-overlay_hidden {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.5s ease;
 }
 

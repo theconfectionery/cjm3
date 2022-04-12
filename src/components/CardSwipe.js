@@ -19,6 +19,7 @@ const CardStack = ({
 
   // fade in animation when opening cardstaack
   useEffect(() => {
+    
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
       if (container) {
