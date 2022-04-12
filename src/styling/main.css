@@ -439,6 +439,7 @@ body {
 
 .react-player__preview {
   background-repeat: no-repeat !important;
+  background-size: contain !important;
 }
 
 .carousel {
