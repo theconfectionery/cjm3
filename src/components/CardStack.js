@@ -75,6 +75,17 @@ const Deck = ({
   }, [showCards]);
 
   useEffect(() => {
+    if (fadeoutCards) {
+      setFadeoutCards(false);
+      const container = document.querySelector('.slider-container');
+      container.style.opacity = '0';
+      setTimeout(() => {
+        setShowCards(false);
+      }, 1000);
+    }
+  }, [fadeoutCards]);
+
+  useEffect(() => {
     // const noArrows = false;
 
     function slideInitial() {
@@ -128,25 +139,28 @@ const Deck = ({
     slideInitial();
   }, [currentClickId]);
 
-  console.log(props);
-  return props.map(({ x, y, rot, scale }, i) => (
-    <animated.div
-      className={'SliderCards'}
-      key={i}
-      style={{
-        transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
-      }}
-    >
-      {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
-      <animated.div
-        {...bind(i)}
-        style={{
-          transform: to([rot, scale], trans),
-          backgroundImage: `url(${cards[i].file.url})`,
-        }}
-      />
-    </animated.div>
-  ));
+  return (
+    <div className="slider-container">
+      {props.map(({ x, y, rot, scale }, i) => (
+        <animated.div
+          className={'SliderCards'}
+          key={i}
+          style={{
+            transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
+          }}
+        >
+          {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
+          <animated.div
+            {...bind(i)}
+            style={{
+              transform: to([rot, scale], trans),
+              backgroundImage: `url(${cards[i].file.url})`,
+            }}
+          />
+        </animated.div>
+      ))}
+    </div>
+  );
 };
 
 export default Deck;
