@@ -27,7 +27,6 @@ const CardStack = ({
     }, 500);
   }, [showCards]);
 
-  // fade out animation when closing cardstack
   useEffect(() => {
     if (fadeoutCards) {
       setFadeoutCards(false);
@@ -36,6 +35,16 @@ const CardStack = ({
       setTimeout(() => {
         setShowCards(false);
       }, 1000);
+    }
+  }, [fadeoutCards]);
+
+  // fade out animation when closing cardstack
+  useEffect(() => {
+    if (fadeoutCards) {
+      setFadeoutCards(false);
+      const container = document.querySelector('.slider-container');
+      container.style.opacity = '0';
+      setShowCards(false);
     }
   }, [fadeoutCards]);
 

@@ -55,6 +55,7 @@ const Screen = ({
 
   useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
+      console.log(currentClickId);
       if (currentClickId === 'infoBtn') {
         setShowCards(infoBtnClicked);
       } else {
@@ -68,6 +69,7 @@ const Screen = ({
       !showCardBtns.includes(currentClickId) &&
       !directionBtns.includes(currentClickId)
     ) {
+      console.log(currentClickId);
       setFadeoutCards(true);
     }
 
@@ -83,6 +85,8 @@ const Screen = ({
       setShowWebpage(false);
     }
   }, [currentClickId]);
+
+  console.log(showCards, fadeoutCards);
 
   // hide appended DOM node arrows (created in CardStack) when CardStack is unmounted
   useEffect(() => {

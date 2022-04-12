@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSprings, animated, to } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
 
+let timer = null;
 const toValue = i => ({
   x: 0,
   y: i * -1,
@@ -76,12 +77,38 @@ const Deck = ({
 
   useEffect(() => {
     if (fadeoutCards) {
+      if (timer) {
+        window.clearTimeout(timer);
+      }
       setFadeoutCards(false);
-      const container = document.querySelector('.slider-container');
-      container.style.opacity = '0';
-      setTimeout(() => {
-        setShowCards(false);
-      }, 2000);
+      for (let i = cards.length - 1; i >= 0; i--) {
+        gone.add(i);
+      }
+
+      set(i => {
+        const isGone = gone.has(i);
+        const x = isGone ? 200 + window.innerWidth : 0; // When a card is gone it flys out left or right, otherwise goes back to zero
+        const rot = 1 / 100 + (isGone ? 5 * 0.1 : 0); // How much the card tilts, flicking it harder makes it rotate faster
+        const scale = 1; // Active cards lift up a bit
+        if (isGone) {
+          return {
+            x,
+            rot,
+            scale,
+            delay: undefined,
+            config: { friction: 40, tension: 200 },
+          };
+        } else {
+          return toValue(i);
+        }
+      });
+
+      timer = setTimeout(() => {
+        const container = document.querySelector('.slider-container');
+        if (container) {
+          container.style.opacity = '1';
+        }
+      }, 1000);
     }
   }, [fadeoutCards]);
 
