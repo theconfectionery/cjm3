@@ -5,6 +5,7 @@ import MediaPlayer from './MediaPlayer';
 import { usePrevious } from './utils';
 
 const fakeVideo = { embeddedUrl: '' };
+let timer = null;
 
 const Screen = ({
   cards,
@@ -54,9 +55,25 @@ const Screen = ({
   }, []);
 
   useEffect(() => {
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+    if (fadeoutCards) {
+      timer = window.setTimeout(() => {
+        setShowCards(false);
+        setFadeoutCards(false);
+      }, 1000);
+    }
+  }, [fadeoutCards]);
+
+  useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
+      if (timer) {
+        window.clearTimeout(timer);
+      }
       if (currentClickId === 'infoBtn') {
-        setShowCards(infoBtnClicked);
+        if (infoBtnClicked) setShowCards(infoBtnClicked);
+        else setFadeoutCards(true);
       } else {
         setShowCards(true);
       }
@@ -110,7 +127,7 @@ const Screen = ({
             currentVideoArray: getVideoArray(currentClickId),
             playVideo: true,
           });
-        }, 500);
+        }, 100);
       } else {
         if (currentClickId !== prevClickId) {
           setVideoDetails({
@@ -173,6 +190,7 @@ const Screen = ({
       hideCardBtns={hideCardBtns}
       prevClickId={prevClickId}
       cardBackup={cards}
+      infoBtnClicked={infoBtnClicked}
     />
   ) : null;
 

@@ -278,7 +278,7 @@ body {
   will-change: transform;
 }
 .SliderCards > div {
-  background-size: 100% 100%;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center center;
   display: block;

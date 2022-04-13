@@ -20,7 +20,7 @@ const Deck = ({
   setFadeoutCards,
   hideCardBtns,
   prevClickId,
-  cardBackup,
+  infoBtnClicked,
 }) => {
   const toValue = i => ({
     x: 0,
@@ -75,20 +75,16 @@ const Deck = ({
   );
 
   useEffect(() => {
-    if (timer) window.clearTimeout(timer);
     setTimeout(() => {
       const container = document.querySelector('.slider-container');
       if (container) {
         container.style.opacity = '1';
       }
     }, 500);
-  }, [showCards, currentClickId]);
+  }, [showCards, currentClickId, infoBtnClicked]);
 
   useEffect(() => {
     if (fadeoutCards) {
-      if (timer) {
-        window.clearTimeout(timer);
-      }
       setFadeoutCards(false);
       gone.clear();
       for (let i = cards.length - 1; i >= 0; i--) {
@@ -114,12 +110,10 @@ const Deck = ({
       });
 
       timer = setTimeout(() => {
-        console.log('timer1', showCards);
         const container = document.querySelector('.slider-container');
         if (container) {
           container.style.opacity = '0';
         }
-        setShowCards(false);
       }, 1000);
     }
   }, [fadeoutCards]);
@@ -176,7 +170,7 @@ const Deck = ({
     };
 
     slideInitial();
-  }, [currentClickId]);
+  }, [currentClickId, infoBtnClicked]);
 
   return (
     <div className="slider-container">
