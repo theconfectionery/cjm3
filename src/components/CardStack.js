@@ -92,21 +92,7 @@ const Deck = ({
       }
 
       set(i => {
-        const isGone = gone.has(i);
-        const x = isGone ? 200 + window.innerWidth : 0; // When a card is gone it flys out left or right, otherwise goes back to zero
-        const rot = 1 / 100 + (isGone ? 5 * 0.1 : 0); // How much the card tilts, flicking it harder makes it rotate faster
-        const scale = 1; // Active cards lift up a bit
-        if (isGone) {
-          return {
-            x,
-            rot,
-            scale,
-            delay: undefined,
-            config: { friction: 40, tension: 200 },
-          };
-        } else {
-          return toValue(i + gone.size);
-        }
+        return from(i);
       });
 
       timer = setTimeout(() => {

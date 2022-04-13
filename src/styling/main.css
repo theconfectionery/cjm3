@@ -286,7 +286,9 @@ body {
   height: 85%;
   will-change: transform;
   touch-action: none;
-  /* box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3); */
+  filter: drop-shadow(0px 23px 46px #00000019);
+  /* box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3); */
 }
 
 /* Card Carousel CSS */
