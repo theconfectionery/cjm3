@@ -104,11 +104,13 @@ const Screen = ({
     if (currentClickId && currentClickId in videos) {
       setFadeoutCards(true);
       if (!playVideo) {
-        setVideoDetails({
-          videoIndex: 0,
-          currentVideoArray: getVideoArray(currentClickId),
-          playVideo: true,
-        });
+        setTimeout(() => {
+          setVideoDetails({
+            videoIndex: 0,
+            currentVideoArray: getVideoArray(currentClickId),
+            playVideo: true,
+          });
+        }, 500);
       } else {
         if (currentClickId !== prevClickId) {
           setVideoDetails({

@@ -155,6 +155,7 @@ const MediaPlayer = ({
 
   // black overlay to fade in when changing between truffle buttons
   useEffect(() => {
+    console.log(currentVideoArray);
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
     setTimeout(() => {
