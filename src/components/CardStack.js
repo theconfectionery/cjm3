@@ -3,13 +3,7 @@ import { useSprings, animated, to } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
 
 let timer = null;
-const toValue = i => ({
-  x: 0,
-  y: 0,
-  scale: 1,
-  rot: ((i + 1) % 3) - 1,
-  delay: i * 50,
-});
+
 const from = i => ({ x: 0, rot: 0, scale: 1, y: -1000 });
 
 const trans = (r, s) =>
@@ -28,6 +22,14 @@ const Deck = ({
   prevClickId,
   cardBackup,
 }) => {
+  const toValue = i => ({
+    x: 0,
+    y: 0,
+    scale: 1,
+    rot: (((cards.length - i) % 3) - 1) * 2,
+    delay: i * 50,
+  });
+
   const directionBtns = ['leftArrow', 'rightArrow'];
   const [gone] = useState(() => new Set()); // The set flags all the cards that are flicked out
   const [props, set] = useSprings(cards.length, i => ({
@@ -48,18 +50,24 @@ const Deck = ({
       const dir = xDir < 0 ? -1 : 1; // Direction should either point left or right
       if (!down) gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
       set(i => {
-        if (index !== i) return; // We're only interested in changing spring-data for the current spring
-        const isGone = gone.has(index);
+        if (index !== i && gone.has(i)) return; // We're only interested in changing spring-data for the current spring
+        const isGone = gone.has(i);
         const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0; // When a card is gone it flys out left or right, otherwise goes back to zero
         const rot = xDelta / 100 + (isGone ? dir * 5 * velocity[0] : 0); // How much the card tilts, flicking it harder makes it rotate faster
         const scale = down ? 1.1 : 1; // Active cards lift up a bit
-        return {
-          x,
-          rot,
-          scale,
-          delay: undefined,
-          config: { friction: 40, tension: down ? 800 : isGone ? 200 : 500 },
-        };
+
+        return isGone
+          ? {
+              x,
+              rot,
+              scale,
+              delay: undefined,
+              config: {
+                friction: 40,
+                tension: down ? 800 : isGone ? 200 : 500,
+              },
+            }
+          : toValue(i + gone.size);
       });
       if (!down && gone.size === cards.length)
         setTimeout(() => gone.clear() || set(i => toValue(i)), 500);
@@ -101,7 +109,7 @@ const Deck = ({
             config: { friction: 40, tension: 200 },
           };
         } else {
-          return toValue(i);
+          return toValue(i + gone.size);
         }
       });
 
@@ -162,7 +170,7 @@ const Deck = ({
             config: { friction: 40, tension: 200 },
           };
         } else {
-          return toValue(i);
+          return toValue(i + gone.size);
         }
       });
     };
