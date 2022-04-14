@@ -75,12 +75,12 @@ const Deck = ({
   );
 
   useEffect(() => {
-    setTimeout(() => {
+    // setTimeout(() => {
       const container = document.querySelector('.slider-container');
       if (container) {
         container.style.opacity = '1';
       }
-    }, 0);
+    // }, 500);
   }, [showCards, currentClickId, infoBtnClicked]);
 
   useEffect(() => {
