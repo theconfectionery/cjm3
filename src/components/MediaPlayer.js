@@ -79,7 +79,7 @@ const MediaPlayer = ({
       });
     }
   };
-  
+
   // enables swiping for videos
   useEffect(() => {
     let touchstartX = {
@@ -155,6 +155,7 @@ const MediaPlayer = ({
 
   // black overlay to fade in when changing between truffle buttons
   useEffect(() => {
+    console.log(currentVideoArray);
     const blackOverlay = document.querySelector('.black-overlay');
     blackOverlay.style.display = 'block';
     setTimeout(() => {
@@ -184,9 +185,7 @@ const MediaPlayer = ({
       >
         {currentVideoArray.map((video, i) => {
           return (
-            <Carousel.Item
-              key={i}
-            >
+            <Carousel.Item key={i}>
               {video.is360 ? (
                 <>
                   {video.embeddedUrl.includes('vimeo.com') ? (

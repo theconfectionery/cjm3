@@ -5,6 +5,7 @@ import MediaPlayer from './MediaPlayer';
 import { usePrevious } from './utils';
 
 const fakeVideo = { embeddedUrl: '' };
+let timer = null;
 
 const Screen = ({
   cards,
@@ -54,9 +55,25 @@ const Screen = ({
   }, []);
 
   useEffect(() => {
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+    if (fadeoutCards) {
+      timer = window.setTimeout(() => {
+        setShowCards(false);
+        setFadeoutCards(false);
+      }, 1000);
+    }
+  }, [fadeoutCards]);
+
+  useEffect(() => {
     if (showCardBtns.includes(currentClickId)) {
+      if (timer) {
+        window.clearTimeout(timer);
+      }
       if (currentClickId === 'infoBtn') {
-        setShowCards(infoBtnClicked);
+        if (infoBtnClicked) setShowCards(infoBtnClicked);
+        else setFadeoutCards(true);
       } else {
         setShowCards(true);
       }
@@ -84,6 +101,8 @@ const Screen = ({
     }
   }, [currentClickId]);
 
+  console.log(showCards, fadeoutCards);
+
   // hide appended DOM node arrows (created in CardStack) when CardStack is unmounted
   useEffect(() => {
     const cardSliderLeft = document.querySelector('.slider-left');
@@ -100,13 +119,15 @@ const Screen = ({
   // handle video details when clicking truffles
   useEffect(() => {
     if (currentClickId && currentClickId in videos) {
-      setShowCards(false);
+      setFadeoutCards(true);
       if (!playVideo) {
-        setVideoDetails({
-          videoIndex: 0,
-          currentVideoArray: getVideoArray(currentClickId),
-          playVideo: true,
-        });
+        setTimeout(() => {
+          setVideoDetails({
+            videoIndex: 0,
+            currentVideoArray: getVideoArray(currentClickId),
+            playVideo: true,
+          });
+        }, 100);
       } else {
         if (currentClickId !== prevClickId) {
           setVideoDetails({
@@ -136,6 +157,18 @@ const Screen = ({
     }
   });
 
+  // useEffect(() => {
+  //   const blackOverlay = document.querySelector('.black-overlay');
+  //   blackOverlay.style.display = 'block';
+  //   setTimeout(() => {
+  //     blackOverlay.classList.add('black-overlay_hidden');
+  //   }, 550);
+  //   setTimeout(() => {
+  //     blackOverlay.style.display = 'none';
+  //     blackOverlay.classList.remove('black-overlay_hidden');
+  //   }, 1100);
+  // }, [videoDetails]);
+
   function showBlackScreen() {
     const blackScreen = document.querySelector('.black-screen');
 
@@ -155,6 +188,9 @@ const Screen = ({
       fadeoutCards={fadeoutCards}
       setFadeoutCards={setFadeoutCards}
       hideCardBtns={hideCardBtns}
+      prevClickId={prevClickId}
+      cardBackup={cards}
+      infoBtnClicked={infoBtnClicked}
     />
   ) : null;
 
@@ -180,8 +216,9 @@ const Screen = ({
     <>
       {determineScreenContent()}
       <div
-        className={`black-screen ${playVideo || showWebpage ? 'black-screen_visible' : ''
-          }`}
+        className={`black-screen ${
+          playVideo || showWebpage ? 'black-screen_visible' : ''
+        }`}
       ></div>
     </>
   );

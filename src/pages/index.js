@@ -1,5 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import 'swiper/css/bundle';
+import 'swiper/css';
+import 'swiper/css/effect-cards';
 import App from '../components/App';
 import favicon from '../assets/images/favicon.ico';
 

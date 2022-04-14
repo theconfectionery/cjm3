@@ -278,25 +278,25 @@ body {
   will-change: transform;
 }
 .SliderCards > div {
-  background-color: white;
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center center;
   display: block;
-  width: 65%;
-  height: 70%;
+  width: 95%;
+  height: 85%;
   will-change: transform;
   touch-action: none;
-  /* box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3); */
+  filter: drop-shadow(0px 23px 46px #00000019);
+  /* box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3); */
 }
-
 
 /* Card Carousel CSS */
 .slider-container {
   position: relative;
   margin: 0 auto;
-  width: 70%;
-  height: 80%;
+  width: 90%;
+  height: 100%;
   /* transform: translateY(580px); */
   transition: opacity 0.6s ease;
   opacity: 0;
@@ -430,6 +430,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   outline: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .react-player iframe {
@@ -505,7 +507,7 @@ body {
 }
 
 .black-overlay_hidden {
-  opacity: 0;
+  opacity: 0.5;
   transition: opacity 0.5s ease;
 }
 
