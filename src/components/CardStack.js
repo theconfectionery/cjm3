@@ -95,12 +95,12 @@ const Deck = ({
         return from(i);
       });
 
-      timer = setTimeout(() => {
+      // timer = setTimeout(() => {
         const container = document.querySelector('.slider-container');
         if (container) {
           container.style.opacity = '0';
         }
-      }, 1000);
+      // }, 1000);
     }
   }, [fadeoutCards]);
 
