@@ -80,7 +80,7 @@ const Deck = ({
       if (container) {
         container.style.opacity = '1';
       }
-    }, 500);
+    }, 0);
   }, [showCards, currentClickId, infoBtnClicked]);
 
   useEffect(() => {
